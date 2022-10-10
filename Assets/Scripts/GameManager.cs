@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     public Image _decorationIngredient;
     public List<Sprite> _baseIngredients;
     public List<Sprite> _flavoringIngredients;
+    public List<Sprite> _dyeIngredients;
+    public List<Sprite> _decorationIngredients;
 
     // Start is called before the first frame update
     void Start()
@@ -52,9 +54,18 @@ public class GameManager : MonoBehaviour
 
     public void CheckComposition()
     {
-        if (_baseIngredient.GetComponent<Image>().sprite.name.Equals(_cocktail.Base.GetType().Name.ToLower())
+        string baseIngredient = _baseIngredient.GetComponent<Image>().sprite.name;
+        string flavoringIngredient = _flavoringIngredient.GetComponent<Image>().sprite.name;
+        string dyeIngredient = _dyeIngredient.GetComponent<Image>().sprite.name;
+        string decoratioIngredient = _decorationIngredient.GetComponent<Image>().sprite.name;
+
+        if ((_cocktail.Base == null || baseIngredient.Equals(_cocktail.Base.GetType().Name.ToLower()))
             &&
-            _flavoringIngredient.GetComponent<Image>().sprite.name.Equals(_cocktail.Flavoring.GetType().Name.ToLower()))
+            (_cocktail.Flavoring == null || flavoringIngredient.Equals(_cocktail.Flavoring.GetType().Name.ToLower()))
+            &&
+            (_cocktail.Dye == null || dyeIngredient.Equals(_cocktail.Dye.GetType().Name.ToLower()))
+            &&
+            (_cocktail.Decoration == null || decoratioIngredient.Equals(_cocktail.Decoration.GetType().Name.ToLower())))
             Debug.Log("OK");
         else
             Debug.Log("ERROR");
@@ -71,6 +82,12 @@ public class GameManager : MonoBehaviour
                 break;
             case "FLAVORING":
                 current = Randomize(_flavoringIngredients, current);
+                break;
+            case "DYE":
+                current = Randomize(_dyeIngredients, current);
+                break;
+            case "DECORATION":
+                current = Randomize(_decorationIngredients, current);
                 break;
             default:
                 break;
