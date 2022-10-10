@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,9 +10,12 @@ public class GameManager : MonoBehaviour
     List<Cocktail> _cocktails = new List<Cocktail>();
     Cocktail _cocktail;
 
-    // UI
+    // UI IN INSPECTOR
+    public Text _task;
     public Image _baseIngredient;
     public Image _flavoringIngredient;
+    public Image _dyeIngredient;
+    public Image _decorationIngredient;
     public List<Sprite> _baseIngredients;
     public List<Sprite> _flavoringIngredients;
 
@@ -20,7 +24,7 @@ public class GameManager : MonoBehaviour
     {
         Init();
         _cocktail = RandomCocktail();
-        Debug.Log("Cocktail:" + _cocktail.GetType().Name);
+        _task.text = "Prepara un " + _cocktail;
     }
 
     // Update is called once per frame
@@ -56,13 +60,37 @@ public class GameManager : MonoBehaviour
             Debug.Log("ERROR");
     }
 
-    public void SwitchBase()
+    public void SwitchSprite(string ingredientType)
     {
-        _baseIngredient.GetComponent<Image>().sprite = _baseIngredients[Random.Range(0, _baseIngredients.Count)];
+        Sprite current = EventSystem.current.currentSelectedGameObject.GetComponent<Image>().sprite;
+
+        switch (ingredientType)
+        {
+            case "BASE":
+                current = Randomize(_baseIngredients, current);
+                break;
+            case "FLAVORING":
+                current = Randomize(_flavoringIngredients, current);
+                break;
+            default:
+                break;
+        }
+
+        EventSystem.current.currentSelectedGameObject.GetComponent<Image>().sprite = current;
     }
 
-    public void SwitchFlavoring()
+    public Sprite Randomize(List<Sprite> ingredientList, Sprite current)
     {
-        _flavoringIngredient.GetComponent<Image>().sprite = _flavoringIngredients[Random.Range(0, _flavoringIngredients.Count)];
+        
+        Sprite temp;
+
+        do
+        {
+            temp = ingredientList[Random.Range(0, ingredientList.Count)];
+        }
+        while (current.name.Equals(temp.name));
+
+        return temp;
     }
+
 }
