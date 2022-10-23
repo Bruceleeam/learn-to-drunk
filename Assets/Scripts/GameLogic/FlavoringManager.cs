@@ -40,6 +40,7 @@ public class FlavoringManager : MonoBehaviour
         _ = index + 1 == _flavorings.Count ? index = 0 : index++;
 
         GetComponent<Image>().sprite = _flavorings[index]._image;
+        transform.GetChild(0).GetComponent<Text>().text = _flavorings[index].name;
 
         _gameManager._user_cocktail._flavoring = _flavorings[index];
 

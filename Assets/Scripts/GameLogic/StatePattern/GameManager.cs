@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public Cocktail _user_cocktail;
     public static bool confirm = false;
     public Text _task;
+    public Image _barman;
 
     private void Awake()
     {
@@ -31,12 +32,7 @@ public class GameManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        foreach (Cocktail ck in Resources.LoadAll("Cocktail", typeof(Cocktail)))
-            _cocktails.Add(ck);
-
-        _cocktail = _cocktails[new System.Random().Next(0, _cocktails.Count)];
-
-        _user_cocktail = new Cocktail();
+        
 
         Init();
 

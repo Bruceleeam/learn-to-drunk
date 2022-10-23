@@ -13,6 +13,7 @@ public class PlayState : FSMState<GameManager>
     {
         Debug.Log("Enter Play State");
 		gm = owner;
+        GameManager.confirm = false;
     }
 
     public override void Execute()

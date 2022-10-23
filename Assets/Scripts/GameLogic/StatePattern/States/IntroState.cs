@@ -14,7 +14,14 @@ public class IntroState : FSMState<GameManager>
         Debug.Log("Enter Intro State");
         gm = owner;
 
-        gm._task.text = "Realizza un " + gm._cocktail.name;
+        foreach (Cocktail ck in Resources.LoadAll("Cocktail", typeof(Cocktail)))
+            gm._cocktails.Add(ck);
+
+        gm._cocktail = gm._cocktails[new System.Random().Next(0, gm._cocktails.Count)];
+
+        gm._user_cocktail = new Cocktail();
+
+        gm._task.text = "Prepara un " + gm._cocktail.name;
     }
 
     public override void Execute()

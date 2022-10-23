@@ -20,7 +20,10 @@ public class CheckAnswerState : FSMState<GameManager>
         if (Compare(gm._user_cocktail, gm._cocktail))
             gm._task.text = "Esatto!!";
         else
+        {
             gm._task.text = "Hai sbagliato!";
+            gm.ChangeState(new PlayState());
+        }
 
         //gm.ChangeState(new EndState()); 
     }

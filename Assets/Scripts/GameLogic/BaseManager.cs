@@ -39,6 +39,7 @@ public class BaseManager : MonoBehaviour
         _ = index + 1 == _bases.Count ? index = 0 : index++;
 
         GetComponent<Image>().sprite = _bases[index]._image;
+        transform.GetChild(0).GetComponent<Text>().text = _bases[index].name;
 
         _gameManager._user_cocktail._base = _bases[index];
         
