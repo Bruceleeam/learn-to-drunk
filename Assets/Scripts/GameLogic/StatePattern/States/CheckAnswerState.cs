@@ -35,7 +35,7 @@ public class CheckAnswerState : FSMState<GameManager>
 
     bool Compare(Cocktail a, Cocktail b)
     {
-        if (a._base == b._base && a._flavoring == b._flavoring)
+        if (a._base == b._base && a._flavoring == b._flavoring && a._dye == b._dye && a._decoration == b._decoration)
             return true;
 
         return false;

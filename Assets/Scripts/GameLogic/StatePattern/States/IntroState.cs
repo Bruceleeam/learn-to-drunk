@@ -21,7 +21,7 @@ public class IntroState : FSMState<GameManager>
 
         gm._user_cocktail = new Cocktail();
 
-        gm._task.text = "Prepara un " + gm._cocktail.name;
+        gm._task.text = gm._cocktail.name + " !";
     }
 
     public override void Execute()

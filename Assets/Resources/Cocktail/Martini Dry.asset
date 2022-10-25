@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45eee8b9ba1c04679a4035fb4c1de001, type: 3}
-  m_Name: MoscowMule
+  m_Name: Martini Dry
   m_EditorClassIdentifier: 
-  _base: {fileID: 11400000, guid: 9010039a4d3004de387e54f058265c6a, type: 2}
-  _flavoring: {fileID: 11400000, guid: 19f8d166bae4a4954a9c319b9092a48e, type: 2}
-  _dye: {fileID: 11400000, guid: 0229ad35ded864acda5266661da0dc87, type: 2}
-  _decoration: {fileID: 11400000, guid: 43504b057062343429afa96fcb1ef0ad, type: 2}
+  _base: {fileID: 11400000, guid: 5708421f78a3b4786b85869580532e2a, type: 2}
+  _flavoring: {fileID: 11400000, guid: b3fd305192f974f5ab914e285efe4f8a, type: 2}
+  _dye: {fileID: 11400000, guid: c4610d4ee78f8441bad09b41880dfb85, type: 2}
+  _decoration: {fileID: 11400000, guid: 48de084b419da467591835c6cb4f826f, type: 2}
