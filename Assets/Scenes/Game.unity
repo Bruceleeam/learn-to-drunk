@@ -386,7 +386,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Oliva
+  m_Text: None
 --- !u!222 &400452856
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -468,7 +468,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Gin
+  m_Text: None
 --- !u!222 &417277552
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -522,7 +522,7 @@ GameObject:
   - component: {fileID: 425479969}
   m_Layer: 5
   m_Name: Flavoring
-  m_TagString: Untagged
+  m_TagString: Flavoring
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -612,7 +612,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 08ed41da90ceb498c993a7ecfa22085c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6c2f8e50e3afe4c9fa567dac8f028c66, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -639,7 +639,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 425479964}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c784118f94974a059b4808c46e1436b, type: 3}
+  m_Script: {fileID: 11500000, guid: 35b0b51277c5f4dac88c7645bcecfcad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &519420028
@@ -790,7 +790,7 @@ GameObject:
   - component: {fileID: 650782081}
   m_Layer: 5
   m_Name: Decoration
-  m_TagString: Untagged
+  m_TagString: Decoration
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -880,7 +880,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e3f4fd88ddd4f434da16e1017b7b0cfd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6c2f8e50e3afe4c9fa567dac8f028c66, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -907,7 +907,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 650782075}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f479f46834c6e466fb89f56b3b99dc75, type: 3}
+  m_Script: {fileID: 11500000, guid: 35b0b51277c5f4dac88c7645bcecfcad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &658703600
@@ -1001,7 +1001,7 @@ GameObject:
   - component: {fileID: 664392863}
   m_Layer: 5
   m_Name: Base
-  m_TagString: Untagged
+  m_TagString: Base
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1091,7 +1091,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fc6f0f0976f3b4a34aa1904469a63598, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6c2f8e50e3afe4c9fa567dac8f028c66, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1118,7 +1118,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 664392858}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37a6195fdb4204f4f98a6910d10bc56b, type: 3}
+  m_Script: {fileID: 11500000, guid: 35b0b51277c5f4dac88c7645bcecfcad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &664619054
@@ -1273,7 +1273,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: None
 --- !u!222 &815899187
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1614,7 +1614,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Martini
+  m_Text: Cocktail
 --- !u!222 &1222126070
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1638,7 +1638,7 @@ GameObject:
   - component: {fileID: 1343006099}
   m_Layer: 5
   m_Name: Dye
-  m_TagString: Untagged
+  m_TagString: Dye
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1728,7 +1728,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: afd45d314a9fd451d9586d72e2d8befd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6c2f8e50e3afe4c9fa567dac8f028c66, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1755,7 +1755,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1343006093}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27236b2b87a0043b9bec00a56f7bfc35, type: 3}
+  m_Script: {fileID: 11500000, guid: 35b0b51277c5f4dac88c7645bcecfcad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1444286682
@@ -1831,7 +1831,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Ginger Beer
+  m_Text: None
 --- !u!222 &1444286685
 CanvasRenderer:
   m_ObjectHideFlags: 0

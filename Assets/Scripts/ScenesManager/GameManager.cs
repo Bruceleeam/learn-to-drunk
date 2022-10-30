@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
         {
             _instance = this;
         }
+        Init();
+
     }
 
     // Use this for initialization
@@ -34,12 +36,18 @@ public class GameManager : MonoBehaviour
     {
         
 
-        Init();
 
     }
 
     public void Init()
     {
+        foreach (Cocktail ck in Resources.LoadAll("Cocktail", typeof(Cocktail)))
+            _cocktails.Add(ck);
+
+        _cocktail = _cocktails[new System.Random().Next(0, _cocktails.Count)];
+
+        _user_cocktail = new Cocktail();
+
         FSM.Initialize(this, new IntroState());
     }
 
@@ -52,6 +60,12 @@ public class GameManager : MonoBehaviour
     public void ChangeState(FSMState<GameManager> state)
     {
         FSM.ChangeState(state);                     
+    }
+
+    public IEnumerator Feedback(string feedback, string barman)
+    {
+        _task.text = feedback;
+        yield return new WaitForSeconds(3);
     }
 
 }

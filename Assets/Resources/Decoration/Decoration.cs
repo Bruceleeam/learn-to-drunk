@@ -4,20 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "Decoration", menuName = "Ingredient/Decoration", order = 1)]
-public class Decoration : ScriptableObject
+public class Decoration : Ingredient
 {
-    public Sprite _image;
-    public string _desc;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+   
 }

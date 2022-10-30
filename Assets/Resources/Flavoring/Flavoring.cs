@@ -4,20 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "Base", menuName = "Ingredient/Flavoring", order = 1)]
-public class Flavoring : ScriptableObject
+public class Flavoring : Ingredient
 {
-    public Sprite _image;
-    public string _desc;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }

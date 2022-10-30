@@ -9,17 +9,5 @@ public class Cocktail : ScriptableObject
     public Base _base;
     public Flavoring _flavoring;
     public Dye _dye;
-    public Decoration _decoration;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    public Decoration _decoration;   
 }

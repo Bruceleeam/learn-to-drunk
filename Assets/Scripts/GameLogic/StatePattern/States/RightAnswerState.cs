@@ -2,30 +2,27 @@
 using System.Collections.Generic;
 using System;
 
-public class IntroState : FSMState<GameManager>
+public class RightAnswerState : FSMState<GameManager>
 {
     GameManager gm;
 
-    public IntroState(){
+    public RightAnswerState(){
 	}
 
 	public override void Enter(GameManager owner)
     {
-        Debug.Log("Enter Intro State");
-        gm = owner;
-
-        
-
+        Debug.Log("Enter Right Answer State");
+		gm = owner;
     }
 
     public override void Execute()
 	{
-		gm.ChangeState(new StartState()); 
+		gm.ChangeState(new IntroState()); 
     }
 
     public override void Exit()
     {
-        Debug.Log("Exit Intro State");
+        Debug.Log("Exit Right Answer State");
     }
 
 }
