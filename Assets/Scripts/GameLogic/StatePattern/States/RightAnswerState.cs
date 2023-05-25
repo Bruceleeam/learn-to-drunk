@@ -12,12 +12,17 @@ public class RightAnswerState : FSMState<GameManager>
 	public override void Enter(GameManager owner)
     {
         Debug.Log("Enter Right Answer State");
-		gm = owner;
+        GameManager._feedback = true;
+        gm = owner;
     }
 
     public override void Execute()
 	{
-		gm.ChangeState(new IntroState()); 
+        if (GameManager._update)
+        {
+            GameManager._update = false;
+            gm.ChangeState(new CardUnlockingState());
+        }
     }
 
     public override void Exit()

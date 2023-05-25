@@ -16,6 +16,12 @@ public class GameManager : MonoBehaviour
     public static bool confirm = false;
     public Text _task;
     public Image _barman;
+    public static bool _feedback = false;
+    public static bool  _cardUnlocking= false;
+    public static bool _update = false;
+    public GameObject _cardPanel;
+    public Text _cardTitle;
+    public Text _cardDescription;
 
     private void Awake()
     {
@@ -35,16 +41,12 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         
-
-
     }
 
     public void Init()
     {
         foreach (Cocktail ck in Resources.LoadAll("Cocktail", typeof(Cocktail)))
             _cocktails.Add(ck);
-
-        _cocktail = _cocktails[new System.Random().Next(0, _cocktails.Count)];
 
         _user_cocktail = new Cocktail();
 
@@ -55,6 +57,46 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         FSM.Update();
+
+        if (_feedback)
+        {
+            _feedback = false;
+            string feedbackMessage = "";
+            //switch (this.CurrentState())
+            //{
+            //    case Type.GetType("RightState"):
+            //        feedbackMessage = "Risposta Esatta!";
+            //        break;
+            //    case Type.GetType("WrongState"):
+            //        feedbackMessage = "Risposta Errata! Riprova.";
+            //        break;
+            //    default:
+            //        break;
+            //}
+
+            if (CurrentState() == Type.GetType("RightAnswerState"))
+            {
+                feedbackMessage = "Risposta esatta!";
+            }
+
+            if (CurrentState() == Type.GetType("WrongAnswerState"))
+            {
+                feedbackMessage = "Risposta errata! Riprova.";
+            }
+
+            if (CurrentState() == Type.GetType("EndState"))
+            {
+                feedbackMessage = "Partita terminata.";
+            }
+
+            StartCoroutine(Feedback(feedbackMessage, null));
+        }
+
+        if (_cardUnlocking)
+        {
+            _cardUnlocking = false;
+            UnlockCard();
+        }
     }
 
     public void ChangeState(FSMState<GameManager> state)
@@ -62,10 +104,38 @@ public class GameManager : MonoBehaviour
         FSM.ChangeState(state);                     
     }
 
+    public Type CurrentState()
+    {
+        return FSM.CurrentState().GetType();
+    }
+
     public IEnumerator Feedback(string feedback, string barman)
     {
         _task.text = feedback;
         yield return new WaitForSeconds(3);
+        _update = true;
+    }
+
+    public IEnumerator Feedback(string message)
+    {
+        yield return null;
+    }
+
+    public void Confirm()
+    {
+        confirm = true;
+    }
+
+    public void UnlockCard()
+    {
+        _cardPanel.SetActive(true);
+        _cardTitle.text = _cocktail.name;
+        _cardDescription.text = _cocktail._desc;
+    }
+
+    public void UpdateState()
+    {
+        _update = true;
     }
 
 }

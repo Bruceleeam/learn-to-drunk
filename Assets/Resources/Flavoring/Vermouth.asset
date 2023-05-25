@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Vermouth
   m_EditorClassIdentifier: 
   _image: {fileID: 21300000, guid: a5761a61421124972b354904da1ca225, type: 3}
-  _desc: Vermouth
+  _name: Vermouth
+  _desc: Descrizione del vermouth

@@ -19,7 +19,11 @@ public class WrongAnswerState : FSMState<GameManager>
     public override void Execute()
 	{
         //StartCoroutine("Error");
-		gm.ChangeState(new PlayState()); 
+        if (GameManager._update)
+        {
+            GameManager._update = false;
+            gm.ChangeState(new StartState());
+        }
     }
 
     public override void Exit()

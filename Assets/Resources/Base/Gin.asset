@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Gin
   m_EditorClassIdentifier: 
   _image: {fileID: 21300000, guid: fc6f0f0976f3b4a34aa1904469a63598, type: 3}
-  _desc: Il gin
+  _name: Il gin
+  _desc: Descrizione del gin

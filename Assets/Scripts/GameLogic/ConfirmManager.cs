@@ -9,13 +9,15 @@ public class ConfirmManager : MonoBehaviour
     void Start()
     {
         GetComponent<Button>().onClick.AddListener(Confirm);
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (GameManager._feedback)
+            GetComponent<Button>().interactable = false;
+        else
+            GetComponent<Button>().interactable = true;
     }
 
     void Confirm()

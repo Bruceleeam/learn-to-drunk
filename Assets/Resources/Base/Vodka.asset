@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Vodka
   m_EditorClassIdentifier: 
   _image: {fileID: 21300000, guid: 9d4c1ab3c1efd49cc998bdbaab0054be, type: 3}
-  _desc: La vodka
+  _name: La vodka
+  _desc: Descrizione della vodka

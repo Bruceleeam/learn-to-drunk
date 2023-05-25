@@ -16,3 +16,4 @@ MonoBehaviour:
   _flavoring: {fileID: 11400000, guid: b3fd305192f974f5ab914e285efe4f8a, type: 2}
   _dye: {fileID: 11400000, guid: c4610d4ee78f8441bad09b41880dfb85, type: 2}
   _decoration: {fileID: 11400000, guid: 48de084b419da467591835c6cb4f826f, type: 2}
+  _desc: Descrizione del martini dry

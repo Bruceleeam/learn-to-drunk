@@ -13,14 +13,13 @@ public class IntroState : FSMState<GameManager>
     {
         Debug.Log("Enter Intro State");
         gm = owner;
-
-        
-
     }
 
     public override void Execute()
 	{
-		gm.ChangeState(new StartState()); 
+        gm._cocktail = gm._cocktails[new System.Random().Next(0, gm._cocktails.Count)];
+
+        gm.ChangeState(new StartState()); 
     }
 
     public override void Exit()

@@ -9,5 +9,14 @@ public class Cocktail : ScriptableObject
     public Base _base;
     public Flavoring _flavoring;
     public Dye _dye;
-    public Decoration _decoration;   
+    public Decoration _decoration;
+    public string _desc;
+
+    public Cocktail()
+    {
+        _base = null;
+        _flavoring = null;
+        _dye = null;
+        _decoration = null;
+    }
 }

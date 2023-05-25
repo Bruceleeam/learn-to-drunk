@@ -38,4 +38,9 @@ public class FiniteStateMachine <T>
 		if (previousState != null)
 		  ChangeState(previousState);
 	}
+
+	public FSMState<T> CurrentState()
+    {
+		return currentState;
+    }
 }

@@ -11,7 +11,8 @@ public class EndState : FSMState<GameManager>
 
 	public override void Enter(GameManager owner)
     {
-        Debug.Log("Enter Intro State");
+        Debug.Log("Enter End State");
+        GameManager._feedback = true;
 		gm = owner;
     }
 
@@ -22,7 +23,7 @@ public class EndState : FSMState<GameManager>
 
     public override void Exit()
     {
-        Debug.Log("Exit Intro State");
+        Debug.Log("Exit End State");
     }
 
 }

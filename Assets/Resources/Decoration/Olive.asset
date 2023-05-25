@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Olive
   m_EditorClassIdentifier: 
   _image: {fileID: 21300000, guid: e3f4fd88ddd4f434da16e1017b7b0cfd, type: 3}
-  _desc: Oliva
+  _name: Oliva
+  _desc: Descrizione dell'oliva

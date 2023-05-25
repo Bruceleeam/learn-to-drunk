@@ -34,16 +34,31 @@ public class IngredientManager : MonoBehaviour
             _ingredients.Add(obj);
 
         GetComponent<Button>().onClick.AddListener(SpriteSwitching);
+        GetComponent<Button>().onClick.Invoke();
         SetCocktail();
     }
 
     void SpriteSwitching()
     {
+        Debug.Log("state:" + _gameManager.CurrentState());
+        if (_gameManager.CurrentState() != Type.GetType("IntroState") && _gameManager.CurrentState() != Type.GetType("PlayState"))
+            return;
+        if (_gameManager.CurrentState() == Type.GetType("IntroState"))
+        {
+            int tempIndex = new System.Random().Next(0, _ingredients.Count);
+            Debug.Log("INDEX:" + tempIndex);
+            GetComponent<Image>().sprite = ((Ingredient)_ingredients[tempIndex])._image;
+            transform.GetChild(0).GetComponent<Text>().text = _ingredients[tempIndex].name;
+        }
+        else
+        {
+            _ = _index + 1 == _ingredients.Count ? _index = 0 : _index++;
 
-        _ = _index + 1 == _ingredients.Count ? _index = 0 : _index++;
+            GetComponent<Image>().sprite = ((Ingredient)_ingredients[_index])._image;
+            transform.GetChild(0).GetComponent<Text>().text = _ingredients[_index].name;
 
-        GetComponent<Image>().sprite = ((Ingredient)_ingredients[_index])._image;
-        transform.GetChild(0).GetComponent<Text>().text = _ingredients[_index].name;
+        }
+        
 
         SetCocktail();
     }
@@ -67,8 +82,5 @@ public class IngredientManager : MonoBehaviour
             default:
                 break;
         }
-
     }
-
-
 }

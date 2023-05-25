@@ -16,3 +16,4 @@ MonoBehaviour:
   _flavoring: {fileID: 11400000, guid: 19f8d166bae4a4954a9c319b9092a48e, type: 2}
   _dye: {fileID: 11400000, guid: 0229ad35ded864acda5266661da0dc87, type: 2}
   _decoration: {fileID: 11400000, guid: 43504b057062343429afa96fcb1ef0ad, type: 2}
+  _desc: Descrizione del moscow mule

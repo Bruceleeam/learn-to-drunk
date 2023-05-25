@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Ice
   m_EditorClassIdentifier: 
   _image: {fileID: 21300000, guid: afd45d314a9fd451d9586d72e2d8befd, type: 3}
-  _desc: Ghiaccio
+  _name: Ghiaccio
+  _desc: Descrizione del ghiaccio

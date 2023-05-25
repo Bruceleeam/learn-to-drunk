@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: GingerBeer
   m_EditorClassIdentifier: 
   _image: {fileID: 21300000, guid: 08ed41da90ceb498c993a7ecfa22085c, type: 3}
-  _desc: Ginger Beer
+  _name: Ginger Beer
+  _desc: Descrizione del ginger beer
