@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public List<Cocktail> _cocktails = new List<Cocktail>();
     public Cocktail _cocktail;
     public Cocktail _user_cocktail;
+    public Button _confirm;
     public static bool confirm = false;
     public Text _task;
     public Image _barman;
@@ -62,18 +63,7 @@ public class GameManager : MonoBehaviour
         {
             _feedback = false;
             string feedbackMessage = "";
-            //switch (this.CurrentState())
-            //{
-            //    case Type.GetType("RightState"):
-            //        feedbackMessage = "Risposta Esatta!";
-            //        break;
-            //    case Type.GetType("WrongState"):
-            //        feedbackMessage = "Risposta Errata! Riprova.";
-            //        break;
-            //    default:
-            //        break;
-            //}
-
+            
             if (CurrentState() == Type.GetType("RightAnswerState"))
             {
                 feedbackMessage = "Risposta esatta!";
@@ -112,13 +102,10 @@ public class GameManager : MonoBehaviour
     public IEnumerator Feedback(string feedback, string barman)
     {
         _task.text = feedback;
+        _confirm.interactable = false;
         yield return new WaitForSeconds(3);
+        _confirm.interactable = true;
         _update = true;
-    }
-
-    public IEnumerator Feedback(string message)
-    {
-        yield return null;
     }
 
     public void Confirm()

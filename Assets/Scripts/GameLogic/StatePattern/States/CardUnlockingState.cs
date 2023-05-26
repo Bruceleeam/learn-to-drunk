@@ -21,7 +21,7 @@ public class CardUnlockingState : FSMState<GameManager>
         if (GameManager._update)
         {
             GameManager._update = false;
-            gm.ChangeState(new IntroState());
+            gm.ChangeState(new CheckRunState());
         }
     }
 

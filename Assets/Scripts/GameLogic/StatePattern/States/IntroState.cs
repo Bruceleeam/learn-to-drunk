@@ -18,7 +18,7 @@ public class IntroState : FSMState<GameManager>
     public override void Execute()
 	{
         gm._cocktail = gm._cocktails[new System.Random().Next(0, gm._cocktails.Count)];
-
+        gm._cocktails.Remove(gm._cocktail);
         gm.ChangeState(new StartState()); 
     }
 
