@@ -1254,6 +1254,10 @@ MonoBehaviour:
   _cardPanel: {fileID: 1463808519}
   _cardTitle: {fileID: 1881350776}
   _cardDescription: {fileID: 639615667}
+  _base: {fileID: 664392861}
+  _flavoring: {fileID: 425479967}
+  _dye: {fileID: 1343006097}
+  _decoration: {fileID: 650782079}
 --- !u!1 &815899182
 GameObject:
   m_ObjectHideFlags: 0

@@ -45,14 +45,20 @@ public class IngredientManager : MonoBehaviour
             return;
         if (_gameManager.CurrentState() == Type.GetType("IntroState"))
         {
-            int tempIndex = new System.Random().Next(0, _ingredients.Count);
-            Debug.Log("INDEX:" + tempIndex);
-            GetComponent<Image>().sprite = ((Ingredient)_ingredients[tempIndex])._image;
-            transform.GetChild(0).GetComponent<Text>().text = _ingredients[tempIndex].name;
+            _index = new System.Random().Next(0,_ingredients.Count);
+            GetComponent<Image>().sprite = ((Ingredient)_ingredients[_index])._image;
+            transform.GetChild(0).GetComponent<Text>().text = _ingredients[_index].name;
         }
         else
         {
-            _ = _index + 1 == _ingredients.Count ? _index = 0 : _index++;
+            int temp;
+
+            do
+            {
+                temp = new System.Random().Next(0, _ingredients.Count);
+            } while (temp == _index);
+
+            _index = temp;
 
             GetComponent<Image>().sprite = ((Ingredient)_ingredients[_index])._image;
             transform.GetChild(0).GetComponent<Text>().text = _ingredients[_index].name;
