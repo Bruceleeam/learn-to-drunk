@@ -17,6 +17,10 @@ public class GameManager : MonoBehaviour
     public static bool confirm = false;
     public Text _task;
     public Image _barman;
+    public Sprite _barmanWelcomer;
+    public Sprite _barmanMixing;
+    public Sprite _barmanHappy;
+    public Sprite _barmanSad;
     public static bool _feedback = false;
     public static bool  _cardUnlocking= false;
     public static bool _update = false;
@@ -50,6 +54,7 @@ public class GameManager : MonoBehaviour
             _cocktails.Add(ck);
 
         _user_cocktail = new Cocktail();
+        _barman.sprite = _barmanWelcomer;
 
         FSM.Initialize(this, new IntroState());
     }
@@ -59,6 +64,9 @@ public class GameManager : MonoBehaviour
     {
         FSM.Update();
 
+        if (CurrentState() == Type.GetType("PlayState"))
+            _barman.sprite = _barmanMixing;
+
         if (_feedback)
         {
             _feedback = false;
@@ -66,16 +74,19 @@ public class GameManager : MonoBehaviour
             
             if (CurrentState() == Type.GetType("RightAnswerState"))
             {
+                _barman.sprite = _barmanHappy;
                 feedbackMessage = "Risposta esatta!";
             }
 
             if (CurrentState() == Type.GetType("WrongAnswerState"))
             {
+                _barman.sprite = _barmanSad;
                 feedbackMessage = "Risposta errata! Riprova.";
             }
 
             if (CurrentState() == Type.GetType("EndState"))
             {
+                _barman.sprite = _barmanWelcomer;
                 feedbackMessage = "Partita terminata.";
             }
 
@@ -104,6 +115,7 @@ public class GameManager : MonoBehaviour
         _task.text = feedback;
         _confirm.interactable = false;
         yield return new WaitForSeconds(3);
+        _barman.sprite = _barmanWelcomer;
         _confirm.interactable = true;
         _update = true;
     }
@@ -115,6 +127,7 @@ public class GameManager : MonoBehaviour
 
     public void UnlockCard()
     {
+        _confirm.interactable = false;
         _cardPanel.SetActive(true);
         _cardTitle.text = _cocktail.name;
         _cardDescription.text = _cocktail._desc;

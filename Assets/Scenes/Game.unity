@@ -1251,13 +1251,13 @@ MonoBehaviour:
   _confirm: {fileID: 1833170166}
   _task: {fileID: 1222126069}
   _barman: {fileID: 658703602}
+  _barmanWelcomer: {fileID: 21300000, guid: f35e0ca9abdf44927b7312892d16f0d1, type: 3}
+  _barmanMixing: {fileID: 21300000, guid: 2e8414ff4c5084365a85de851bbf3bc5, type: 3}
+  _barmanHappy: {fileID: 21300000, guid: d7badf8fb2a67407f83680b47703a26c, type: 3}
+  _barmanSad: {fileID: 21300000, guid: 551814f1b9e5f4c02835a8369f6785a8, type: 3}
   _cardPanel: {fileID: 1463808519}
   _cardTitle: {fileID: 1881350776}
   _cardDescription: {fileID: 639615667}
-  _base: {fileID: 664392861}
-  _flavoring: {fileID: 425479967}
-  _dye: {fileID: 1343006097}
-  _decoration: {fileID: 650782079}
 --- !u!1 &815899182
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,7 +12,6 @@ public class CheckRunState : FSMState<GameManager>
 	public override void Enter(GameManager owner)
     {
         Debug.Log("Enter Check Run State");
-        GameManager._feedback = true;
 		gm = owner;
     }
 
