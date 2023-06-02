@@ -12,9 +12,19 @@ public class CardUnlockingState : FSMState<GameManager>
 	public override void Enter(GameManager owner)
     {
         Debug.Log("Enter Card Unlocking State");
-        GameManager._update = false;
-        GameManager._cardUnlocking = true;
-		gm = owner;
+        gm = owner;
+        if (PlayerPrefs.HasKey(gm._cocktail.name))
+        {
+            // ??
+            //if (PlayerPrefs.GetInt(gm._cocktail.name) == 0)
+            //if (PlayerPrefs.GetInt(gm._cocktail.name) == 1)
+            GameManager._update = true;
+        }
+        else
+        {
+            PlayerPrefs.SetInt(gm._cocktail.name, 1);
+            GameManager._cardUnlocking = true;
+        }
     }
 
     public override void Execute()
@@ -22,6 +32,8 @@ public class CardUnlockingState : FSMState<GameManager>
         if (GameManager._update)
         {
             GameManager._update = false;
+
+            
             gm.ChangeState(new CheckRunState());
         }
     }

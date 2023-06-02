@@ -11,6 +11,7 @@ public class Cocktail : ScriptableObject
     public Dye _dye;
     public Decoration _decoration;
     public string _desc;
+    private bool _cardUnlocked;
 
     public Cocktail()
     {
@@ -18,5 +19,11 @@ public class Cocktail : ScriptableObject
         _flavoring = null;
         _dye = null;
         _decoration = null;
+    }
+
+    public void SetCardUnlocked( bool val)
+    {
+        _cardUnlocked = val;
+
     }
 }

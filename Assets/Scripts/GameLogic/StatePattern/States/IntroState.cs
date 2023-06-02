@@ -22,6 +22,8 @@ public class IntroState : FSMState<GameManager>
         if (GameManager._update)
         {
             gm._cocktail = gm._cocktails[new System.Random().Next(0, gm._cocktails.Count)];
+            // API?
+            CocktailUnlocking();
             gm._cocktails.Remove(gm._cocktail);
             gm.ChangeState(new StartState());
         }
@@ -30,6 +32,14 @@ public class IntroState : FSMState<GameManager>
     public override void Exit()
     {
         Debug.Log("Exit Intro State");
+    }
+
+    public void CocktailUnlocking()
+    {
+        if (PlayerPrefs.HasKey(gm._cocktail.name) && PlayerPrefs.GetInt(gm._cocktail.name) == 1)
+            gm._cocktail.SetCardUnlocked(true);
+        else
+            gm._cocktail.SetCardUnlocked(false);
     }
 
 }
