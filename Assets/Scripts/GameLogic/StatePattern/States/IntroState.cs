@@ -7,19 +7,24 @@ public class IntroState : FSMState<GameManager>
     GameManager gm;
 
     public IntroState(){
-	}
+    }
 
-	public override void Enter(GameManager owner)
+    public override void Enter(GameManager owner)
     {
         Debug.Log("Enter Intro State");
+        GameManager._update = false;
+        GameManager._feedback = true;
         gm = owner;
     }
 
     public override void Execute()
 	{
-        gm._cocktail = gm._cocktails[new System.Random().Next(0, gm._cocktails.Count)];
-        gm._cocktails.Remove(gm._cocktail);
-        gm.ChangeState(new StartState()); 
+        if (GameManager._update)
+        {
+            gm._cocktail = gm._cocktails[new System.Random().Next(0, gm._cocktails.Count)];
+            gm._cocktails.Remove(gm._cocktail);
+            gm.ChangeState(new StartState());
+        }
     }
 
     public override void Exit()

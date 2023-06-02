@@ -12,6 +12,7 @@ public class RightAnswerState : FSMState<GameManager>
 	public override void Enter(GameManager owner)
     {
         Debug.Log("Enter Right Answer State");
+        GameManager._update = false;
         GameManager._feedback = true;
         gm = owner;
     }

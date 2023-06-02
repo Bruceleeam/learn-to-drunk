@@ -12,6 +12,7 @@ public class CardUnlockingState : FSMState<GameManager>
 	public override void Enter(GameManager owner)
     {
         Debug.Log("Enter Card Unlocking State");
+        GameManager._update = false;
         GameManager._cardUnlocking = true;
 		gm = owner;
     }

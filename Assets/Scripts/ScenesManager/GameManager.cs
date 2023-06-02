@@ -27,7 +27,10 @@ public class GameManager : MonoBehaviour
     public GameObject _cardPanel;
     public Text _cardTitle;
     public Text _cardDescription;
-
+    public Text _timer;
+    public float _sec;
+    string boardMessage = "";
+    
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -45,7 +48,7 @@ public class GameManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        
+
     }
 
     public void Init()
@@ -64,33 +67,38 @@ public class GameManager : MonoBehaviour
     {
         FSM.Update();
 
+        if (CurrentState() == Type.GetType("IntroState"))
+        {
+            _barman.sprite = _barmanWelcomer;
+            boardMessage = "Preparati per il prossimo Cocktail!";
+        }
+
         if (CurrentState() == Type.GetType("PlayState"))
             _barman.sprite = _barmanMixing;
 
         if (_feedback)
         {
             _feedback = false;
-            string feedbackMessage = "";
             
             if (CurrentState() == Type.GetType("RightAnswerState"))
             {
                 _barman.sprite = _barmanHappy;
-                feedbackMessage = "Risposta esatta!";
+                boardMessage = "Risposta esatta!";
             }
 
             if (CurrentState() == Type.GetType("WrongAnswerState"))
             {
                 _barman.sprite = _barmanSad;
-                feedbackMessage = "Risposta errata! Riprova.";
+                boardMessage = "Risposta errata! Riprova.";
             }
 
             if (CurrentState() == Type.GetType("EndState"))
             {
                 _barman.sprite = _barmanWelcomer;
-                feedbackMessage = "Partita terminata.";
+                boardMessage = "Partita terminata.";
             }
 
-            StartCoroutine(Feedback(feedbackMessage, null));
+            StartCoroutine(Feedback(boardMessage, null));
         }
 
         if (_cardUnlocking)
@@ -98,6 +106,27 @@ public class GameManager : MonoBehaviour
             _cardUnlocking = false;
             UnlockCard();
         }
+
+       
+        if(CurrentState() != Type.GetType("CardUnlockingState")
+            && CurrentState() != Type.GetType("WrongAnswerState")
+            && CurrentState() != Type.GetType("RightAnswerState")
+            && CurrentState() != Type.GetType("IntroState")
+            )
+        {
+            if (_sec < 0)
+            {
+                _timer.text = "0";
+                // GameOver();
+                FSM.ChangeState(new EndState());
+            }
+            else
+            {
+                _sec -= Time.deltaTime;
+                _timer.text = Math.Round(_sec).ToString();
+            }
+        }
+
     }
 
     public void ChangeState(FSMState<GameManager> state)

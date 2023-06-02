@@ -13,7 +13,9 @@ public class WrongAnswerState : FSMState<GameManager>
 	public override void Enter(GameManager owner)
     {
         Debug.Log("Enter Wrong Answer State");
-		gm = owner;
+        GameManager._update = false;
+        GameManager._feedback = true;
+        gm = owner;
     }
 
     public override void Execute()

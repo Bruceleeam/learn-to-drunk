@@ -28,7 +28,6 @@ public class CheckAnswerState : FSMState<GameManager>
             gm._task.text = "Hai sbagliato!";
             gm.ChangeState(new WrongAnswerState());
         }
-        GameManager._feedback = true;
     }
 
     public override void Exit()
