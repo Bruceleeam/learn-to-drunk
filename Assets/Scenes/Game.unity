@@ -2208,7 +2208,7 @@ GameObject:
   - component: {fileID: 1463808522}
   - component: {fileID: 1463808521}
   m_Layer: 5
-  m_Name: CardPanel
+  m_Name: CocktailCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2703,7 +2703,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 5
+  m_Text: 0
 --- !u!222 &2052179461
 CanvasRenderer:
   m_ObjectHideFlags: 0

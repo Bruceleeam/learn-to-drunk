@@ -6,6 +6,7 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "Cocktail", menuName = "Cocktail", order = 1)]
 public class Cocktail : ScriptableObject
 {
+    public Sprite image;
     public Base _base;
     public Flavoring _flavoring;
     public Dye _dye;
