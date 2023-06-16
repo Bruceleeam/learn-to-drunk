@@ -17,9 +17,9 @@ public class CheckAnswerState : FSMState<GameManager>
 
     public override void Execute()
 	{
-
         if (Compare(gm._user_cocktail, gm._cocktail))
         {
+
             gm._task.text = "Esatto!!";
             gm.ChangeState(new RightAnswerState());
         }

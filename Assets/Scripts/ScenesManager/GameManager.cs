@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -53,7 +54,7 @@ public class GameManager : MonoBehaviour
 
     public void Init()
     {
-        foreach (Cocktail ck in Resources.LoadAll("Cocktail", typeof(Cocktail)))
+        foreach (Cocktail ck in Resources.LoadAll("Cocktail/" + PlayerPrefs.GetString("LastTown"), typeof(Cocktail)))
             _cocktails.Add(ck);
 
         _user_cocktail = new Cocktail();
@@ -147,6 +148,8 @@ public class GameManager : MonoBehaviour
         _barman.sprite = _barmanWelcomer;
         _confirm.interactable = true;
         _update = true;
+        if (CurrentState() == Type.GetType("EndState"))
+            SceneManager.LoadScene("Map");
     }
 
     public void Confirm()
