@@ -20,7 +20,7 @@ public class CheckRunState : FSMState<GameManager>
         if(gm._cocktails.Count == 0)
             gm.ChangeState(new EndState());
         else
-            gm.ChangeState(new IntroState()); 
+            gm.ChangeState(new IntroState());
     }
 
     public override void Exit()

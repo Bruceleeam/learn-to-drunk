@@ -21,12 +21,11 @@ public class Cocktail : ScriptableObject
         _flavoring = null;
         _dye = null;
         _decoration = null;
-        _title = this.name;
-
     }
 
     private void OnEnable()
     {
+        _title = this.name;
     }
 
     public void SetCardUnlocked( bool val)

@@ -14,7 +14,7 @@ public class MapManager : MonoBehaviour
     public Transform endMarker;
 
     // Movement speed in units per second.
-    public float speed = 200f;
+    float speed = 50f;
 
     // Time when the movement started.
     private float startTime;
@@ -27,6 +27,7 @@ public class MapManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //PlayerPrefs.DeleteAll();
         startMarker = player.transform;
         if (PlayerPrefs.HasKey("LastTown"))
         {
@@ -45,7 +46,7 @@ public class MapManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (Vector3.Distance(player.transform.position, _placeholders[index].gameObject.transform.position) > 1f){
             // Distance moved equals elapsed time times speed..

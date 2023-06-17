@@ -16,6 +16,7 @@ public class WrongAnswerState : FSMState<GameManager>
         GameManager._update = false;
         GameManager._feedback = true;
         gm = owner;
+        gm.DecreaseLife();
     }
 
     public override void Execute()
@@ -24,7 +25,11 @@ public class WrongAnswerState : FSMState<GameManager>
         if (GameManager._update)
         {
             GameManager._update = false;
-            gm.ChangeState(new StartState());
+
+            if (gm.GetLife() == 0)
+                gm.ChangeState(new GameOverState());
+            else
+                gm.ChangeState(new StartState());
         }
     }
 

@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
     public static GameManager Instance { get { return _instance; } }
+    int _life;
+    public List<Button> _lifeIcons;
+    int _maxLife = 3;
 
     private FiniteStateMachine<GameManager> FSM = new FiniteStateMachine<GameManager>();
     public List<Cocktail> _cocktails = new List<Cocktail>();
@@ -31,7 +34,8 @@ public class GameManager : MonoBehaviour
     public Text _timer;
     public float _sec;
     string boardMessage = "";
-    
+
+        
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -59,6 +63,8 @@ public class GameManager : MonoBehaviour
 
         _user_cocktail = new Cocktail();
         _barman.sprite = _barmanWelcomer;
+
+        InitLife();
 
         FSM.Initialize(this, new IntroState());
     }
@@ -96,7 +102,13 @@ public class GameManager : MonoBehaviour
             if (CurrentState() == Type.GetType("EndState"))
             {
                 _barman.sprite = _barmanWelcomer;
-                boardMessage = "Partita terminata.";
+                boardMessage = "Riprendi la valigia! Il viaggio continua ...";
+            }
+
+            if (CurrentState() == Type.GetType("GameOverState"))
+            {
+                _barman.sprite = _barmanSad;
+                boardMessage = "Non sai bere ... si torna a casa!";
             }
 
             StartCoroutine(Feedback(boardMessage, null));
@@ -112,6 +124,7 @@ public class GameManager : MonoBehaviour
         if(CurrentState() != Type.GetType("CardUnlockingState")
             && CurrentState() != Type.GetType("WrongAnswerState")
             && CurrentState() != Type.GetType("RightAnswerState")
+            && CurrentState() != Type.GetType("GameOverState")
             && CurrentState() != Type.GetType("IntroState")
             )
         {
@@ -150,6 +163,8 @@ public class GameManager : MonoBehaviour
         _update = true;
         if (CurrentState() == Type.GetType("EndState"))
             SceneManager.LoadScene("Map");
+        if (CurrentState() == Type.GetType("GameOverState"))
+            SceneManager.LoadScene("Menu");
     }
 
     public void Confirm()
@@ -170,4 +185,48 @@ public class GameManager : MonoBehaviour
         _update = true;
     }
 
+    public void InitLife()
+    {
+        if (!PlayerPrefs.HasKey("Life"))
+            PlayerPrefs.SetInt("Life", _life = _maxLife);
+
+        SetLife(PlayerPrefs.GetInt("Life"));
+
+    }
+
+    public void SetLife(int life)
+    {
+        PlayerPrefs.SetInt("Life", _life = life);
+        SetLifeIcons();
+    }
+
+    public int GetLife()
+    {
+        return _life;
+    }
+
+    public void DecreaseLife()
+    {
+        SetLife(GetLife() - 1);
+        SetLifeIcons();
+    }
+
+    public void IncreaseLife(int life)
+    {
+        SetLife(GetLife() == 3 ? GetLife() : (GetLife() + 1));
+        SetLifeIcons();
+    }
+
+    void SetLifeIcons()
+    {
+        for (int i = 0; i < GetLife(); i++)
+        {
+            _lifeIcons[i].interactable = true;
+        }
+
+        for (int i = GetLife(); i < _maxLife; i++)
+        {
+            _lifeIcons[i].interactable = false;
+        }
+    }
 }
