@@ -12,8 +12,11 @@ public class PlayState : FSMState<GameManager>
 	public override void Enter(GameManager owner)
     {
         Debug.Log("Enter Play State");
-		gm = owner;
+        GameManager._feedback = true;
+
         GameManager.confirm = false;
+        gm = owner;
+
     }
 
     public override void Execute()

@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System;
+using DesignPatterns.Factory;
+using System.Linq;
 
 public class CheckAnswerState : FSMState<GameManager>
 {
@@ -17,7 +19,7 @@ public class CheckAnswerState : FSMState<GameManager>
 
     public override void Execute()
 	{
-        if (Compare(gm._user_cocktail, gm._cocktail))
+        if (Compare(gm._userIngredients, gm._cocktail))
         {
 
             gm._task.text = "Esatto!!";
@@ -35,14 +37,27 @@ public class CheckAnswerState : FSMState<GameManager>
         Debug.Log("Exit Check Answer State");
     }
 
-    bool Compare(Cocktail a, Cocktail b)
+    bool Compare(List<String> userIngredients, IProduct b)
     {
-        Debug.Log(JsonUtility.ToJson(a).ToString());
-        Debug.Log(JsonUtility.ToJson(b).ToString());
-        if (a._base == b._base && a._flavoring == b._flavoring && a._dye == b._dye && a._decoration == b._decoration)
-            return true;
+        bool temp = false;
 
-        return false;
+        foreach(GameObject bs in b.Bases)
+        {
+            if (userIngredients.Contains(bs.name))
+                temp = true;
+            else
+                return false;
+        }
+
+        foreach (GameObject fl in b.Flavorings)
+        {
+            if (userIngredients.Contains(fl.name))
+                temp = true;
+            else
+                return false;
+        }
+
+        return true;
     }
 
 }

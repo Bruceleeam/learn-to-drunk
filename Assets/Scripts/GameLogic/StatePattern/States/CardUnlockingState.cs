@@ -13,18 +13,18 @@ public class CardUnlockingState : FSMState<GameManager>
     {
         Debug.Log("Enter Card Unlocking State");
         gm = owner;
-        if (PlayerPrefs.HasKey(gm._cocktail.name))
-        {
-            // ??
-            //if (PlayerPrefs.GetInt(gm._cocktail.name) == 0)
-            //if (PlayerPrefs.GetInt(gm._cocktail.name) == 1)
-            GameManager._update = true;
-        }
-        else
-        {
-            PlayerPrefs.SetInt(gm._cocktail.name, 1);
-            GameManager._cardUnlocking = true;
-        }
+        //if (PlayerPrefs.HasKey(gm._cocktail.name))
+        //{
+        //    // ??
+        //    //if (PlayerPrefs.GetInt(gm._cocktail.name) == 0)
+        //    //if (PlayerPrefs.GetInt(gm._cocktail.name) == 1)
+        //    GameManager._update = true;
+        //}
+        //else
+        //{
+        //    PlayerPrefs.SetInt(gm._cocktail.name, 1);
+        //    GameManager._cardUnlocking = true;
+        //}
     }
 
     public override void Execute()

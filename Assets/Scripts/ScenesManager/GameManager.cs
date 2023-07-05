@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using DesignPatterns.Factory;
+using static Unity.VisualScripting.Metadata;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,9 +16,14 @@ public class GameManager : MonoBehaviour
     int _maxLife = 3;
 
     private FiniteStateMachine<GameManager> FSM = new FiniteStateMachine<GameManager>();
-    public List<Cocktail> _cocktails = new List<Cocktail>();
-    public Cocktail _cocktail;
-    public Cocktail _user_cocktail;
+    public GameObject _ingredientUI;
+    public IProduct _cocktail;
+    public GameObject _content;
+    public List<String> _userIngredients;
+    public List<Image> _ingredients;
+    public List<Image> _placeholders;
+    public Creator _creator;
+    //public Cocktail _user_cocktail;
     public Button _confirm;
     public static bool confirm = false;
     public Text _task;
@@ -58,13 +65,14 @@ public class GameManager : MonoBehaviour
 
     public void Init()
     {
-        foreach (Cocktail ck in Resources.LoadAll("Cocktail/" + PlayerPrefs.GetString("LastTown"), typeof(Cocktail)))
-            _cocktails.Add(ck);
+        //foreach (Cocktail ck in Resources.LoadAll("Cocktail/" + PlayerPrefs.GetString("LastTown"), typeof(Cocktail)))
+        //    _cocktails.Add(ck);
 
-        _user_cocktail = new Cocktail();
-        _barman.sprite = _barmanWelcomer;
+        //_user_cocktail = new Cocktail();
+        //_barman.sprite = _barmanWelcomer;
 
-        InitLife();
+        //InitLife();
+
 
         FSM.Initialize(this, new IntroState());
     }
@@ -76,12 +84,16 @@ public class GameManager : MonoBehaviour
 
         if (CurrentState() == Type.GetType("IntroState"))
         {
-            _barman.sprite = _barmanWelcomer;
+//            _barman.sprite = _barmanWelcomer;
             boardMessage = "Preparati per il prossimo Cocktail!";
+            
         }
 
         if (CurrentState() == Type.GetType("PlayState"))
-            _barman.sprite = _barmanMixing;
+        {
+            //_barman.sprite = _barmanMixing;
+            boardMessage = _cocktail.ProductName;
+        }
 
         if (_feedback)
         {
@@ -89,25 +101,25 @@ public class GameManager : MonoBehaviour
             
             if (CurrentState() == Type.GetType("RightAnswerState"))
             {
-                _barman.sprite = _barmanHappy;
+                //_barman.sprite = _barmanHappy;
                 boardMessage = "Risposta esatta!";
             }
 
             if (CurrentState() == Type.GetType("WrongAnswerState"))
             {
-                _barman.sprite = _barmanSad;
+                //_barman.sprite = _barmanSad;
                 boardMessage = "Risposta errata! Riprova.";
             }
 
             if (CurrentState() == Type.GetType("EndState"))
             {
-                _barman.sprite = _barmanWelcomer;
+                //_barman.sprite = _barmanWelcomer;
                 boardMessage = "Riprendi la valigia! Il viaggio continua ...";
             }
 
             if (CurrentState() == Type.GetType("GameOverState"))
             {
-                _barman.sprite = _barmanSad;
+                //_barman.sprite = _barmanSad;
                 boardMessage = "Non sai bere ... si torna a casa!";
             }
 
@@ -128,17 +140,17 @@ public class GameManager : MonoBehaviour
             && CurrentState() != Type.GetType("IntroState")
             )
         {
-            if (_sec < 0)
-            {
-                _timer.text = "0";
-                // GameOver();
-                FSM.ChangeState(new EndState());
-            }
-            else
-            {
-                _sec -= Time.deltaTime;
-                _timer.text = Math.Round(_sec).ToString();
-            }
+            //if (_sec < 0)
+            //{
+            //    _timer.text = "0";
+            //    // GameOver();
+            //    FSM.ChangeState(new EndState());
+            //}
+            //else
+            //{
+            //    _sec -= Time.deltaTime;
+            //    _timer.text = Math.Round(_sec).ToString();
+            //}
         }
 
     }
@@ -156,11 +168,37 @@ public class GameManager : MonoBehaviour
     public IEnumerator Feedback(string feedback, string barman)
     {
         _task.text = feedback;
-        _confirm.interactable = false;
+       //_confirm.interactable = false;
         yield return new WaitForSeconds(3);
-        _barman.sprite = _barmanWelcomer;
-        _confirm.interactable = true;
+       // _barman.sprite = _barmanWelcomer;
+        //_confirm.interactable = true;
         _update = true;
+        if(CurrentState() == Type.GetType("IntroState"))
+        {
+            for (int i = 0; i < _cocktail.GetBasesNr(); i++)
+            {
+                GameObject temp = Instantiate(_ingredientUI);
+                temp.tag = "Base";
+                temp.transform.GetChild(0).GetComponent<Text>().text = "Base";
+                temp.transform.parent = _content.transform;
+                
+            }
+                
+            for (int i = 0; i < _cocktail.GetFlavoringsNr(); i++)
+            {
+                GameObject temp = Instantiate(_ingredientUI);
+                temp.tag = "Flavoring";
+                temp.transform.GetChild(0).GetComponent<Text>().text = "Flavoring";
+                temp.transform.parent = _content.transform;
+            }
+                
+            for(int i = 0; i < _ingredients.Count; i++)
+            {
+                _placeholders[i].name = _ingredients[i].name;
+                _placeholders[i].sprite = _ingredients[i].sprite;
+                _placeholders[i].tag = _ingredients[i].tag;
+            }
+        }
         if (CurrentState() == Type.GetType("EndState"))
             SceneManager.LoadScene("Map");
         if (CurrentState() == Type.GetType("GameOverState"))
@@ -169,6 +207,9 @@ public class GameManager : MonoBehaviour
 
     public void Confirm()
     {
+        foreach (Transform ing in _content.GetComponentsInChildren<Transform>())
+            _userIngredients.Add(ing.name);
+
         confirm = true;
     }
 
@@ -176,8 +217,9 @@ public class GameManager : MonoBehaviour
     {
         _confirm.interactable = false;
         _cardPanel.SetActive(true);
-        _cardTitle.text = _cocktail.name;
-        _cardDescription.text = _cocktail._desc;
+        Type tipoClasse = Type.GetType("MoscowMule");
+        IProduct temp = (IProduct)Activator.CreateInstance(tipoClasse);
+        _cardTitle.text = _cocktail.ProductName;
     }
 
     public void UpdateState()

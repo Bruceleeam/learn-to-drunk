@@ -17,7 +17,7 @@ public class StartState : FSMState<GameManager>
 
     public override void Execute()
 	{
-        gm._task.text = gm._cocktail.name + " !";
+        //gm._task.text = gm._cocktail.name + " !";
         gm.ChangeState(new PlayState()); 
     }
 

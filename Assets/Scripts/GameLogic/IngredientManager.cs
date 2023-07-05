@@ -73,20 +73,20 @@ public class IngredientManager : MonoBehaviour
     {
         switch (tag)
         {
-            case "Base":
-                _gameManager._user_cocktail._base = _ingredients[_index] as Base;
-                break;
-            case "Flavoring":
-                _gameManager._user_cocktail._flavoring = _ingredients[_index] as Flavoring;
-                break;
-            case "Dye":
-                _gameManager._user_cocktail._dye = _ingredients[_index] as Dye;
-                break;
-            case "Decoration":
-                _gameManager._user_cocktail._decoration = _ingredients[_index] as Decoration;
-                break;
-            default:
-                break;
+            //case "Base":
+            //    _gameManager._user_cocktail._base = _ingredients[_index] as Base;
+            //    break;
+            //case "Flavoring":
+            //    _gameManager._user_cocktail._flavoring = _ingredients[_index] as Flavoring;
+            //    break;
+            //case "Dye":
+            //    _gameManager._user_cocktail._dye = _ingredients[_index] as Dye;
+            //    break;
+            //case "Decoration":
+            //    _gameManager._user_cocktail._decoration = _ingredients[_index] as Decoration;
+            //    break;
+            //default:
+            //    break;
         }
     }
 }
