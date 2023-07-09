@@ -37,25 +37,45 @@ public class CheckAnswerState : FSMState<GameManager>
         Debug.Log("Exit Check Answer State");
     }
 
+    public override void InvokeEntering()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void InvokeExiting()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void OnEntering()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void OnExiting()
+    {
+        throw new NotImplementedException();
+    }
+
     bool Compare(List<String> userIngredients, IProduct b)
     {
-        bool temp = false;
+        //bool temp = false;
 
-        foreach(GameObject bs in b.Bases)
-        {
-            if (userIngredients.Contains(bs.name))
-                temp = true;
-            else
-                return false;
-        }
+        //foreach(GameObject bs in b.Bases)
+        //{
+        //    if (userIngredients.Contains(bs.name))
+        //        temp = true;
+        //    else
+        //        return false;
+        //}
 
-        foreach (GameObject fl in b.Flavorings)
-        {
-            if (userIngredients.Contains(fl.name))
-                temp = true;
-            else
-                return false;
-        }
+        //foreach (GameObject fl in b.Flavorings)
+        //{
+        //    if (userIngredients.Contains(fl.name))
+        //        temp = true;
+        //    else
+        //        return false;
+        //}
 
         return true;
     }

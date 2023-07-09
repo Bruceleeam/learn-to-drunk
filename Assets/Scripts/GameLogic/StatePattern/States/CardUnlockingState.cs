@@ -43,4 +43,23 @@ public class CardUnlockingState : FSMState<GameManager>
         Debug.Log("Exit Card Unlocking State");
     }
 
+    public override void InvokeEntering()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void InvokeExiting()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void OnEntering()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void OnExiting()
+    {
+        throw new NotImplementedException();
+    }
 }

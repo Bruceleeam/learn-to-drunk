@@ -38,6 +38,26 @@ public class WrongAnswerState : FSMState<GameManager>
         Debug.Log("Exit Wrong Answer State");
     }
 
+    public override void InvokeEntering()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void InvokeExiting()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void OnEntering()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void OnExiting()
+    {
+        throw new NotImplementedException();
+    }
+
     //IEnumerator Error()
     //{
     //    gm._task.text = "ERROE";

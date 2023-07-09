@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 124029755}
   - component: {fileID: 124029754}
   m_Layer: 5
-  m_Name: Scroll View
+  m_Name: ScrollViewChoices
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -156,7 +156,7 @@ RectTransform:
   m_Children:
   - {fileID: 1393367933}
   m_Father: {fileID: 341796745}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.8, y: 0.3}
@@ -369,10 +369,10 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1485995365}
+  - {fileID: 546007298}
   - {fileID: 124029753}
   - {fileID: 651701672}
   - {fileID: 590615610}
-  - {fileID: 546007298}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -394,7 +394,7 @@ GameObject:
   - component: {fileID: 351352391}
   - component: {fileID: 351352393}
   m_Layer: 5
-  m_Name: PH_4
+  m_Name: Ing_4
   m_TagString: Dye
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -417,7 +417,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 320, y: 155}
+  m_AnchoredPosition: {x: 451, y: 155}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &351352391
@@ -483,7 +483,7 @@ GameObject:
   m_Component:
   - component: {fileID: 546007298}
   m_Layer: 5
-  m_Name: Placeholders
+  m_Name: Ingredients
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -506,12 +506,12 @@ RectTransform:
   - {fileID: 2008834961}
   - {fileID: 351352390}
   m_Father: {fileID: 341796745}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &590615607
 GameObject:
@@ -525,7 +525,7 @@ GameObject:
   - component: {fileID: 590615609}
   - component: {fileID: 590615608}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: Message
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -558,13 +558,13 @@ MonoBehaviour:
     m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 1
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: Message
 --- !u!222 &590615609
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -586,7 +586,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 341796745}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -626,10 +626,10 @@ RectTransform:
   m_Children:
   - {fileID: 838072053}
   m_Father: {fileID: 341796745}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.9, y: 0}
-  m_AnchorMax: {x: 1, y: 0.3}
+  m_AnchorMin: {x: 0.85, y: 0.1}
+  m_AnchorMax: {x: 0.95, y: 0.25}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -871,7 +871,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: Shake
 --- !u!222 &838072055
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -977,7 +977,7 @@ GameObject:
   - component: {fileID: 1037378530}
   - component: {fileID: 1037378532}
   m_Layer: 5
-  m_Name: PH_1
+  m_Name: Ing_1
   m_TagString: Base
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1000,7 +1000,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -286, y: 155}
+  m_AnchoredPosition: {x: -497, y: 216}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1037378530
@@ -1401,7 +1401,7 @@ GameObject:
   - component: {fileID: 1899633660}
   - component: {fileID: 1899633662}
   m_Layer: 5
-  m_Name: PH_2
+  m_Name: Ing_2
   m_TagString: Base
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1424,7 +1424,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 135, y: 155}
+  m_AnchoredPosition: {x: -261, y: 155}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1899633660
@@ -1493,7 +1493,7 @@ GameObject:
   - component: {fileID: 2008834962}
   - component: {fileID: 2008834964}
   m_Layer: 5
-  m_Name: PH_3
+  m_Name: Ing_3
   m_TagString: Flavoring
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1516,7 +1516,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -85, y: 155}
+  m_AnchoredPosition: {x: 86, y: 197}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2008834962
@@ -1586,7 +1586,7 @@ GameObject:
   - component: {fileID: 2082398689}
   - component: {fileID: 2082398688}
   m_Layer: 5
-  m_Name: Content
+  m_Name: SVChoicesContent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1609,7 +1609,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000034206452, y: 0}
+  m_AnchoredPosition: {x: 0.000000016763888, y: 0}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2082398685

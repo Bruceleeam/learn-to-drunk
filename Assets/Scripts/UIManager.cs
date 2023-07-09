@@ -7,10 +7,21 @@ using UnityEngine.SceneManagement;
 using DesignPatterns.Factory;
 using static Unity.VisualScripting.Metadata;
 
-public class GameManager : MonoBehaviour
+public class UIManager : MonoBehaviour
 {
-    private static GameManager _instance;
-    public static GameManager Instance { get { return _instance; } }
+    // SINGLETON
+    private static UIManager _instance;
+    public static UIManager Instance { get { return _instance; } }
+
+    // OBSERVER
+    public static string stateMessage;
+
+    public event Action Completed;
+    protected void OnCompleted()
+    {
+        Completed?.Invoke();
+    }
+
     int _life;
     public List<Button> _lifeIcons;
     int _maxLife = 3;
@@ -42,7 +53,17 @@ public class GameManager : MonoBehaviour
     public float _sec;
     string boardMessage = "";
 
-        
+    public bool registerSubject(ConcreteState fsmState)
+    {
+        fsmState.Entering += OnEntering;
+        return true;
+    }
+
+    private void OnEntering()
+    {
+        StartCoroutine(Feedback());
+    }
+
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -54,7 +75,6 @@ public class GameManager : MonoBehaviour
             _instance = this;
         }
         Init();
-
     }
 
     // Use this for initialization
@@ -72,7 +92,7 @@ public class GameManager : MonoBehaviour
         //_barman.sprite = _barmanWelcomer;
 
         //InitLife();
-
+        
 
         FSM.Initialize(this, new IntroState());
     }
@@ -82,49 +102,49 @@ public class GameManager : MonoBehaviour
     {
         FSM.Update();
 
-        if (CurrentState() == Type.GetType("IntroState"))
-        {
-//            _barman.sprite = _barmanWelcomer;
-            boardMessage = "Preparati per il prossimo Cocktail!";
+//        if (CurrentState() == Type.GetType("IntroState"))
+//        {
+////            _barman.sprite = _barmanWelcomer;
+//            boardMessage = "Preparati per il prossimo Cocktail!";
             
-        }
+//        }
 
-        if (CurrentState() == Type.GetType("PlayState"))
-        {
-            //_barman.sprite = _barmanMixing;
-            boardMessage = _cocktail.ProductName;
-        }
+        //if (CurrentState() == Type.GetType("PlayState"))
+        //{
+        //    //_barman.sprite = _barmanMixing;
+        //    boardMessage = _cocktail.ProductName;
+        //}
 
-        if (_feedback)
-        {
-            _feedback = false;
+        //if (_feedback)
+        //{
+        //    _feedback = false;
             
-            if (CurrentState() == Type.GetType("RightAnswerState"))
-            {
-                //_barman.sprite = _barmanHappy;
-                boardMessage = "Risposta esatta!";
-            }
+        //    if (CurrentState() == Type.GetType("RightAnswerState"))
+        //    {
+        //        //_barman.sprite = _barmanHappy;
+        //        boardMessage = "Risposta esatta!";
+        //    }
 
-            if (CurrentState() == Type.GetType("WrongAnswerState"))
-            {
-                //_barman.sprite = _barmanSad;
-                boardMessage = "Risposta errata! Riprova.";
-            }
+        //    if (CurrentState() == Type.GetType("WrongAnswerState"))
+        //    {
+        //        //_barman.sprite = _barmanSad;
+        //        boardMessage = "Risposta errata! Riprova.";
+        //    }
 
-            if (CurrentState() == Type.GetType("EndState"))
-            {
-                //_barman.sprite = _barmanWelcomer;
-                boardMessage = "Riprendi la valigia! Il viaggio continua ...";
-            }
+        //    if (CurrentState() == Type.GetType("EndState"))
+        //    {
+        //        //_barman.sprite = _barmanWelcomer;
+        //        boardMessage = "Riprendi la valigia! Il viaggio continua ...";
+        //    }
 
-            if (CurrentState() == Type.GetType("GameOverState"))
-            {
-                //_barman.sprite = _barmanSad;
-                boardMessage = "Non sai bere ... si torna a casa!";
-            }
+        //    if (CurrentState() == Type.GetType("GameOverState"))
+        //    {
+        //        //_barman.sprite = _barmanSad;
+        //        boardMessage = "Non sai bere ... si torna a casa!";
+        //    }
 
-            StartCoroutine(Feedback(boardMessage, null));
-        }
+        //    StartCoroutine(Feedback(boardMessage, null));
+        //}
 
         if (_cardUnlocking)
         {
@@ -165,14 +185,16 @@ public class GameManager : MonoBehaviour
         return FSM.CurrentState().GetType();
     }
 
-    public IEnumerator Feedback(string feedback, string barman)
+    
+
+    public IEnumerator Feedback()
     {
-        _task.text = feedback;
+        _task.text = stateMessage;
        //_confirm.interactable = false;
         yield return new WaitForSeconds(3);
-       // _barman.sprite = _barmanWelcomer;
+        // _barman.sprite = _barmanWelcomer;
         //_confirm.interactable = true;
-        _update = true;
+        OnCompleted();
         if(CurrentState() == Type.GetType("IntroState"))
         {
             for (int i = 0; i < _cocktail.GetBasesNr(); i++)

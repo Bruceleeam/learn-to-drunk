@@ -28,4 +28,23 @@ public class CheckRunState : FSMState<GameManager>
         Debug.Log("Exit Check Run State");
     }
 
+    public override void InvokeEntering()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void InvokeExiting()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void OnEntering()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void OnExiting()
+    {
+        throw new NotImplementedException();
+    }
 }
