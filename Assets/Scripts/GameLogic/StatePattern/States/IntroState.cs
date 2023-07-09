@@ -28,6 +28,7 @@ public class IntroState : ConcreteState
     {
         Debug.Log("Intro State ENTERING");
         GameManager.stateMessage = "Preparati per il prossimo Cocktail!";
+        GameManager.spriteCode = 0;
         gm._cocktail = gm._creator.GetComponent<Creator>().GetProduct();
         OnEntering();
     }

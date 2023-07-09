@@ -22,11 +22,24 @@ public class GameManager : MonoBehaviour
     //}
 
     public static string stateMessage;
-
+    public static int spriteCode;
+    
     public event Action Completed;
     protected void OnCompleted()
     {
         Completed?.Invoke();
+    }
+
+    public event Action PrintMessage;
+    protected void OnPrintMessage()
+    {
+        PrintMessage?.Invoke();
+    }
+
+    public event Action SwitchBarman;
+    protected void OnSwitchBarman()
+    {
+        SwitchBarman?.Invoke();
     }
 
     int _life;
@@ -46,10 +59,7 @@ public class GameManager : MonoBehaviour
     public static bool confirm = false;
     public Text _task;
     public Image _barman;
-    public Sprite _barmanWelcomer;
-    public Sprite _barmanMixing;
-    public Sprite _barmanHappy;
-    public Sprite _barmanSad;
+    
     public static bool _feedback = false;
     public static bool  _cardUnlocking= false;
     public static bool _update = false;
@@ -196,11 +206,9 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator Feedback()
     {
-        _task.text = stateMessage;
-       //_confirm.interactable = false;
+        OnPrintMessage();
+        OnSwitchBarman();
         yield return new WaitForSeconds(3);
-        // _barman.sprite = _barmanWelcomer;
-        //_confirm.interactable = true;
         OnCompleted();
         if(CurrentState() == Type.GetType("IntroState"))
         {
