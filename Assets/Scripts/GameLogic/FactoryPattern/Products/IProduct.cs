@@ -11,9 +11,13 @@ namespace DesignPatterns.Factory
         public string ProductName { get; set; }
         public List<GameObject> Bases { get; }
         public List<GameObject> Flavorings { get; }
+        public List<GameObject> Decorations { get; }
+        public List<GameObject> Dyes { get; }
 
         public int GetBasesNr();
         public int GetFlavoringsNr();
+        public int GetDecorationsNr();
+        public int GetDyesNr();
 
         // customize this for each concrete product
         public void Initialize();

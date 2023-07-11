@@ -9,10 +9,14 @@ namespace DesignPatterns.Factory
         [SerializeField] private string productName = "Moscow Mule";
         [SerializeField] public List<GameObject> bases;
         [SerializeField] public List<GameObject> flavorings;
+        [SerializeField] public List<GameObject> decorations;
+        [SerializeField] public List<GameObject> dyes;
 
         public string ProductName { get => productName; set => productName = value ; }
         public List<GameObject> Bases { get => bases; }
-        public List<GameObject> Flavorings { get => flavorings;}
+        public List<GameObject> Flavorings { get => flavorings; }
+        public List<GameObject> Decorations { get => decorations; }
+        public List<GameObject> Dyes { get => dyes; }
 
         public void Initialize()
         {
@@ -28,6 +32,16 @@ namespace DesignPatterns.Factory
         public int GetFlavoringsNr()
         {
             return Flavorings.Count;
+        }
+
+        public int GetDecorationNr()
+        {
+            return Decorations.Count;
+        }
+
+        public int GetDyesNr()
+        {
+            return Dyes.Count;
         }
     }
 }

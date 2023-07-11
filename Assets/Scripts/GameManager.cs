@@ -14,13 +14,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get { return _instance; } }
 
     // OBSERVER
-    // Action Feedback
-    //public event Action PrintFeedback;
-    //protected void OnFeedback()
-    //{
-    //    PrintFeedback?.Invoke();
-    //}
-
+    
     public static string stateMessage;
     public static int spriteCode;
     
@@ -40,6 +34,12 @@ public class GameManager : MonoBehaviour
     protected void OnSwitchBarman()
     {
         SwitchBarman?.Invoke();
+    }
+
+    public event Action InitSVChoices;
+    protected void OnInitSVChoices()
+    {
+        InitSVChoices?.Invoke();
     }
 
     int _life;
@@ -208,34 +208,35 @@ public class GameManager : MonoBehaviour
     {
         OnPrintMessage();
         OnSwitchBarman();
+        OnInitSVChoices();
         yield return new WaitForSeconds(3);
         OnCompleted();
-        if(CurrentState() == Type.GetType("IntroState"))
-        {
-            for (int i = 0; i < _cocktail.GetBasesNr(); i++)
-            {
-                GameObject temp = Instantiate(_ingredientUI);
-                temp.tag = "Base";
-                temp.transform.GetChild(0).GetComponent<Text>().text = "Base";
-                temp.transform.parent = _content.transform;
+        //if(CurrentState() == Type.GetType("IntroState"))
+        //{
+        //    for (int i = 0; i < _cocktail.GetBasesNr(); i++)
+        //    {
+        //        GameObject temp = Instantiate(_ingredientUI);
+        //        temp.tag = "Base";
+        //        temp.transform.GetChild(0).GetComponent<Text>().text = "Base";
+        //        temp.transform.parent = _content.transform;
                 
-            }
+        //    }
                 
-            for (int i = 0; i < _cocktail.GetFlavoringsNr(); i++)
-            {
-                GameObject temp = Instantiate(_ingredientUI);
-                temp.tag = "Flavoring";
-                temp.transform.GetChild(0).GetComponent<Text>().text = "Flavoring";
-                temp.transform.parent = _content.transform;
-            }
+        //    for (int i = 0; i < _cocktail.GetFlavoringsNr(); i++)
+        //    {
+        //        GameObject temp = Instantiate(_ingredientUI);
+        //        temp.tag = "Flavoring";
+        //        temp.transform.GetChild(0).GetComponent<Text>().text = "Flavoring";
+        //        temp.transform.parent = _content.transform;
+        //    }
                 
-            for(int i = 0; i < _ingredients.Count; i++)
-            {
-                _placeholders[i].name = _ingredients[i].name;
-                _placeholders[i].sprite = _ingredients[i].sprite;
-                _placeholders[i].tag = _ingredients[i].tag;
-            }
-        }
+        //    for(int i = 0; i < _ingredients.Count; i++)
+        //    {
+        //        _placeholders[i].name = _ingredients[i].name;
+        //        _placeholders[i].sprite = _ingredients[i].sprite;
+        //        _placeholders[i].tag = _ingredients[i].tag;
+        //    }
+        //}
         if (CurrentState() == Type.GetType("EndState"))
             SceneManager.LoadScene("Map");
         if (CurrentState() == Type.GetType("GameOverState"))

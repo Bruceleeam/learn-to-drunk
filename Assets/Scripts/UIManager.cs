@@ -18,13 +18,55 @@ public class UIManager : MonoBehaviour
     {
         gm.PrintMessage += OnPrintMessage;
         gm.SwitchBarman += OnSwitchBarman;
-
+        gm.InitSVChoices += OnSVChoices;
         return true;
     }
 
     private void OnPrintMessage()
     {
         _task.text = GameManager.stateMessage;
+    }
+
+    private void OnSVChoices()
+    {
+        for (int i = 0; i < gm._cocktail.GetBasesNr(); i++)
+        {
+            GameObject temp = Instantiate(_ingredientUI);
+            temp.tag = "Base";
+            temp.transform.GetChild(0).GetComponent<Text>().text = "Base";
+            temp.transform.parent = _content.transform;
+        }
+
+        for (int i = 0; i < gm._cocktail.GetFlavoringsNr(); i++)
+        {
+            GameObject temp = Instantiate(_ingredientUI);
+            temp.tag = "Flavoring";
+            temp.transform.GetChild(0).GetComponent<Text>().text = "Flavoring";
+            temp.transform.parent = _content.transform;
+        }
+
+        for (int i = 0; i < gm._cocktail.GetDecorationsNr(); i++)
+        {
+            GameObject temp = Instantiate(_ingredientUI);
+            temp.tag = "Decoration";
+            temp.transform.GetChild(0).GetComponent<Text>().text = "Decoration";
+            temp.transform.parent = _content.transform;
+        }
+
+        for (int i = 0; i < gm._cocktail.GetDyesNr(); i++)
+        {
+            GameObject temp = Instantiate(_ingredientUI);
+            temp.tag = "Dye";
+            temp.transform.GetChild(0).GetComponent<Text>().text = "Dye";
+            temp.transform.parent = _content.transform;
+        }
+
+        for (int i = 0; i < _ingredients.Count; i++)
+        {
+            _placeholders[i].name = _ingredients[i].name;
+            _placeholders[i].sprite = _ingredients[i].sprite;
+            _placeholders[i].tag = _ingredients[i].tag;
+        }
     }
 
     int _life;
@@ -57,8 +99,6 @@ public class UIManager : MonoBehaviour
     public Text _timer;
     public float _sec;
     string boardMessage = "";
-
-    
 
     private void OnSwitchBarman()
     {
@@ -112,5 +152,5 @@ public class UIManager : MonoBehaviour
     {
 
     }
-       
+
 }
