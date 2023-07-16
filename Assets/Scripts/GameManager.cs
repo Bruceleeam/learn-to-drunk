@@ -14,10 +14,10 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get { return _instance; } }
 
     // OBSERVER
-    
+
     public static string stateMessage;
     public static int spriteCode;
-    
+
     public event Action Completed;
     protected void OnCompleted()
     {
@@ -42,6 +42,18 @@ public class GameManager : MonoBehaviour
         InitSVChoices?.Invoke();
     }
 
+    public event Action RightAnswer;
+    protected void OnRightAnswer()
+    {
+        RightAnswer?.Invoke();
+    }
+
+    public event Action WrongAnswer;
+    protected void OnWrongAnswer()
+    {
+        WrongAnswer?.Invoke();
+    }
+
     int _life;
     public List<Button> _lifeIcons;
     int _maxLife = 3;
@@ -59,9 +71,9 @@ public class GameManager : MonoBehaviour
     public static bool confirm = false;
     public Text _task;
     public Image _barman;
-    
+
     public static bool _feedback = false;
-    public static bool  _cardUnlocking= false;
+    public static bool _cardUnlocking = false;
     public static bool _update = false;
     public GameObject _cardPanel;
     public Text _cardTitle;
@@ -70,7 +82,7 @@ public class GameManager : MonoBehaviour
     public float _sec;
     string boardMessage = "";
 
-    public bool registerSubject(ConcreteState fsmState)
+    public bool registerSubject(BaseState fsmState)
     {
         fsmState.Entering += OnEntering;
         return true;
@@ -78,7 +90,7 @@ public class GameManager : MonoBehaviour
 
     private void OnEntering()
     {
-        StartCoroutine(Feedback());
+        StartCoroutine(ThrowEvents());
     }
 
     private void Awake()
@@ -91,26 +103,16 @@ public class GameManager : MonoBehaviour
         {
             _instance = this;
         }
-        Init();
     }
 
     // Use this for initialization
     void Start()
     {
-
+        Init();
     }
 
     public void Init()
     {
-        //foreach (Cocktail ck in Resources.LoadAll("Cocktail/" + PlayerPrefs.GetString("LastTown"), typeof(Cocktail)))
-        //    _cocktails.Add(ck);
-
-        //_user_cocktail = new Cocktail();
-        //_barman.sprite = _barmanWelcomer;
-
-        //InitLife();
-        
-
         FSM.Initialize(this, new IntroState());
     }
 
@@ -118,83 +120,11 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         FSM.Update();
-
-//        if (CurrentState() == Type.GetType("IntroState"))
-//        {
-////            _barman.sprite = _barmanWelcomer;
-//            boardMessage = "Preparati per il prossimo Cocktail!";
-            
-//        }
-
-        //if (CurrentState() == Type.GetType("PlayState"))
-        //{
-        //    //_barman.sprite = _barmanMixing;
-        //    boardMessage = _cocktail.ProductName;
-        //}
-
-        //if (_feedback)
-        //{
-        //    _feedback = false;
-            
-        //    if (CurrentState() == Type.GetType("RightAnswerState"))
-        //    {
-        //        //_barman.sprite = _barmanHappy;
-        //        boardMessage = "Risposta esatta!";
-        //    }
-
-        //    if (CurrentState() == Type.GetType("WrongAnswerState"))
-        //    {
-        //        //_barman.sprite = _barmanSad;
-        //        boardMessage = "Risposta errata! Riprova.";
-        //    }
-
-        //    if (CurrentState() == Type.GetType("EndState"))
-        //    {
-        //        //_barman.sprite = _barmanWelcomer;
-        //        boardMessage = "Riprendi la valigia! Il viaggio continua ...";
-        //    }
-
-        //    if (CurrentState() == Type.GetType("GameOverState"))
-        //    {
-        //        //_barman.sprite = _barmanSad;
-        //        boardMessage = "Non sai bere ... si torna a casa!";
-        //    }
-
-        //    StartCoroutine(Feedback(boardMessage, null));
-        //}
-
-        if (_cardUnlocking)
-        {
-            _cardUnlocking = false;
-            UnlockCard();
-        }
-
-       
-        if(CurrentState() != Type.GetType("CardUnlockingState")
-            && CurrentState() != Type.GetType("WrongAnswerState")
-            && CurrentState() != Type.GetType("RightAnswerState")
-            && CurrentState() != Type.GetType("GameOverState")
-            && CurrentState() != Type.GetType("IntroState")
-            )
-        {
-            //if (_sec < 0)
-            //{
-            //    _timer.text = "0";
-            //    // GameOver();
-            //    FSM.ChangeState(new EndState());
-            //}
-            //else
-            //{
-            //    _sec -= Time.deltaTime;
-            //    _timer.text = Math.Round(_sec).ToString();
-            //}
-        }
-
     }
 
     public void ChangeState(FSMState<GameManager> state)
     {
-        FSM.ChangeState(state);                     
+        FSM.ChangeState(state);
     }
 
     public Type CurrentState()
@@ -202,45 +132,13 @@ public class GameManager : MonoBehaviour
         return FSM.CurrentState().GetType();
     }
 
-    
-
-    public IEnumerator Feedback()
+    public IEnumerator ThrowEvents()
     {
         OnPrintMessage();
         OnSwitchBarman();
         OnInitSVChoices();
         yield return new WaitForSeconds(3);
         OnCompleted();
-        //if(CurrentState() == Type.GetType("IntroState"))
-        //{
-        //    for (int i = 0; i < _cocktail.GetBasesNr(); i++)
-        //    {
-        //        GameObject temp = Instantiate(_ingredientUI);
-        //        temp.tag = "Base";
-        //        temp.transform.GetChild(0).GetComponent<Text>().text = "Base";
-        //        temp.transform.parent = _content.transform;
-                
-        //    }
-                
-        //    for (int i = 0; i < _cocktail.GetFlavoringsNr(); i++)
-        //    {
-        //        GameObject temp = Instantiate(_ingredientUI);
-        //        temp.tag = "Flavoring";
-        //        temp.transform.GetChild(0).GetComponent<Text>().text = "Flavoring";
-        //        temp.transform.parent = _content.transform;
-        //    }
-                
-        //    for(int i = 0; i < _ingredients.Count; i++)
-        //    {
-        //        _placeholders[i].name = _ingredients[i].name;
-        //        _placeholders[i].sprite = _ingredients[i].sprite;
-        //        _placeholders[i].tag = _ingredients[i].tag;
-        //    }
-        //}
-        if (CurrentState() == Type.GetType("EndState"))
-            SceneManager.LoadScene("Map");
-        if (CurrentState() == Type.GetType("GameOverState"))
-            SceneManager.LoadScene("Menu");
     }
 
     public void Confirm()
@@ -251,62 +149,9 @@ public class GameManager : MonoBehaviour
         confirm = true;
     }
 
-    public void UnlockCard()
-    {
-        _confirm.interactable = false;
-        _cardPanel.SetActive(true);
-        Type tipoClasse = Type.GetType("MoscowMule");
-        IProduct temp = (IProduct)Activator.CreateInstance(tipoClasse);
-        _cardTitle.text = _cocktail.ProductName;
-    }
-
     public void UpdateState()
     {
         _update = true;
     }
 
-    public void InitLife()
-    {
-        if (!PlayerPrefs.HasKey("Life"))
-            PlayerPrefs.SetInt("Life", _life = _maxLife);
-
-        SetLife(PlayerPrefs.GetInt("Life"));
-
-    }
-
-    public void SetLife(int life)
-    {
-        PlayerPrefs.SetInt("Life", _life = life);
-        SetLifeIcons();
-    }
-
-    public int GetLife()
-    {
-        return _life;
-    }
-
-    public void DecreaseLife()
-    {
-        SetLife(GetLife() - 1);
-        SetLifeIcons();
-    }
-
-    public void IncreaseLife(int life)
-    {
-        SetLife(GetLife() == 3 ? GetLife() : (GetLife() + 1));
-        SetLifeIcons();
-    }
-
-    void SetLifeIcons()
-    {
-        for (int i = 0; i < GetLife(); i++)
-        {
-            _lifeIcons[i].interactable = true;
-        }
-
-        for (int i = GetLife(); i < _maxLife; i++)
-        {
-            _lifeIcons[i].interactable = false;
-        }
-    }
 }

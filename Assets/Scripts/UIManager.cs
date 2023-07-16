@@ -13,92 +13,79 @@ public class UIManager : MonoBehaviour
     private static UIManager _instance;
     public static UIManager Instance { get { return _instance; } }
 
-    // OBSERVER
-    public bool registerSubject()
+    public GameManager gm;
+    public GameObject _ingredientUI;
+    public IProduct _cocktail;
+    public GameObject _content;
+    public Text _message;
+    public Image _barman;
+    public Sprite _barmanWelcomer;
+    public Sprite _barmanMixing;
+    public Sprite _barmanHappy;
+    public Sprite _barmanSad;    
+
+    private void Awake()
     {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+
+        RegisterSubject();
+    }
+
+    // Use this for initialization
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    // OBSERVER
+    public bool RegisterSubject()
+    {
+        gm.InitSVChoices += OnInitSVChoices;
         gm.PrintMessage += OnPrintMessage;
         gm.SwitchBarman += OnSwitchBarman;
-        gm.InitSVChoices += OnSVChoices;
+        gm.RightAnswer += OnRightAnswer;
+        gm.WrongAnswer += OnWrongAnswer;
         return true;
     }
 
     private void OnPrintMessage()
     {
-        _task.text = GameManager.stateMessage;
+        _message.text = GameManager.stateMessage;
     }
 
-    private void OnSVChoices()
+    private void OnInitSVChoices()
     {
-        for (int i = 0; i < gm._cocktail.GetBasesNr(); i++)
+        foreach (GameObject ing in gm._cocktail.Ingredients)
         {
             GameObject temp = Instantiate(_ingredientUI);
-            temp.tag = "Base";
-            temp.transform.GetChild(0).GetComponent<Text>().text = "Base";
+            temp.tag = ing.tag;
+            temp.transform.GetChild(0).GetComponent<Text>().text = ing.tag;
             temp.transform.parent = _content.transform;
-        }
-
-        for (int i = 0; i < gm._cocktail.GetFlavoringsNr(); i++)
-        {
-            GameObject temp = Instantiate(_ingredientUI);
-            temp.tag = "Flavoring";
-            temp.transform.GetChild(0).GetComponent<Text>().text = "Flavoring";
-            temp.transform.parent = _content.transform;
-        }
-
-        for (int i = 0; i < gm._cocktail.GetDecorationsNr(); i++)
-        {
-            GameObject temp = Instantiate(_ingredientUI);
-            temp.tag = "Decoration";
-            temp.transform.GetChild(0).GetComponent<Text>().text = "Decoration";
-            temp.transform.parent = _content.transform;
-        }
-
-        for (int i = 0; i < gm._cocktail.GetDyesNr(); i++)
-        {
-            GameObject temp = Instantiate(_ingredientUI);
-            temp.tag = "Dye";
-            temp.transform.GetChild(0).GetComponent<Text>().text = "Dye";
-            temp.transform.parent = _content.transform;
-        }
-
-        for (int i = 0; i < _ingredients.Count; i++)
-        {
-            _placeholders[i].name = _ingredients[i].name;
-            _placeholders[i].sprite = _ingredients[i].sprite;
-            _placeholders[i].tag = _ingredients[i].tag;
         }
     }
 
-    int _life;
-    public List<Button> _lifeIcons;
-    int _maxLife = 3;
+    private void OnRightAnswer()
+    {
+        OnPrintMessage();
+    }
 
-    public GameManager gm;
-    public GameObject _ingredientUI;
-    public IProduct _cocktail;
-    public GameObject _content;
-    public List<String> _userIngredients;
-    public List<Image> _ingredients;
-    public List<Image> _placeholders;
-    public Creator _creator;
-    //public Cocktail _user_cocktail;
-    public Button _confirm;
-    public static bool confirm = false;
-    public Text _task;
-    public Image _barman;
-    public Sprite _barmanWelcomer;
-    public Sprite _barmanMixing;
-    public Sprite _barmanHappy;
-    public Sprite _barmanSad;
-    public static bool _feedback = false;
-    public static bool  _cardUnlocking= false;
-    public static bool _update = false;
-    public GameObject _cardPanel;
-    public Text _cardTitle;
-    public Text _cardDescription;
-    public Text _timer;
-    public float _sec;
-    string boardMessage = "";
+    private void OnWrongAnswer()
+    {
+        OnPrintMessage();
+    }
 
     private void OnSwitchBarman()
     {
@@ -120,37 +107,6 @@ public class UIManager : MonoBehaviour
                 _barman.sprite = _barmanWelcomer;
                 break;
         }
-    }
-
-    private void Awake()
-    {
-        if (_instance != null && _instance != this)
-        {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            _instance = this;
-        }
-
-        Init();
-    }
-
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    public void Init()
-    {
-        registerSubject();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
 }

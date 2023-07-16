@@ -27,7 +27,7 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     {
         _itemImage.color = _dragColor;
         _itemImage.raycastTarget = false;
-        transform.SetParent(GameObject.Find("Placeholders").transform);
+        transform.SetParent(GameObject.Find("SVChoicesContent").transform);
     }
 
     public void OnEndDrag(PointerEventData eventData)

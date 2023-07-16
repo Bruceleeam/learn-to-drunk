@@ -2,35 +2,23 @@
 using System.Collections.Generic;
 using System;
 using System.Collections;
+using DesignPatterns.Factory;
 
-public class WrongAnswerState : FSMState<GameManager>
+public class WrongAnswerState : BaseState
 {
-    GameManager gm;
 
-    public WrongAnswerState(){
-	}
-
-	public override void Enter(GameManager owner)
+    public WrongAnswerState()
     {
-        Debug.Log("Enter Wrong Answer State");
-        GameManager._update = false;
-        GameManager._feedback = true;
-        gm = owner;
-        gm.DecreaseLife();
+    }
+
+    public override void Enter(GameManager owner)
+    {
+        base.Enter(owner);
     }
 
     public override void Execute()
-	{
-        //StartCoroutine("Error");
-        if (GameManager._update)
-        {
-            GameManager._update = false;
+    {
 
-            if (gm.GetLife() == 0)
-                gm.ChangeState(new GameOverState());
-            else
-                gm.ChangeState(new StartState());
-        }
     }
 
     public override void Exit()
@@ -40,29 +28,19 @@ public class WrongAnswerState : FSMState<GameManager>
 
     public override void InvokeEntering()
     {
-        throw new NotImplementedException();
+        GameManager.stateMessage = "Sbagliato!";
+        GameManager.spriteCode = 0;
+        gm._cocktail = gm._creator.GetComponent<Creator>().GetProduct();
+        OnEntering();
     }
 
     public override void InvokeExiting()
     {
-        throw new NotImplementedException();
+        base.InvokeExiting();
     }
 
-    public override void OnEntering()
+    protected override void OnGMCompleted()
     {
-        throw new NotImplementedException();
+        gm.ChangeState(new StartState());
     }
-
-    public override void OnExiting()
-    {
-        throw new NotImplementedException();
-    }
-
-    //IEnumerator Error()
-    //{
-    //    gm._task.text = "ERROE";
-    //    yield return new WaitForSeconds(3);
-    //    gm.ChangeState(new StartState()); 
-    //}
-
 }

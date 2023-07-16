@@ -45,8 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   productName: Moscow Mule
-  bases:
-  - {fileID: 3654489661347538262, guid: 0220478b2a3114730a447d3f6275fbef, type: 3}
-  - {fileID: 3654489661347538262, guid: 93ea09bb80bba415ea3ce975d3b39399, type: 3}
-  flavorings:
-  - {fileID: 3654489661347538262, guid: f70fea97416c44de0a811fb88f0a2584, type: 3}
+  ingredients:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

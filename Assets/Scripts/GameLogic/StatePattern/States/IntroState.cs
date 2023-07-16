@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System;
 using DesignPatterns.Factory;
 
-public class IntroState : ConcreteState
+public class IntroState : BaseState
 {
 
-    public IntroState(){
+    public IntroState()
+    {
     }
 
     public override void Enter(GameManager owner)
@@ -26,7 +27,6 @@ public class IntroState : ConcreteState
 
     public override void InvokeEntering()
     {
-        Debug.Log("Intro State ENTERING");
         GameManager.stateMessage = "Preparati per il prossimo Cocktail!";
         GameManager.spriteCode = 0;
         gm._cocktail = gm._creator.GetComponent<Creator>().GetProduct();
@@ -38,17 +38,8 @@ public class IntroState : ConcreteState
         base.InvokeExiting();
     }
 
-    private void OnGMCompleted()
+    protected override void OnGMCompleted()
     {
         gm.ChangeState(new StartState());
     }
-
-    //public void CocktailUnlocking()
-    //{
-    //    if (PlayerPrefs.HasKey(gm._cocktail.name) && PlayerPrefs.GetInt(gm._cocktail.name) == 1)
-    //        gm._cocktail.SetCardUnlocked(true);
-    //    else
-    //        gm._cocktail.SetCardUnlocked(false);
-    //}
-
 }

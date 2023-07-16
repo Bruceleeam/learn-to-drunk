@@ -4,27 +4,18 @@ using UnityEngine;
 
 namespace DesignPatterns.Factory
 {
-    //public class Negroni : MonoBehaviour, IProduct
-    //{
-    //    [SerializeField] private string productName = "Negroni";
-    //    public string ProductName { get => productName; set => productName = value ; }
-    //    public List<GameObject> _base;
-    //    public List<GameObject> _flavoring;
+    public class Negroni : MonoBehaviour, IProduct
+    {
+        [SerializeField] private string productName = "Negroni";
+        [SerializeField] public List<GameObject> ingredients;
 
-    //    public void Initialize()
-    //    {
-    //        // any unique logic to this product
-    //        gameObject.name = productName;
-    //    }
+        public string ProductName { get => productName; set => productName = value ; }
+        public List<GameObject> Ingredients { get => ingredients; }
 
-    //    public int GetBasesNr()
-    //    {
-    //        return _base.Count;
-    //    }
-
-    //    public int GetFlavoringsNr()
-    //    {
-    //        return _flavoring.Count;
-    //    }
-    //}
+        public void Initialize()
+        {
+            // any unique logic to this product
+            gameObject.name = productName;
+        }
+    }
 }

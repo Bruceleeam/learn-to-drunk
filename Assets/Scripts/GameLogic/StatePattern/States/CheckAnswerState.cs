@@ -21,13 +21,18 @@ public class CheckAnswerState : FSMState<GameManager>
 	{
         if (Compare(gm._userIngredients, gm._cocktail))
         {
-
-            gm._task.text = "Esatto!!";
+            foreach (string ui in gm._userIngredients)
+            {
+                Debug.Log("ui:" + ui);
+            }
             gm.ChangeState(new RightAnswerState());
         }
         else
         {
-            gm._task.text = "Hai sbagliato!";
+            foreach (string ui in gm._userIngredients)
+            {
+                Debug.Log("ui:" + ui);
+            }
             gm.ChangeState(new WrongAnswerState());
         }
     }
@@ -57,27 +62,25 @@ public class CheckAnswerState : FSMState<GameManager>
         throw new NotImplementedException();
     }
 
-    bool Compare(List<String> userIngredients, IProduct b)
+    bool Compare(List<String> userIngredients, IProduct p)
     {
-        //bool temp = false;
 
-        //foreach(GameObject bs in b.Bases)
-        //{
-        //    if (userIngredients.Contains(bs.name))
-        //        temp = true;
-        //    else
-        //        return false;
-        //}
+        foreach(string ui in userIngredients)
+        {
+            Debug.Log("ui:" + ui);
+        }
 
-        //foreach (GameObject fl in b.Flavorings)
-        //{
-        //    if (userIngredients.Contains(fl.name))
-        //        temp = true;
-        //    else
-        //        return false;
-        //}
+        bool temp = false;
 
-        return true;
+        foreach (GameObject ing in p.Ingredients)
+        {
+            if (userIngredients.Contains(ing.name))
+                temp = true;
+            else
+                return false;
+        }
+
+        return temp;
     }
 
 }

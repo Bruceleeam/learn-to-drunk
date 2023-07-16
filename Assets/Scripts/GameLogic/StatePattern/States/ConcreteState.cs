@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System;
 using DesignPatterns.Factory;
 
-public class ConcreteState : FSMState<GameManager>
+public abstract class BaseState : FSMState<GameManager>
 {
     protected GameManager gm;
     public event Action Entering;
@@ -18,7 +18,7 @@ public class ConcreteState : FSMState<GameManager>
         Exiting?.Invoke();
     }
 
-    public ConcreteState(){
+    public BaseState(){
     }
 
     public override void Enter(GameManager owner)
@@ -52,8 +52,5 @@ public class ConcreteState : FSMState<GameManager>
         OnExiting();
     }
 
-    private void OnGMCompleted()
-    {
-        gm.ChangeState(new StartState());
-    }
+    protected abstract void OnGMCompleted();
 }

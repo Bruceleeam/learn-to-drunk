@@ -1,29 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System;
+using DesignPatterns.Factory;
 
-public class RightAnswerState : FSMState<GameManager>
+public class RightAnswerState : BaseState
 {
-    GameManager gm;
 
-    public RightAnswerState(){
-	}
-
-	public override void Enter(GameManager owner)
+    public RightAnswerState()
     {
-        Debug.Log("Enter Right Answer State");
-        GameManager._update = false;
-        GameManager._feedback = true;
-        gm = owner;
+    }
+
+    public override void Enter(GameManager owner)
+    {
+        base.Enter(owner);
     }
 
     public override void Execute()
-	{
-        if (GameManager._update)
-        {
-            GameManager._update = false;
-            gm.ChangeState(new CardUnlockingState());
-        }
+    {
+
     }
 
     public override void Exit()
@@ -33,21 +27,19 @@ public class RightAnswerState : FSMState<GameManager>
 
     public override void InvokeEntering()
     {
-        throw new NotImplementedException();
+        GameManager.stateMessage = "Esatto!";
+        GameManager.spriteCode = 0;
+        gm._cocktail = gm._creator.GetComponent<Creator>().GetProduct();
+        OnEntering();
     }
 
     public override void InvokeExiting()
     {
-        throw new NotImplementedException();
+        base.InvokeExiting();
     }
 
-    public override void OnEntering()
+    protected override void OnGMCompleted()
     {
-        throw new NotImplementedException();
-    }
-
-    public override void OnExiting()
-    {
-        throw new NotImplementedException();
+        gm.ChangeState(new CheckRunState());
     }
 }

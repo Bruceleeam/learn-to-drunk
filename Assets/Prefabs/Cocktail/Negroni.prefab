@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2204569778530657237}
-  - component: {fileID: 5099225809045812062}
+  - component: {fileID: 7183254588481931109}
   m_Layer: 0
   m_Name: Negroni
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5099225809045812062
+--- !u!114 &7183254588481931109
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,9 +41,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8759919292563159384}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aca1703cfb2a7404da31c60e6c4a73fc, type: 3}
+  m_Script: {fileID: 11500000, guid: 43601496307464c24b210360260a0b22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   productName: Negroni
-  _base: []
-  _flavoring: []
+  ingredients:
+  - {fileID: 3654489661347538262, guid: 0220478b2a3114730a447d3f6275fbef, type: 3}
+  - {fileID: 3654489661347538262, guid: 17d940f6a31d3439f9da33a42b920555, type: 3}
+  - {fileID: 3654489661347538262, guid: 08a34ab49cd494cacaa696f96e424f82, type: 3}
