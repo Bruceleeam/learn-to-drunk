@@ -1,52 +1,42 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System;
+using DesignPatterns.Factory;
 
-public class PlayState : FSMState<GameManager>
+public class PlayState : BaseState
 {
-    GameManager gm;
 
-    public PlayState(){
-	}
-
-	public override void Enter(GameManager owner)
+    public PlayState()
     {
-        Debug.Log("Enter Play State");
-        GameManager._feedback = true;
+    }
 
-        GameManager.confirm = false;
-        gm = owner;
-
+    public override void Enter(GameManager owner)
+    {
+        base.Enter(owner);
     }
 
     public override void Execute()
-	{
-        if(GameManager.confirm)
-		    gm.ChangeState(new CheckAnswerState()); 
+    {
+
     }
 
     public override void Exit()
     {
-        Debug.Log("Exit Play State");
+        base.Exit();
     }
 
     public override void InvokeEntering()
     {
-        throw new NotImplementedException();
+        base.InvokeEntering();
     }
 
     public override void InvokeExiting()
     {
-        throw new NotImplementedException();
+        base.InvokeExiting();
     }
 
-    public override void OnEntering()
+    protected override void OnGMCompleted()
     {
-        throw new NotImplementedException();
-    }
-
-    public override void OnExiting()
-    {
-        throw new NotImplementedException();
+        gm.ChangeState(new CheckAnswerState());
     }
 }

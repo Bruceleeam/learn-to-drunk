@@ -1,65 +1,48 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System;
+using DesignPatterns.Factory;
 
-public class CardUnlockingState : FSMState<GameManager>
+public class CardUnlockingState : BaseState
 {
-    GameManager gm;
 
     public CardUnlockingState(){
 	}
 
 	public override void Enter(GameManager owner)
     {
-        Debug.Log("Enter Card Unlocking State");
-        gm = owner;
-        //if (PlayerPrefs.HasKey(gm._cocktail.name))
-        //{
-        //    // ??
-        //    //if (PlayerPrefs.GetInt(gm._cocktail.name) == 0)
-        //    //if (PlayerPrefs.GetInt(gm._cocktail.name) == 1)
-        //    GameManager._update = true;
-        //}
-        //else
-        //{
-        //    PlayerPrefs.SetInt(gm._cocktail.name, 1);
-        //    GameManager._cardUnlocking = true;
-        //}
+        base.Enter(owner);
     }
 
     public override void Execute()
 	{
-        if (GameManager._update)
-        {
-            GameManager._update = false;
-
-            
-            gm.ChangeState(new CheckRunState());
-        }
+        
     }
 
     public override void Exit()
     {
-        Debug.Log("Exit Card Unlocking State");
+        base.Exit();
     }
 
     public override void InvokeEntering()
     {
-        throw new NotImplementedException();
+        base.InvokeEntering();
+        if (!PlayerPrefs.HasKey(gm._cocktail.ProductName))
+        {
+            GameManager._cardUnlocking = true;
+            gm.OnPrintMessage("Complimenti! Hai sbloccato una nuova card");
+        }
+        gm.OnCompleted();
     }
 
     public override void InvokeExiting()
     {
-        throw new NotImplementedException();
+        base.InvokeExiting();
     }
 
-    public override void OnEntering()
+    protected override void OnGMCompleted()
     {
-        throw new NotImplementedException();
+        gm.ChangeState(new EndState());
     }
 
-    public override void OnExiting()
-    {
-        throw new NotImplementedException();
-    }
 }

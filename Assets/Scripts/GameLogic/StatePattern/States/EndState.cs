@@ -1,48 +1,43 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System;
+using DesignPatterns.Factory;
+using UnityEngine.SceneManagement;
 
-public class EndState : FSMState<GameManager>
+public class EndState : BaseState
 {
-    GameManager gm;
 
     public EndState(){
 	}
 
 	public override void Enter(GameManager owner)
     {
-        Debug.Log("Enter End State");
-        GameManager._feedback = true;
-		gm = owner;
+        base.Enter(owner);
     }
 
     public override void Execute()
 	{
-		//gm.ChangeState(new PlayState()); 
+
     }
 
     public override void Exit()
     {
-        Debug.Log("Exit End State");
+        base.Exit();
     }
 
     public override void InvokeEntering()
     {
-        throw new NotImplementedException();
+        gm.OnPrintMessage("Si beve!");
+        base.InvokeEntering();
     }
 
     public override void InvokeExiting()
     {
-        throw new NotImplementedException();
+        base.InvokeExiting();
     }
 
-    public override void OnEntering()
+    protected override void OnGMCompleted()
     {
-        throw new NotImplementedException();
-    }
-
-    public override void OnExiting()
-    {
-        throw new NotImplementedException();
+        SceneManager.LoadScene("Map");
     }
 }

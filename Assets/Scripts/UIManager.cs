@@ -17,6 +17,7 @@ public class UIManager : MonoBehaviour
     public GameObject _ingredientUI;
     public IProduct _cocktail;
     public GameObject _content;
+    public GameObject _contentReset;
     public Text _message;
     public Image _barman;
     public Sprite _barmanWelcomer;
@@ -56,16 +57,28 @@ public class UIManager : MonoBehaviour
         gm.InitSVChoices += OnInitSVChoices;
         gm.PrintMessage += OnPrintMessage;
         gm.SwitchBarman += OnSwitchBarman;
-        gm.RightAnswer += OnRightAnswer;
-        gm.WrongAnswer += OnWrongAnswer;
+        gm.Reset += OnReset;
+        //gm.RightAnswer += OnRightAnswer;
+        //gm.WrongAnswer += OnWrongAnswer;
         return true;
     }
 
-    private void OnPrintMessage()
+    private void OnReset()
     {
-        _message.text = GameManager.stateMessage;
+        
     }
 
+    private void OnPrintMessage(string message)
+    {
+        StartCoroutine(Print(message));
+    }
+
+    IEnumerator Print(string message)
+    {
+        _message.text = message;
+        yield return new WaitForSeconds(3);
+        gm.OnCompleted();
+    }
     private void OnInitSVChoices()
     {
         foreach (GameObject ing in gm._cocktail.Ingredients)
@@ -77,15 +90,15 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void OnRightAnswer()
-    {
-        OnPrintMessage();
-    }
+    //private void OnRightAnswer()
+    //{
+    //    OnPrintMessage();
+    //}
 
-    private void OnWrongAnswer()
-    {
-        OnPrintMessage();
-    }
+    //private void OnWrongAnswer()
+    //{
+    //    OnPrintMessage();
+    //}
 
     private void OnSwitchBarman()
     {

@@ -23,15 +23,13 @@ public class WrongAnswerState : BaseState
 
     public override void Exit()
     {
-        Debug.Log("Exit Wrong Answer State");
+        base.Exit();
     }
 
     public override void InvokeEntering()
     {
-        GameManager.stateMessage = "Sbagliato!";
-        GameManager.spriteCode = 0;
-        gm._cocktail = gm._creator.GetComponent<Creator>().GetProduct();
-        OnEntering();
+        gm.OnPrintMessage("Sbagliato!");
+        base.InvokeEntering();
     }
 
     public override void InvokeExiting()

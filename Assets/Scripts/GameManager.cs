@@ -19,15 +19,21 @@ public class GameManager : MonoBehaviour
     public static int spriteCode;
 
     public event Action Completed;
-    protected void OnCompleted()
+    public void OnCompleted()
     {
         Completed?.Invoke();
     }
 
-    public event Action PrintMessage;
-    protected void OnPrintMessage()
+    public event Action<string> PrintMessage;
+    public void OnPrintMessage(string message)
     {
-        PrintMessage?.Invoke();
+        PrintMessage?.Invoke(message);
+    }
+
+    public event Action Reset;
+    public void OnReset()
+    {
+        Reset?.Invoke();
     }
 
     public event Action SwitchBarman;
@@ -37,7 +43,7 @@ public class GameManager : MonoBehaviour
     }
 
     public event Action InitSVChoices;
-    protected void OnInitSVChoices()
+    public void OnInitSVChoices()
     {
         InitSVChoices?.Invoke();
     }
@@ -62,13 +68,13 @@ public class GameManager : MonoBehaviour
     public GameObject _ingredientUI;
     public IProduct _cocktail;
     public GameObject _content;
-    public List<String> _userIngredients;
-    public List<Image> _ingredients;
+    public static List<GameObject> _userIngredients = new List<GameObject>();
+    public List<GameObject> _ingredientsReset;
+    public List<GameObject> _ingredients;
     public List<Image> _placeholders;
     public Creator _creator;
     //public Cocktail _user_cocktail;
-    public Button _confirm;
-    public static bool confirm = false;
+    public static bool _confirm = false;
     public Text _task;
     public Image _barman;
 
@@ -81,17 +87,6 @@ public class GameManager : MonoBehaviour
     public Text _timer;
     public float _sec;
     string boardMessage = "";
-
-    public bool registerSubject(BaseState fsmState)
-    {
-        fsmState.Entering += OnEntering;
-        return true;
-    }
-
-    private void OnEntering()
-    {
-        StartCoroutine(ThrowEvents());
-    }
 
     private void Awake()
     {
@@ -132,26 +127,9 @@ public class GameManager : MonoBehaviour
         return FSM.CurrentState().GetType();
     }
 
-    public IEnumerator ThrowEvents()
-    {
-        OnPrintMessage();
-        OnSwitchBarman();
-        OnInitSVChoices();
-        yield return new WaitForSeconds(3);
-        OnCompleted();
-    }
-
     public void Confirm()
     {
-        foreach (Transform ing in _content.GetComponentsInChildren<Transform>())
-            _userIngredients.Add(ing.name);
-
-        confirm = true;
-    }
-
-    public void UpdateState()
-    {
-        _update = true;
+        OnCompleted();
     }
 
 }

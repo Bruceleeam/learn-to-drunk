@@ -9,13 +9,13 @@ namespace DesignPatterns.Factory
     {
         [SerializeField] private LayerMask layerToClick;
         [SerializeField] private Vector3 offset;
-        [SerializeField] Factory[] factories;
+        [SerializeField] List<Factory> factories;
 
         private Factory factory;
 
-        public IProduct GetProduct()
+        public IProduct GetProduct(string destination)
         {
-           return factories[0].GetBase(Vector3.zero + offset);
+           return factories.Find(obj => obj.name == destination).GetBase(Vector3.zero + offset);
         }
     }
 }

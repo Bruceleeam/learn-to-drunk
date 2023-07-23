@@ -1,48 +1,43 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System;
+using DesignPatterns.Factory;
 
-public class StartState : FSMState<GameManager>
+public class StartState : BaseState
 {
-    GameManager gm;
 
-    public StartState(){
-	}
-
-	public override void Enter(GameManager owner)
+    public StartState()
     {
-        Debug.Log("Enter Start State");
-		gm = owner;
+    }
+
+    public override void Enter(GameManager owner)
+    {
+        base.Enter(owner);
     }
 
     public override void Execute()
-	{
-        //gm._task.text = gm._cocktail.name + " !";
-        gm.ChangeState(new PlayState()); 
+    {
+
     }
 
     public override void Exit()
     {
-        Debug.Log("Exit Start State");
+        base.Exit();
     }
 
     public override void InvokeEntering()
     {
-        throw new NotImplementedException();
+        gm.OnPrintMessage(gm._cocktail.ProductName);
+        base.InvokeEntering();
     }
 
     public override void InvokeExiting()
     {
-        throw new NotImplementedException();
+        base.InvokeExiting();
     }
 
-    public override void OnEntering()
+    protected override void OnGMCompleted()
     {
-        throw new NotImplementedException();
-    }
-
-    public override void OnExiting()
-    {
-        throw new NotImplementedException();
+        gm.ChangeState(new PlayState());
     }
 }

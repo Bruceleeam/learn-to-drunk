@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System;
 using DesignPatterns.Factory;
+using System.Collections;
 
 public class IntroState : BaseState
 {
@@ -17,23 +18,24 @@ public class IntroState : BaseState
 
     public override void Execute()
 	{
-        
+
     }
 
     public override void Exit()
     {
-        Debug.Log("Exit Intro State");
+        base.Exit();
     }
 
     public override void InvokeEntering()
     {
-        GameManager.stateMessage = "Preparati per il prossimo Cocktail!";
-        GameManager.spriteCode = 0;
-        gm._cocktail = gm._creator.GetComponent<Creator>().GetProduct();
-        OnEntering();
+        gm._cocktail = gm._creator.GetComponent<Creator>().GetProduct(PlayerPrefs.GetString("LastTown"));
+        GameManager._userIngredients.Clear();
+        gm.OnInitSVChoices();
+        gm.OnPrintMessage("Preparati per il prossimo Cocktail!");
+        base.InvokeEntering();
     }
 
-    public new void InvokeExiting()
+    public override void InvokeExiting()
     {
         base.InvokeExiting();
     }

@@ -3,84 +3,59 @@ using System.Collections.Generic;
 using System;
 using DesignPatterns.Factory;
 using System.Linq;
+using System.Collections;
 
-public class CheckAnswerState : FSMState<GameManager>
+public class CheckAnswerState : BaseState
 {
-    GameManager gm;
 
-    public CheckAnswerState(){
-	}
-
-	public override void Enter(GameManager owner)
+    public CheckAnswerState()
     {
-        Debug.Log("Enter Check Answer State");
-		gm = owner;
+    }
+
+    public override void Enter(GameManager owner)
+    {
+        base.Enter(owner);
     }
 
     public override void Execute()
-	{
-        if (Compare(gm._userIngredients, gm._cocktail))
-        {
-            foreach (string ui in gm._userIngredients)
-            {
-                Debug.Log("ui:" + ui);
-            }
-            gm.ChangeState(new RightAnswerState());
-        }
-        else
-        {
-            foreach (string ui in gm._userIngredients)
-            {
-                Debug.Log("ui:" + ui);
-            }
-            gm.ChangeState(new WrongAnswerState());
-        }
+    {
+
     }
 
     public override void Exit()
     {
-        Debug.Log("Exit Check Answer State");
+        base.Exit();
     }
 
     public override void InvokeEntering()
     {
-        throw new NotImplementedException();
+        base.InvokeEntering();
+        gm.OnCompleted();
     }
 
     public override void InvokeExiting()
     {
-        throw new NotImplementedException();
+        base.InvokeExiting();
     }
 
-    public override void OnEntering()
+    protected override void OnGMCompleted()
     {
-        throw new NotImplementedException();
+        if (Compare(GameManager._userIngredients, gm._cocktail))
+            gm.ChangeState(new RightAnswerState());
+        else
+            gm.ChangeState(new WrongAnswerState());
     }
 
-    public override void OnExiting()
+    bool Compare(List<GameObject> userIngredients, IProduct p)
     {
-        throw new NotImplementedException();
-    }
+        List<string> tempIngredients1 = userIngredients.Select(obj => obj.name).ToList();
+        List<string> tempIngredients2 = p.Ingredients.Select(obj => obj.name).ToList();
 
-    bool Compare(List<String> userIngredients, IProduct p)
-    {
-
-        foreach(string ui in userIngredients)
-        {
-            Debug.Log("ui:" + ui);
-        }
-
-        bool temp = false;
-
-        foreach (GameObject ing in p.Ingredients)
-        {
-            if (userIngredients.Contains(ing.name))
-                temp = true;
-            else
-                return false;
-        }
-
-        return temp;
+        if (tempIngredients2.All(item => tempIngredients1.Contains(item)))
+            return true;
+        else
+            return false;
+        
     }
 
 }

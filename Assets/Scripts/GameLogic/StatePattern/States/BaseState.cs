@@ -25,8 +25,6 @@ public abstract class BaseState : FSMState<GameManager>
     {
         Debug.Log("Enter " + this.GetType());
         gm = owner;
-        gm.registerSubject(this);
-        gm.Completed += OnGMCompleted;
         InvokeEntering();
     }
 
@@ -37,18 +35,21 @@ public abstract class BaseState : FSMState<GameManager>
 
     public override void Exit()
     {
-        Debug.Log("Exit Intro State");
+        Debug.Log("Exit " + this.GetType());
+        InvokeExiting();
     }
 
     public override void InvokeEntering()
     {
         Debug.Log("Entering " + this.GetType());
+        gm.Completed += OnGMCompleted;
         OnEntering();
     }
 
     public override void InvokeExiting()
     {
         Debug.Log("Exiting " + this.GetType());
+        gm.Completed -= OnGMCompleted;
         OnExiting();
     }
 

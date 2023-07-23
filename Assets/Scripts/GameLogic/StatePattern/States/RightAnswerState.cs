@@ -22,15 +22,13 @@ public class RightAnswerState : BaseState
 
     public override void Exit()
     {
-        Debug.Log("Exit Right Answer State");
+        base.Exit();
     }
 
     public override void InvokeEntering()
     {
-        GameManager.stateMessage = "Esatto!";
-        GameManager.spriteCode = 0;
-        gm._cocktail = gm._creator.GetComponent<Creator>().GetProduct();
-        OnEntering();
+        gm.OnPrintMessage("Esatto!");
+        base.InvokeEntering();
     }
 
     public override void InvokeExiting()
@@ -40,6 +38,6 @@ public class RightAnswerState : BaseState
 
     protected override void OnGMCompleted()
     {
-        gm.ChangeState(new CheckRunState());
+        gm.ChangeState(new CardUnlockingState());
     }
 }

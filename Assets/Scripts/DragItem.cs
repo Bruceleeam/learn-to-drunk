@@ -8,8 +8,8 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 {
     [SerializeField] private Image _itemImage;
     [SerializeField] private Color _dragColor;
-    public bool _fixed = false;
-    private Vector3 _initPos = new Vector3();
+    public bool _hooked = false;
+    public Vector3 _initPos = new Vector3();
 
     private void Start()
     {
@@ -27,14 +27,16 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     {
         _itemImage.color = _dragColor;
         _itemImage.raycastTarget = false;
-        transform.SetParent(GameObject.Find("SVChoicesContent").transform);
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
         _itemImage.color = Color.white;
         _itemImage.raycastTarget = true;
-        if(!_fixed)
+
+        if (!_hooked)
             transform.position = _initPos;
+        else
+            this.enabled = false;
     }
 }

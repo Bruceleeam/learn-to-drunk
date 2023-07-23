@@ -46,6 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   productName: Moscow Mule
   ingredients:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 3654489661347538262, guid: 93ea09bb80bba415ea3ce975d3b39399, type: 3}
+  - {fileID: 3654489661347538262, guid: 0220478b2a3114730a447d3f6275fbef, type: 3}
+  - {fileID: 3654489661347538262, guid: 5733e6730967f4086b559224973de793, type: 3}

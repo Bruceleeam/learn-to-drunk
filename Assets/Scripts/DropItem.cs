@@ -3,20 +3,32 @@ using UnityEngine.EventSystems;
 
 public class DropItem : MonoBehaviour, IDropHandler
 {
-    public bool _fixed = true;
+    GameObject _lockedGO;
 
     public void OnDrop(PointerEventData eventData)
     {
-        eventData.pointerDrag.transform.position = transform.position;
-        if(eventData.pointerDrag.gameObject.tag == gameObject.tag)
+        if (eventData.pointerDrag.gameObject.tag == gameObject.tag)
         {
-            eventData.pointerDrag.transform.SetParent(transform);
-            eventData.pointerDrag.GetComponent<DragItem>()._fixed = _fixed;
-        }
-        else
-        {
+            if (_lockedGO)
+                UnhookOnDrop(_lockedGO);
 
+            HookOnDrop(eventData.pointerDrag.gameObject);
         }
+    }
+
+    void HookOnDrop(GameObject go)
+    {
+        _lockedGO = go;
+        go.transform.position = transform.position;
+        go.GetComponent<DragItem>()._hooked = true;
+        GameManager._userIngredients.Add(go);
+    }
+
+    void UnhookOnDrop(GameObject go)
+    {
+        go.transform.position = _lockedGO.GetComponent<DragItem>()._initPos;
+        go.GetComponent<DragItem>().enabled = true;
+        GameManager._userIngredients.Remove(go);
     }
 
 }
