@@ -13,6 +13,7 @@ public class PlayState : BaseState
     public override void Enter(GameManager owner)
     {
         base.Enter(owner);
+        gm.OnActiveDrag();
     }
 
     public override void Execute()
@@ -22,6 +23,7 @@ public class PlayState : BaseState
 
     public override void Exit()
     {
+        gm.OnDeactiveDrag();
         base.Exit();
     }
 

@@ -31,7 +31,7 @@ public class IntroState : BaseState
         gm._cocktail = gm._creator.GetComponent<Creator>().GetProduct(PlayerPrefs.GetString("LastTown"));
         GameManager._userIngredients.Clear();
         gm.OnInitSVChoices();
-        gm.OnPrintMessage("Preparati per il prossimo Cocktail!");
+        gm.OnUpdateUI("Preparati per il prossimo Cocktail!");
         base.InvokeEntering();
     }
 

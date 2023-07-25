@@ -1,48 +1,44 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System;
+using DesignPatterns.Factory;
+using UnityEngine.SceneManagement;
 
-public class GameOverState : FSMState<GameManager>
+public class GameOverState : BaseState
 {
-    GameManager gm;
 
-    public GameOverState(){
-	}
-
-	public override void Enter(GameManager owner)
+    public GameOverState()
     {
-        Debug.Log("Enter Game Over State");
-        GameManager._feedback = true;
-		gm = owner;
+    }
+
+    public override void Enter(GameManager owner)
+    {
+        base.Enter(owner);
     }
 
     public override void Execute()
-	{
-		//gm.ChangeState(new PlayState()); 
+    {
+
     }
 
     public override void Exit()
     {
-        Debug.Log("Exit End State");
+        base.Exit();
     }
 
     public override void InvokeEntering()
     {
-        throw new NotImplementedException();
+        gm.OnUpdateUI("Game Over");
+        base.InvokeEntering();
     }
 
     public override void InvokeExiting()
     {
-        throw new NotImplementedException();
+        base.InvokeExiting();
     }
 
-    public override void OnEntering()
+    protected override void OnGMCompleted()
     {
-        throw new NotImplementedException();
-    }
-
-    public override void OnExiting()
-    {
-        throw new NotImplementedException();
+        SceneManager.LoadScene("Menu");
     }
 }

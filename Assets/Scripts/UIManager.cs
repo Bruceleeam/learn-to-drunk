@@ -6,24 +6,27 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using DesignPatterns.Factory;
 using static Unity.VisualScripting.Metadata;
+using System.Linq;
 
 public class UIManager : MonoBehaviour
 {
+
     // SINGLETON
     private static UIManager _instance;
     public static UIManager Instance { get { return _instance; } }
 
+    // TO DRAG & DROP BY INSPECTOR
     public GameManager gm;
     public GameObject _ingredientUI;
-    public IProduct _cocktail;
     public GameObject _content;
-    public GameObject _contentReset;
     public Text _message;
-    public Image _barman;
-    public Sprite _barmanWelcomer;
-    public Sprite _barmanMixing;
-    public Sprite _barmanHappy;
-    public Sprite _barmanSad;    
+    public List<GameObject> _lifes;
+    public List<GameObject> _ingredients;
+    public List<GameObject> _userIngredients;
+    public Button _confirm;
+
+    // FIELDS
+    private IProduct _cocktail;
 
     private void Awake()
     {
@@ -36,49 +39,40 @@ public class UIManager : MonoBehaviour
             _instance = this;
         }
 
-        RegisterSubject();
+        RegisterSubjects();
+        UpdateLifes();
     }
 
     // Use this for initialization
     void Start()
     {
-
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        bool allHooked = _userIngredients.All(obj => obj.GetComponent<DropItem>()._lockedGO != null) ? _confirm.interactable = true : _confirm.interactable = false;
     }
 
     // OBSERVER
-    public bool RegisterSubject()
+    public bool RegisterSubjects()
     {
         gm.InitSVChoices += OnInitSVChoices;
-        gm.PrintMessage += OnPrintMessage;
-        gm.SwitchBarman += OnSwitchBarman;
-        gm.Reset += OnReset;
-        //gm.RightAnswer += OnRightAnswer;
-        //gm.WrongAnswer += OnWrongAnswer;
+        gm.ActiveDrag += OnActiveDrag;
+        gm.DeactiveDrag += OnDeactiveDrag;
+        gm.UpdateUI += OnUpdateUI;
         return true;
     }
 
-    private void OnReset()
+    public bool UnregisterSubjects()
     {
-        
+        gm.InitSVChoices -= OnInitSVChoices;
+        gm.ActiveDrag -= OnActiveDrag;
+        gm.DeactiveDrag -= OnDeactiveDrag;
+        gm.UpdateUI -= OnUpdateUI;
+        return true;
     }
 
-    private void OnPrintMessage(string message)
-    {
-        StartCoroutine(Print(message));
-    }
-
-    IEnumerator Print(string message)
-    {
-        _message.text = message;
-        yield return new WaitForSeconds(3);
-        gm.OnCompleted();
-    }
     private void OnInitSVChoices()
     {
         foreach (GameObject ing in gm._cocktail.Ingredients)
@@ -87,39 +81,69 @@ public class UIManager : MonoBehaviour
             temp.tag = ing.tag;
             temp.transform.GetChild(0).GetComponent<Text>().text = ing.tag;
             temp.transform.parent = _content.transform;
+            _userIngredients.Add(temp);
         }
     }
 
-    //private void OnRightAnswer()
-    //{
-    //    OnPrintMessage();
-    //}
-
-    //private void OnWrongAnswer()
-    //{
-    //    OnPrintMessage();
-    //}
-
-    private void OnSwitchBarman()
+    private void OnActiveDrag()
     {
-        switch (GameManager.spriteCode)
+        foreach (GameObject ing in _ingredients)
         {
-            case 0:
-                _barman.sprite = _barmanWelcomer;
-                break;
-            case 1:
-                _barman.sprite = _barmanMixing;
-                break;
-            case 2:
-                _barman.sprite = _barmanHappy;
-                break;
-            case 3:
-                _barman.sprite = _barmanSad;
-                break;
-            default:
-                _barman.sprite = _barmanWelcomer;
-                break;
+            ing.GetComponent<DragItem>().enabled = true;
+            ing.GetComponent<Image>().color = new Color(1, 1, 1, 1);
         }
+    }
+
+    private void OnDeactiveDrag()
+    {
+        foreach (GameObject ing in _ingredients)
+        {
+            ing.GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);
+            ing.GetComponent<DragItem>().enabled = false;
+        }
+        _confirm.interactable = false;
+    }
+
+    private void OnUpdateUI(string message)
+    {
+        StartCoroutine(Execute(message));
+    }
+
+    IEnumerator Execute(string message)
+    {
+        _message.text = message;
+        yield return new WaitForSeconds(3);
+        UpdateLifes();
+        CheckLife();
+    }
+
+    private void UpdateLifes ()
+    {
+        if (_lifes.Count > gm.Lifes)
+        {
+            GameObject toDestroy = _lifes[gm.Lifes];
+            _lifes.RemoveAt(gm.Lifes);
+            Destroy(toDestroy);
+        }
+
+        return;
+    }
+
+    private void CheckLife()
+    {
+        if (gm.Lifes == 0)
+        {
+            gm.OnGameOver();
+        }
+        else
+        {
+            gm.OnCompleted();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        UnregisterSubjects();
     }
 
 }

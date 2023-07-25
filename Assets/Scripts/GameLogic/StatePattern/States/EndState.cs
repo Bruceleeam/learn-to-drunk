@@ -27,7 +27,7 @@ public class EndState : BaseState
 
     public override void InvokeEntering()
     {
-        gm.OnPrintMessage("Si beve!");
+        gm.OnUpdateUI("Si beve!");
         base.InvokeEntering();
     }
 

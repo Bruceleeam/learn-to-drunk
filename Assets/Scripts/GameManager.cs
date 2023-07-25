@@ -13,33 +13,11 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     public static GameManager Instance { get { return _instance; } }
 
-    // OBSERVER
-
-    public static string stateMessage;
-    public static int spriteCode;
-
-    public event Action Completed;
-    public void OnCompleted()
+    // OBSERVER & ACTIONS
+    public event Action<string> UpdateUI;
+    public void OnUpdateUI(string message)
     {
-        Completed?.Invoke();
-    }
-
-    public event Action<string> PrintMessage;
-    public void OnPrintMessage(string message)
-    {
-        PrintMessage?.Invoke(message);
-    }
-
-    public event Action Reset;
-    public void OnReset()
-    {
-        Reset?.Invoke();
-    }
-
-    public event Action SwitchBarman;
-    protected void OnSwitchBarman()
-    {
-        SwitchBarman?.Invoke();
+        UpdateUI?.Invoke(message);
     }
 
     public event Action InitSVChoices;
@@ -48,39 +26,56 @@ public class GameManager : MonoBehaviour
         InitSVChoices?.Invoke();
     }
 
-    public event Action RightAnswer;
-    protected void OnRightAnswer()
+    public event Action DecreaseLife;
+    public void OnDecreaseLife()
     {
-        RightAnswer?.Invoke();
+        DecreaseLife?.Invoke();
     }
 
-    public event Action WrongAnswer;
-    protected void OnWrongAnswer()
+    public event Action CheckLife;
+    public void OnCheckLife()
     {
-        WrongAnswer?.Invoke();
+        CheckLife?.Invoke();
     }
 
-    int _life;
-    public List<Button> _lifeIcons;
-    int _maxLife = 3;
+    public event Action Completed;
+    public void OnCompleted()
+    {
+        Completed?.Invoke();
+    }
+
+    public event Action GameOver;
+    public void OnGameOver()    
+    {
+        GameOver?.Invoke();
+    }
+
+    public event Action ActiveDrag;
+    public void OnActiveDrag()
+    {
+        ActiveDrag?.Invoke();
+    }
+
+    public event Action DeactiveDrag;
+    public void OnDeactiveDrag()
+    {
+        DeactiveDrag?.Invoke();
+    }
 
     private FiniteStateMachine<GameManager> FSM = new FiniteStateMachine<GameManager>();
-    public GameObject _ingredientUI;
-    public IProduct _cocktail;
-    public GameObject _content;
+    
     public static List<GameObject> _userIngredients = new List<GameObject>();
-    public List<GameObject> _ingredientsReset;
-    public List<GameObject> _ingredients;
-    public List<Image> _placeholders;
     public Creator _creator;
-    //public Cocktail _user_cocktail;
-    public static bool _confirm = false;
-    public Text _task;
-    public Image _barman;
+    public IProduct _cocktail;
 
-    public static bool _feedback = false;
+    private static int _lifes = 3;
+    public int Lifes
+    {
+        get => _lifes;
+        set => _lifes = value;
+    }
+
     public static bool _cardUnlocking = false;
-    public static bool _update = false;
     public GameObject _cardPanel;
     public Text _cardTitle;
     public Text _cardDescription;

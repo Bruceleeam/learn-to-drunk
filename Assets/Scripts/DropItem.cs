@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 
 public class DropItem : MonoBehaviour, IDropHandler
 {
-    GameObject _lockedGO;
+    public GameObject _lockedGO;
 
     public void OnDrop(PointerEventData eventData)
     {

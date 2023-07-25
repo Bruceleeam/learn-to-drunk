@@ -28,7 +28,9 @@ public class WrongAnswerState : BaseState
 
     public override void InvokeEntering()
     {
-        gm.OnPrintMessage("Sbagliato!");
+        gm.OnUpdateUI("Sbagliato!");
+        gm.Lifes -= 1;
+        gm.GameOver += OnGMGameOver;
         base.InvokeEntering();
     }
 
@@ -40,5 +42,10 @@ public class WrongAnswerState : BaseState
     protected override void OnGMCompleted()
     {
         gm.ChangeState(new StartState());
+    }
+
+    private void OnGMGameOver()
+    {
+        gm.ChangeState(new GameOverState());
     }
 }

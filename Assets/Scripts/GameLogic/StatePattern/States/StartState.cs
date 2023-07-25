@@ -27,7 +27,7 @@ public class StartState : BaseState
 
     public override void InvokeEntering()
     {
-        gm.OnPrintMessage(gm._cocktail.ProductName);
+        gm.OnUpdateUI(gm._cocktail.ProductName);
         base.InvokeEntering();
     }
 

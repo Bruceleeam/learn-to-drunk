@@ -6,17 +6,6 @@ using DesignPatterns.Factory;
 public abstract class BaseState : FSMState<GameManager>
 {
     protected GameManager gm;
-    public event Action Entering;
-    public event Action Exiting;
-
-    public override void OnEntering()
-    {
-        Entering?.Invoke();
-    }
-    public override void OnExiting()
-    {
-        Exiting?.Invoke();
-    }
 
     public BaseState(){
     }
@@ -43,14 +32,12 @@ public abstract class BaseState : FSMState<GameManager>
     {
         Debug.Log("Entering " + this.GetType());
         gm.Completed += OnGMCompleted;
-        OnEntering();
     }
 
     public override void InvokeExiting()
     {
         Debug.Log("Exiting " + this.GetType());
         gm.Completed -= OnGMCompleted;
-        OnExiting();
     }
 
     protected abstract void OnGMCompleted();

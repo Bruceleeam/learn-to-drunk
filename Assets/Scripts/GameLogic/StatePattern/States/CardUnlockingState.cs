@@ -30,7 +30,7 @@ public class CardUnlockingState : BaseState
         if (!PlayerPrefs.HasKey(gm._cocktail.ProductName))
         {
             GameManager._cardUnlocking = true;
-            gm.OnPrintMessage("Complimenti! Hai sbloccato una nuova card");
+            gm.OnUpdateUI("Complimenti! Hai sbloccato una nuova card");
         }
         gm.OnCompleted();
     }
