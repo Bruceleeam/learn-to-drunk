@@ -23,7 +23,7 @@ public class UIManager : MonoBehaviour
     public List<GameObject> _lifes;
     public List<GameObject> _ingredients;
     public List<GameObject> _userIngredients;
-    public Button _confirm;
+    public GameObject _confirm;
 
     // FIELDS
     private IProduct _cocktail;
@@ -51,7 +51,7 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bool allHooked = _userIngredients.All(obj => obj.GetComponent<DropItem>()._lockedGO != null) ? _confirm.interactable = true : _confirm.interactable = false;
+        bool allHooked = _userIngredients.All(obj => obj.GetComponent<DropItem>()._lockedGO != null) && gm.CurrentState() == Type.GetType("PlayState") ? _confirm.GetComponent<Button>().interactable = true : _confirm.GetComponent<Button>().interactable = false;
     }
 
     // OBSERVER
@@ -92,6 +92,9 @@ public class UIManager : MonoBehaviour
             ing.GetComponent<DragItem>().enabled = true;
             ing.GetComponent<Image>().color = new Color(1, 1, 1, 1);
         }
+
+        _confirm.SetActive(true);
+
     }
 
     private void OnDeactiveDrag()
@@ -101,7 +104,9 @@ public class UIManager : MonoBehaviour
             ing.GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);
             ing.GetComponent<DragItem>().enabled = false;
         }
-        _confirm.interactable = false;
+
+        _confirm.GetComponent<Button>().interactable = false;
+
     }
 
     private void OnUpdateUI(string message)
@@ -121,9 +126,17 @@ public class UIManager : MonoBehaviour
     {
         if (_lifes.Count > gm.Lifes)
         {
-            GameObject toDestroy = _lifes[gm.Lifes];
-            _lifes.RemoveAt(gm.Lifes);
-            Destroy(toDestroy);
+            for(int i = _lifes.Count(); i > gm.Lifes; i--)
+            {
+                if (_lifes[i-1])
+                {
+                    GameObject toDestroy = _lifes[i-1];
+                    _lifes.RemoveAt(i-1);
+                    Destroy(toDestroy);
+                }
+                
+            }
+            
         }
 
         return;
