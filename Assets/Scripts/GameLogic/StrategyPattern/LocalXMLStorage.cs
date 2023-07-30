@@ -9,6 +9,7 @@ public class LocalXMLStorage : IDataStorageStrategy
     public LocalXMLStorage(string fileName)
     {
         filePath = Application.persistentDataPath + "/" + fileName + ".xml";
+        Debug.Log("FILE PATH: " + filePath);
     }
 
     public void SaveData(DataObject data)

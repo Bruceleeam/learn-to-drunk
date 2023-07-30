@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ExampleUsage : MonoBehaviour
+public class StorageData : MonoBehaviour
 {
     private DataManager dataManager;
 
@@ -9,34 +9,31 @@ public class ExampleUsage : MonoBehaviour
         dataManager = new DataManager();
     }
 
-    private void SaveDataLocally()
+    private void SaveDataLocally(DataObject data)
     {
-        DataObject data = new DataObject();
-        data.value = 42; // Valore da salvare
-
         dataManager.SaveData(data);
         Debug.Log("Dati salvati localmente.");
     }
 
-    private void SaveDataRemotely()
+    private void SaveDataRemotely(DataObject data)
     {
-        DataObject data = new DataObject();
-        data.value = 99; // Valore da salvare
-
         dataManager.SaveData(data);
         Debug.Log("Dati salvati tramite API REST.");
     }
 
-    private void LoadData()
+    private DataObject LoadData()
     {
         DataObject loadedData = dataManager.LoadData();
         if (loadedData != null)
         {
-            Debug.Log("Valore caricato: " + loadedData.value);
+            Debug.Log("Valore caricato last town: " + loadedData._lastTown);
+            Debug.Log("Valore caricato lifes: " + loadedData._lifes);
         }
         else
         {
             Debug.Log("Impossibile caricare i dati.");
         }
+
+        return loadedData;
     }
 }

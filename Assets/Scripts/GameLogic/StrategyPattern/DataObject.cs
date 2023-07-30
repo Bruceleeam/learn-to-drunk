@@ -1,6 +1,9 @@
-[System.Serializable]
+using System;
+
+[Serializable]
 public class DataObject
 {
-    public int value;
+    public string _lastTown;
+    public int _lifes;
     // Altri campi dati da memorizzare
 }

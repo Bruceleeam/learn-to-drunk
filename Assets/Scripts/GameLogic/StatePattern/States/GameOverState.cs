@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class GameOverState : BaseState
 {
+    DataManager _dataManager;
+    DataObject _gameData;
+
     public GameOverState()
     {
     }
@@ -17,6 +20,9 @@ public class GameOverState : BaseState
 
     public override void Execute()
     {
+        _gameData._lastTown = PlayerPrefs.GetString("LastTown");
+        _gameData._lifes = gm.Lifes;
+        _dataManager.SaveData(_gameData);
         SceneManager.LoadScene("Menu");
     }
 
