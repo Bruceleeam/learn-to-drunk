@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class GameOverState : BaseState
 {
-
     public GameOverState()
     {
     }
@@ -18,7 +17,7 @@ public class GameOverState : BaseState
 
     public override void Execute()
     {
-
+        SceneManager.LoadScene("Menu");
     }
 
     public override void Exit()
@@ -37,8 +36,4 @@ public class GameOverState : BaseState
         base.InvokeExiting();
     }
 
-    protected override void OnGMCompleted()
-    {
-        SceneManager.LoadScene("Menu");
-    }
 }

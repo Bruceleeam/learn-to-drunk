@@ -17,7 +17,7 @@ public class EndState : BaseState
 
     public override void Execute()
 	{
-
+        SceneManager.LoadScene("Map");
     }
 
     public override void Exit()
@@ -36,8 +36,4 @@ public class EndState : BaseState
         base.InvokeExiting();
     }
 
-    protected override void OnGMCompleted()
-    {
-        SceneManager.LoadScene("Map");
-    }
 }

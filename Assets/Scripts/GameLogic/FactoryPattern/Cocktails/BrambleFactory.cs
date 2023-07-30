@@ -4,21 +4,22 @@ using UnityEngine;
 
 namespace DesignPatterns.Factory
 {
-    public class MoscowMuleFactory : Factory
+    public class BrambleFactory
+        : Factory
     {
         // used to create a Prefab
-        [SerializeField] private MoscowMule moscowMulePrefab;
+        [SerializeField] private Bramble bramblePrefab;
 
         public override IProduct GetBase(Vector3 position)
         {
             // create a Prefab instance and get the product component
-            GameObject instanceBase = Instantiate(moscowMulePrefab.gameObject, position, Quaternion.identity);
-            MoscowMule moscowMule = instanceBase.GetComponent<MoscowMule>();
+            GameObject instanceBase = Instantiate(bramblePrefab.gameObject, position, Quaternion.identity);
+            Bramble bramble = instanceBase.GetComponent<Bramble>();
 
             // each product contains its own logic
-            moscowMule.Initialize();
+            bramble.Initialize();
 
-            return moscowMule;
+            return bramble;
         }
     }
 }

@@ -17,7 +17,7 @@ public class RightAnswerState : BaseState
 
     public override void Execute()
     {
-
+        gm.ChangeState(new CardUnlockingState());
     }
 
     public override void Exit()
@@ -36,8 +36,4 @@ public class RightAnswerState : BaseState
         base.InvokeExiting();
     }
 
-    protected override void OnGMCompleted()
-    {
-        gm.ChangeState(new CardUnlockingState());
-    }
 }

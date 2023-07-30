@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace DesignPatterns.Factory
 {
-    public class MoscowMule : MonoBehaviour, IProduct
+    public class Bramble : MonoBehaviour, IProduct
     {
-        [SerializeField] private string productName = "Moscow Mule";
+        [SerializeField] private string productName = "Bramble";
         [SerializeField] public List<GameObject> ingredients;
         
         public string ProductName { get => productName; set => productName = value ; }

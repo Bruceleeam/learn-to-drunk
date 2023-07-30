@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2204569778530657237}
   - component: {fileID: -4337856039097737609}
   m_Layer: 0
-  m_Name: MoscowMule
+  m_Name: Bramble
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3ae4be578c314ab4b17f7cc9a365df7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  productName: Moscow Mule
+  productName: Bramble
   ingredients:
   - {fileID: 3654489661347538262, guid: 93ea09bb80bba415ea3ce975d3b39399, type: 3}
   - {fileID: 3654489661347538262, guid: 0220478b2a3114730a447d3f6275fbef, type: 3}

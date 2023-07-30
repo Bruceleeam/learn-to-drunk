@@ -10,8 +10,8 @@ public class MapManager : MonoBehaviour
     public GameObject player;
 
     // Transforms to act as start and end markers for the journey.
-    public Transform startMarker;
-    public Transform endMarker;
+    Transform startMarker;
+    Transform endMarker;
 
     // Movement speed in units per second.
     float speed = 50f;
@@ -28,14 +28,14 @@ public class MapManager : MonoBehaviour
     void Start()
     {
         //PlayerPrefs.DeleteAll();
-        startMarker = player.transform;
         if (PlayerPrefs.HasKey("LastTown"))
         {
             index = _placeholders.FindIndex(a => a.name.Equals(PlayerPrefs.GetString("LastTown")));
-            startMarker = _placeholders[index].gameObject.transform;
-            index++;
+            player.transform.position = _placeholders[index].gameObject.transform.position;
         }
-        
+
+        startMarker = _placeholders[index].gameObject.transform;
+        index++;
         endMarker = _placeholders[index].gameObject.transform;
 
         // Keep a note of the time the movement started.

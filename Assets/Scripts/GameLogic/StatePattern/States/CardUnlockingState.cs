@@ -16,7 +16,7 @@ public class CardUnlockingState : BaseState
 
     public override void Execute()
 	{
-        
+        gm.ChangeState(new EndState());
     }
 
     public override void Exit()
@@ -32,17 +32,11 @@ public class CardUnlockingState : BaseState
             GameManager._cardUnlocking = true;
             gm.OnUpdateUI("Complimenti! Hai sbloccato una nuova card");
         }
-        gm.OnCompleted();
     }
 
     public override void InvokeExiting()
     {
         base.InvokeExiting();
-    }
-
-    protected override void OnGMCompleted()
-    {
-        gm.ChangeState(new EndState());
     }
 
 }

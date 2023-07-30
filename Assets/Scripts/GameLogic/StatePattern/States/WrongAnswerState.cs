@@ -18,7 +18,10 @@ public class WrongAnswerState : BaseState
 
     public override void Execute()
     {
-
+        if (gm.Lifes == 0)
+            gm.ChangeState(new GameOverState());
+        else
+            gm.ChangeState(new StartState());
     }
 
     public override void Exit()
@@ -30,7 +33,6 @@ public class WrongAnswerState : BaseState
     {
         gm.OnUpdateUI("Sbagliato!");
         gm.Lifes -= 1;
-        gm.GameOver += OnGMGameOver;
         base.InvokeEntering();
     }
 
@@ -39,13 +41,4 @@ public class WrongAnswerState : BaseState
         base.InvokeExiting();
     }
 
-    protected override void OnGMCompleted()
-    {
-        gm.ChangeState(new StartState());
-    }
-
-    private void OnGMGameOver()
-    {
-        gm.ChangeState(new GameOverState());
-    }
 }

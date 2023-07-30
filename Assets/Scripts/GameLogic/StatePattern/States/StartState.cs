@@ -17,7 +17,7 @@ public class StartState : BaseState
 
     public override void Execute()
     {
-
+        gm.ChangeState(new PlayState());
     }
 
     public override void Exit()
@@ -36,8 +36,4 @@ public class StartState : BaseState
         base.InvokeExiting();
     }
 
-    protected override void OnGMCompleted()
-    {
-        gm.ChangeState(new PlayState());
-    }
 }

@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     // SINGLETON
     private static GameManager _instance;
     public static GameManager Instance { get { return _instance; } }
+    public bool _next = false;
 
     // OBSERVER & ACTIONS
     public event Action<string> UpdateUI;
@@ -36,18 +37,6 @@ public class GameManager : MonoBehaviour
     public void OnCheckLife()
     {
         CheckLife?.Invoke();
-    }
-
-    public event Action Completed;
-    public void OnCompleted()
-    {
-        Completed?.Invoke();
-    }
-
-    public event Action GameOver;
-    public void OnGameOver()    
-    {
-        GameOver?.Invoke();
     }
 
     public event Action ActiveDrag;
@@ -109,7 +98,8 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        FSM.Update();
+        if(_next)
+            FSM.Update();
     }
 
     public void ChangeState(FSMState<GameManager> state)
@@ -124,7 +114,9 @@ public class GameManager : MonoBehaviour
 
     public void Confirm()
     {
-        OnCompleted();
+        Debug.Log("A");
+
+        _next = true;
     }
 
 }

@@ -18,7 +18,7 @@ public class IntroState : BaseState
 
     public override void Execute()
 	{
-
+        gm.ChangeState(new StartState());
     }
 
     public override void Exit()
@@ -40,8 +40,4 @@ public class IntroState : BaseState
         base.InvokeExiting();
     }
 
-    protected override void OnGMCompleted()
-    {
-        gm.ChangeState(new StartState());
-    }
 }

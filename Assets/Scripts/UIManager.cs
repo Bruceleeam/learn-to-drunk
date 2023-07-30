@@ -119,7 +119,7 @@ public class UIManager : MonoBehaviour
         _message.text = message;
         yield return new WaitForSeconds(3);
         UpdateLifes();
-        CheckLife();
+        gm._next = true;
     }
 
     private void UpdateLifes ()
@@ -140,18 +140,6 @@ public class UIManager : MonoBehaviour
         }
 
         return;
-    }
-
-    private void CheckLife()
-    {
-        if (gm.Lifes == 0)
-        {
-            gm.OnGameOver();
-        }
-        else
-        {
-            gm.OnCompleted();
-        }
     }
 
     private void OnDestroy()

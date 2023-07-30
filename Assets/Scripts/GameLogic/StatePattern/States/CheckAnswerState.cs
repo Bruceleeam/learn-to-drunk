@@ -19,7 +19,10 @@ public class CheckAnswerState : BaseState
 
     public override void Execute()
     {
-
+        if (Compare(GameManager._userIngredients, gm._cocktail))
+            gm.ChangeState(new RightAnswerState());
+        else
+            gm.ChangeState(new WrongAnswerState());
     }
 
     public override void Exit()
@@ -30,20 +33,12 @@ public class CheckAnswerState : BaseState
     public override void InvokeEntering()
     {
         base.InvokeEntering();
-        gm.OnCompleted();
+        gm.Confirm();
     }
 
     public override void InvokeExiting()
     {
         base.InvokeExiting();
-    }
-
-    protected override void OnGMCompleted()
-    {
-        if (Compare(GameManager._userIngredients, gm._cocktail))
-            gm.ChangeState(new RightAnswerState());
-        else
-            gm.ChangeState(new WrongAnswerState());
     }
 
     bool Compare(List<GameObject> userIngredients, IProduct p)
