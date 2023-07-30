@@ -47,5 +47,6 @@ MonoBehaviour:
   productName: Negroni
   ingredients:
   - {fileID: 3654489661347538262, guid: 0220478b2a3114730a447d3f6275fbef, type: 3}
-  - {fileID: 3654489661347538262, guid: 17d940f6a31d3439f9da33a42b920555, type: 3}
+  - {fileID: 3654489661347538262, guid: 3283498f9b5034993bb8ce99b8f5667a, type: 3}
   - {fileID: 3654489661347538262, guid: 08a34ab49cd494cacaa696f96e424f82, type: 3}
+  - {fileID: 3654489661347538262, guid: 17d940f6a31d3439f9da33a42b920555, type: 3}

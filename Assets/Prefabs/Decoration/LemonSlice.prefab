@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 3311475562164445515}
   - component: {fileID: 1899633662}
   m_Layer: 5
-  m_Name: Gin
-  m_TagString: Base
+  m_Name: LemonSlice
+  m_TagString: Decoration
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36,7 +36,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 135, y: 155}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1998235656432553391
@@ -91,5 +91,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemImage: {fileID: 3311475562164445515}
   _dragColor: {r: 1, g: 1, b: 1, a: 0.52156866}
-  _hooked: 0
-  _initPos: {x: 0, y: 0, z: 0}
+  _fixed: 0

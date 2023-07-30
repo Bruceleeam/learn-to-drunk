@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ec1ce6e9539c4a5f93a62a391f97131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hooked: 1
+  _lockedGO: {fileID: 0}
 --- !u!1 &8641783405236427581
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,7 +164,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
