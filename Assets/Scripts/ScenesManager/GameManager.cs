@@ -92,6 +92,7 @@ public class GameManager : MonoBehaviour
 
     public void Init()
     {
+        Lifes = StaticGameData._gameData._lifes;
         FSM.Initialize(this, new IntroState());
     }
 
@@ -114,8 +115,6 @@ public class GameManager : MonoBehaviour
 
     public void Confirm()
     {
-        Debug.Log("A");
-
         _next = true;
     }
 

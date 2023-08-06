@@ -4,21 +4,21 @@ public class DataManager : MonoBehaviour
 {
     private IDataStorageStrategy dataStorageStrategy;
 
-    private void Start()
+    public DataManager()
     {
         // Cambia tra LocalXMLStorage e RemoteAPIDataStorage a seconda delle tue esigenze
-        dataStorageStrategy = new LocalXMLStorage("data_file");
+        dataStorageStrategy = new LocalXMLStorage("game_data");
         //dataStorageStrategy = new RemoteAPIDataStorage();
     }
 
     // Metodo per salvare i dati
-    public void SaveData(DataObject data)
+    public void SaveData(GameData data)
     {
         dataStorageStrategy.SaveData(data);
     }
 
     // Metodo per caricare i dati
-    public DataObject LoadData()
+    public GameData LoadData()
     {
         return dataStorageStrategy.LoadData();
     }

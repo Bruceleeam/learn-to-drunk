@@ -21,7 +21,8 @@ public class UIManager : MonoBehaviour
     public GameObject _content;
     public Text _message;
     public List<GameObject> _lifes;
-    public List<GameObject> _ingredients;
+    public GameObject _ingredientsParent;
+    List<GameObject> _ingredients = new List<GameObject>();
     public List<GameObject> _userIngredients;
     public GameObject _confirm;
 
@@ -40,6 +41,7 @@ public class UIManager : MonoBehaviour
         }
 
         RegisterSubjects();
+        UpdateIngredients();
         UpdateLifes();
     }
 
@@ -61,6 +63,16 @@ public class UIManager : MonoBehaviour
         gm.ActiveDrag += OnActiveDrag;
         gm.DeactiveDrag += OnDeactiveDrag;
         gm.UpdateUI += OnUpdateUI;
+        return true;
+    }
+
+    public bool UpdateIngredients()
+    {
+        for (int i = 0; i < _ingredientsParent.transform.childCount; i++)
+        {
+            _ingredients.Add(_ingredientsParent.transform.GetChild(i).gameObject);
+        }
+
         return true;
     }
 
@@ -89,6 +101,7 @@ public class UIManager : MonoBehaviour
     {
         foreach (GameObject ing in _ingredients)
         {
+            Debug.Log("ING: " + ing.name);
             ing.GetComponent<DragItem>().enabled = true;
             ing.GetComponent<Image>().color = new Color(1, 1, 1, 1);
         }
@@ -124,9 +137,9 @@ public class UIManager : MonoBehaviour
 
     private void UpdateLifes ()
     {
-        if (_lifes.Count > gm.Lifes)
+        if (_lifes.Count > StaticGameData._gameData._lifes)
         {
-            for(int i = _lifes.Count(); i > gm.Lifes; i--)
+            for(int i = _lifes.Count(); i > StaticGameData._gameData._lifes; i--)
             {
                 if (_lifes[i-1])
                 {

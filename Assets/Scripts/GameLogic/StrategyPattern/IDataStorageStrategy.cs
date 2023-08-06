@@ -2,6 +2,6 @@ using System.Runtime.InteropServices.ComTypes;
 
 public interface IDataStorageStrategy
 {
-    void SaveData(DataObject data);
-    DataObject LoadData();
+    void SaveData(GameData data);
+    GameData LoadData();
 }

@@ -67,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -91,4 +91,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemImage: {fileID: 3311475562164445515}
   _dragColor: {r: 1, g: 1, b: 1, a: 0.52156866}
-  _fixed: 0
+  _hooked: 0
+  _initPos: {x: 0, y: 0, z: 0}

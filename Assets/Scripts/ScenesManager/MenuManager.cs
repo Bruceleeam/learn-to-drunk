@@ -11,12 +11,14 @@ public class MenuManager : MonoBehaviour
     public GameObject _cocktailCard;
     public Text _cocktailCardTitle;
     public Text _cocktailCardDesc;
+    public GameObject _continue;
     //public List<Cocktail> _cocktails = new List<Cocktail>();
 
     // Start is called before the first frame update
     void Start()
     {
-        PlayerPrefs.DeleteKey("LastTown");
+        if (StaticGameData._gameData._lastTown != null && StaticGameData._gameData._lifes > 0)
+            _continue.SetActive(true);
     }
 
     // Update is called once per frame
@@ -25,9 +27,15 @@ public class MenuManager : MonoBehaviour
 
     }
 
-    public void NewGame(string sceneName)
+    public void NewGame()
     {
-        SceneManager.LoadScene(sceneName);
+        StaticGameData._gameData = new GameData();
+        SceneManager.LoadScene("Map");
+    }
+
+    public void Continue()
+    {
+        SceneManager.LoadScene("Map");
     }
 
     public void ClearCard()

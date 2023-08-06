@@ -4,26 +4,26 @@ public class StorageData : MonoBehaviour
 {
     private DataManager dataManager;
 
-    private void Start()
+    private void Awake()
     {
         dataManager = new DataManager();
     }
 
-    private void SaveDataLocally(DataObject data)
+    public void SaveDataLocally(GameData data)
     {
         dataManager.SaveData(data);
         Debug.Log("Dati salvati localmente.");
     }
 
-    private void SaveDataRemotely(DataObject data)
+    public void SaveDataRemotely(GameData data)
     {
         dataManager.SaveData(data);
         Debug.Log("Dati salvati tramite API REST.");
     }
 
-    private DataObject LoadData()
+    public GameData LoadData()
     {
-        DataObject loadedData = dataManager.LoadData();
+        GameData loadedData = dataManager.LoadData();
         if (loadedData != null)
         {
             Debug.Log("Valore caricato last town: " + loadedData._lastTown);
@@ -32,6 +32,7 @@ public class StorageData : MonoBehaviour
         else
         {
             Debug.Log("Impossibile caricare i dati.");
+            loadedData = new GameData();
         }
 
         return loadedData;

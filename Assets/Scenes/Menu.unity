@@ -441,11 +441,23 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 1435137221}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 483570337}
+        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
+        m_MethodName: Continue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &211773579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -916,7 +928,7 @@ MonoBehaviour:
       - m_Target: {fileID: 483570337}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
         m_MethodName: NewGame
-        m_Mode: 5
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1365,6 +1377,7 @@ MonoBehaviour:
   _cocktailCard: {fileID: 227933169}
   _cocktailCardTitle: {fileID: 460771896}
   _cocktailCardDesc: {fileID: 1520818711}
+  _continue: {fileID: 211773576}
 --- !u!4 &483570338
 Transform:
   m_ObjectHideFlags: 0
@@ -1983,7 +1996,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Gioca
+  m_Text: New Game
 --- !u!222 &1355113533
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2207,7 +2220,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Crediti
+  m_Text: Credits
 --- !u!222 &1457294300
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2877,7 +2890,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Le schede dei cocktails
+  m_Text: Cocktail Cards
 --- !u!222 &2135130283
 CanvasRenderer:
   m_ObjectHideFlags: 0

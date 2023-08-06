@@ -12,23 +12,23 @@ public class LocalXMLStorage : IDataStorageStrategy
         Debug.Log("FILE PATH: " + filePath);
     }
 
-    public void SaveData(DataObject data)
+    public void SaveData(GameData data)
     {
-        XmlSerializer serializer = new XmlSerializer(typeof(DataObject));
+        XmlSerializer serializer = new XmlSerializer(typeof(GameData));
         using (XmlWriter writer = XmlWriter.Create(filePath))
         {
             serializer.Serialize(writer, data);
         }
     }
 
-    public DataObject LoadData()
+    public GameData LoadData()
     {
         if (System.IO.File.Exists(filePath))
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(DataObject));
+            XmlSerializer serializer = new XmlSerializer(typeof(GameData));
             using (XmlReader reader = XmlReader.Create(filePath))
             {
-                return serializer.Deserialize(reader) as DataObject;
+                return serializer.Deserialize(reader) as GameData;
             }
         }
         else

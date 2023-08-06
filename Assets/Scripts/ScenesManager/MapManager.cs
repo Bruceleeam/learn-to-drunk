@@ -8,7 +8,7 @@ public class MapManager : MonoBehaviour
 {
     public List<GameObject> _placeholders;
     public GameObject player;
-
+    public static GameData gameData;
     // Transforms to act as start and end markers for the journey.
     Transform startMarker;
     Transform endMarker;
@@ -27,10 +27,11 @@ public class MapManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         //PlayerPrefs.DeleteAll();
-        if (PlayerPrefs.HasKey("LastTown"))
+        if (StaticGameData._gameData._lastTown != null)
         {
-            index = _placeholders.FindIndex(a => a.name.Equals(PlayerPrefs.GetString("LastTown")));
+            index = _placeholders.FindIndex(a => a.name.Equals(StaticGameData._gameData._lastTown));
             player.transform.position = _placeholders[index].gameObject.transform.position;
         }
 
@@ -60,13 +61,16 @@ public class MapManager : MonoBehaviour
         }
         else
         {
-           
-            // Memorizza l'ultima posizione raggiunta
-            PlayerPrefs.SetString("LastTown", _placeholders[index].name);
-            // Passa alla scena di play
-            SceneManager.LoadScene("TownIntro");
+            StartCoroutine(Next());
         }
-        
+    }
 
+    IEnumerator Next()
+    {
+        yield return new WaitForSeconds(2);
+        // Memorizza l'ultima posizione raggiunta
+        PlayerPrefs.SetString("LastTown", _placeholders[index].name);
+        // Passa alla scena di play
+        SceneManager.LoadScene("TownIntro");
     }
 }
