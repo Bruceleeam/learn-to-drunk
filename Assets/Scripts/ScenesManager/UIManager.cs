@@ -21,7 +21,10 @@ public class UIManager : MonoBehaviour
     public GameObject _content;
     public Text _message;
     public List<GameObject> _lifes;
-    public GameObject _ingredientsParent;
+    public GameObject _bases;
+    public GameObject _flavorings;
+    public GameObject _decorations;
+    public GameObject _dyes;
     List<GameObject> _ingredients = new List<GameObject>();
     public List<GameObject> _userIngredients;
     public GameObject _confirm;
@@ -68,9 +71,24 @@ public class UIManager : MonoBehaviour
 
     public bool UpdateIngredients()
     {
-        for (int i = 0; i < _ingredientsParent.transform.childCount; i++)
+        for (int i = 0; i < _bases.transform.childCount; i++)
         {
-            _ingredients.Add(_ingredientsParent.transform.GetChild(i).gameObject);
+            _ingredients.Add(_bases.transform.GetChild(i).gameObject);
+        }
+
+        for (int i = 0; i < _flavorings.transform.childCount; i++)
+        {
+            _ingredients.Add(_flavorings.transform.GetChild(i).gameObject);
+        }
+
+        for (int i = 0; i < _decorations.transform.childCount; i++)
+        {
+            _ingredients.Add(_decorations.transform.GetChild(i).gameObject);
+        }
+
+        for (int i = 0; i < _dyes.transform.childCount; i++)
+        {
+            _ingredients.Add(_dyes.transform.GetChild(i).gameObject);
         }
 
         return true;
@@ -99,26 +117,61 @@ public class UIManager : MonoBehaviour
 
     private void OnActiveDrag()
     {
-        foreach (GameObject ing in _ingredients)
+        for (int i = 0; i < _bases.transform.childCount - 1; i++)
         {
-            Debug.Log("ING: " + ing.name);
-            ing.GetComponent<DragItem>().enabled = true;
-            ing.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+            _bases.transform.GetChild(i).GetComponent<DragItem>().enabled = true;
+            _bases.transform.GetChild(i).GetComponent<Image>().color = new Color(1, 1, 1, 1);
         }
 
-        _confirm.SetActive(true);
+        for (int i = 0; i < _flavorings.transform.childCount - 1; i++)
+        {
+            _flavorings.transform.GetChild(i).GetComponent<DragItem>().enabled = true;
+            _flavorings.transform.GetChild(i).GetComponent<Image>().color = new Color(1, 1, 1, 1);
+        }
+
+        for (int i = 0; i < _decorations.transform.childCount - 1; i++)
+        {
+            _decorations.transform.GetChild(i).GetComponent<DragItem>().enabled = true;
+            _decorations.transform.GetChild(i).GetComponent<Image>().color = new Color(1, 1, 1, 1);
+        }
+
+        for (int i = 0; i < _dyes.transform.childCount - 1; i++)
+        {
+            _dyes.transform.GetChild(i).GetComponent<DragItem>().enabled = true;
+            _dyes.transform.GetChild(i).GetComponent<Image>().color = new Color(1, 1, 1, 1);
+        }
+
+        _confirm.GetComponent<Button>().enabled = true;
 
     }
 
     private void OnDeactiveDrag()
     {
-        foreach (GameObject ing in _ingredients)
+        for (int i = 0; i < _bases.transform.childCount - 1; i++)
         {
-            ing.GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);
-            ing.GetComponent<DragItem>().enabled = false;
+            _bases.transform.GetChild(i).GetComponent<DragItem>().enabled = false;
+            _bases.transform.GetChild(i).GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);
         }
 
-        _confirm.GetComponent<Button>().interactable = false;
+        for (int i = 0; i < _flavorings.transform.childCount - 1; i++)
+        {
+            _flavorings.transform.GetChild(i).GetComponent<DragItem>().enabled = false;
+            _flavorings.transform.GetChild(i).GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);
+        }
+
+        for (int i = 0; i < _decorations.transform.childCount - 1; i++)
+        {
+            _decorations.transform.GetChild(i).GetComponent<DragItem>().enabled = false;
+            _decorations.transform.GetChild(i).GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);
+        }
+
+        for (int i = 0; i < _dyes.transform.childCount - 1; i++)
+        {
+            _dyes.transform.GetChild(i).GetComponent<DragItem>().enabled = false;
+            _dyes.transform.GetChild(i).GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);
+        }
+
+        _confirm.GetComponent<Button>().enabled = false;
 
     }
 
@@ -146,10 +199,8 @@ public class UIManager : MonoBehaviour
                     GameObject toDestroy = _lifes[i-1];
                     _lifes.RemoveAt(i-1);
                     Destroy(toDestroy);
-                }
-                
-            }
-            
+                }                
+            }            
         }
 
         return;

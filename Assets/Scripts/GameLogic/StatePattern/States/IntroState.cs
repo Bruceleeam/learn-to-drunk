@@ -28,7 +28,7 @@ public class IntroState : BaseState
 
     public override void InvokeEntering()
     {
-        gm._cocktail = gm._creator.GetComponent<Creator>().GetProduct(PlayerPrefs.GetString("LastTown"));
+        gm._cocktail = gm._creator.GetComponent<Creator>().GetProduct(StaticGameData._gameData._lastTown);
         GameManager._userIngredients.Clear();
         gm.OnInitSVChoices();
         gm.OnUpdateUI("Preparati per il prossimo Cocktail!");

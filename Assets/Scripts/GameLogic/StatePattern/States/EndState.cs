@@ -18,10 +18,7 @@ public class EndState : BaseState
 
     public override void Execute()
 	{
-        _gameData._lastTown = PlayerPrefs.GetString("LastTown");
-        _gameData._lifes = gm.Lifes;
-        gm.GetComponent<StorageData>().SaveDataLocally(_gameData);
-        StaticGameData._gameData = gm.GetComponent<StorageData>().LoadData();
+        gm.GetComponent<StorageData>().SaveDataLocally(StaticGameData._gameData);
         SceneManager.LoadScene("Map");
     }
 

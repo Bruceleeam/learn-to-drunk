@@ -12,7 +12,7 @@ public class TownIntroManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _townLabel.text = PlayerPrefs.GetString("LastTown");
+        _townLabel.text = StaticGameData._gameData._lastTown;
         StartCoroutine(PlayGame());
     }
 

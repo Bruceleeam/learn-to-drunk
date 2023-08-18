@@ -12,6 +12,7 @@ public class MapManager : MonoBehaviour
     // Transforms to act as start and end markers for the journey.
     Transform startMarker;
     Transform endMarker;
+    public GameObject _demoMessage;
 
     // Movement speed in units per second.
     float speed = 50f;
@@ -36,14 +37,24 @@ public class MapManager : MonoBehaviour
         }
 
         startMarker = _placeholders[index].gameObject.transform;
-        index++;
-        endMarker = _placeholders[index].gameObject.transform;
 
-        // Keep a note of the time the movement started.
-        startTime = Time.time;
+        if(index < _placeholders.Count - 1)
+        {
+            index++;
+            endMarker = _placeholders[index].gameObject.transform;
 
-        // Calculate the journey length.
-        journeyLength = Vector3.Distance(startMarker.position, endMarker.position);
+            // Keep a note of the time the movement started.
+            startTime = Time.time;
+
+            // Calculate the journey length.
+            journeyLength = Vector3.Distance(startMarker.position, endMarker.position);
+            StaticGameData._gameData._lastTown = _placeholders[index].name;
+        }
+        else
+        {
+            _demoMessage.SetActive(true);
+        }
+       
     }
 
     // Update is called once per frame
@@ -68,8 +79,6 @@ public class MapManager : MonoBehaviour
     IEnumerator Next()
     {
         yield return new WaitForSeconds(2);
-        // Memorizza l'ultima posizione raggiunta
-        PlayerPrefs.SetString("LastTown", _placeholders[index].name);
         // Passa alla scena di play
         SceneManager.LoadScene("TownIntro");
     }
