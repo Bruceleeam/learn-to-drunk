@@ -5,7 +5,6 @@ using System;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using DesignPatterns.Factory;
-using static Unity.VisualScripting.Metadata;
 using System.Linq;
 
 public class UIManager : MonoBehaviour
