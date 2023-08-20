@@ -46,7 +46,7 @@ public class CheckAnswerState : BaseState
         List<string> tempIngredients1 = userIngredients.Select(obj => obj.name).ToList();
         List<string> tempIngredients2 = p.Ingredients.Select(obj => obj.name).ToList();
 
-        if (tempIngredients2.All(item => tempIngredients1.Contains(item)))
+        if (tempIngredients2.Count == tempIngredients1.Count && tempIngredients2.All(item => tempIngredients1.Contains(item)))
             return true;
         else
             return false;

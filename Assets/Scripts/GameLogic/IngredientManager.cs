@@ -1,92 +1,35 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class IngredientManager : MonoBehaviour
 {
-    GameManager _gameManager;
-    int _index;
-    List<ScriptableObject> _ingredients;
+    [SerializeField] private Color _selectedColor;
+    [SerializeField] private Color _notSelectedColor;
+    public bool _selected = false;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        Init();
+        Button btn = gameObject.GetComponent<Button>();
+        btn.onClick.AddListener(ClickHandler);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ClickHandler()
     {
-
-    }
-
-    void Init()
-    {
-        _gameManager = GameManager.Instance;
-        _index = 0;
-        _ingredients = new List<ScriptableObject>();
-        Type type = Type.GetType(tag);
-
-        foreach (ScriptableObject obj in Resources.LoadAll(tag, type))
-            _ingredients.Add(obj);
-
-        GetComponent<Button>().onClick.AddListener(SpriteSwitching);
-        GetComponent<Button>().onClick.Invoke();
-        SetCocktail();
-    }
-
-    void SpriteSwitching()
-    {
-        Debug.Log("state:" + _gameManager.CurrentState());
-        if (_gameManager.CurrentState() != Type.GetType("IntroState") && _gameManager.CurrentState() != Type.GetType("PlayState"))
-            return;
-        if (_gameManager.CurrentState() == Type.GetType("IntroState"))
+        if (!_selected)
         {
-            _index = new System.Random().Next(0,_ingredients.Count);
-            GetComponent<Image>().sprite = ((Ingredient)_ingredients[_index])._image;
-            transform.GetChild(0).GetComponent<Text>().text = _ingredients[_index].name;
+            _selected = true;
+            GetComponent<Image>().color = _selectedColor;
+            GameManager._userIngredients.Add(gameObject);
         }
         else
         {
-            int temp;
-
-            do
-            {
-                temp = new System.Random().Next(0, _ingredients.Count);
-            } while (temp == _index);
-
-            _index = temp;
-
-            GetComponent<Image>().sprite = ((Ingredient)_ingredients[_index])._image;
-            transform.GetChild(0).GetComponent<Text>().text = _ingredients[_index].name;
-
-        }
-        
-
-        SetCocktail();
-    }
-
-    void SetCocktail()
-    {
-        switch (tag)
-        {
-            //case "Base":
-            //    _gameManager._user_cocktail._base = _ingredients[_index] as Base;
-            //    break;
-            //case "Flavoring":
-            //    _gameManager._user_cocktail._flavoring = _ingredients[_index] as Flavoring;
-            //    break;
-            //case "Dye":
-            //    _gameManager._user_cocktail._dye = _ingredients[_index] as Dye;
-            //    break;
-            //case "Decoration":
-            //    _gameManager._user_cocktail._decoration = _ingredients[_index] as Decoration;
-            //    break;
-            //default:
-            //    break;
+            _selected = false;
+            GetComponent<Image>().color = _notSelectedColor;
+            GameManager._userIngredients.Remove(gameObject);
         }
     }
+
 }

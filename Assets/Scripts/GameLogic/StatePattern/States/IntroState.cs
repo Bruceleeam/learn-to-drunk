@@ -14,6 +14,7 @@ public class IntroState : BaseState
     public override void Enter(GameManager owner)
     {
         base.Enter(owner);
+        gm.OnDeactiveDrag();
     }
 
     public override void Execute()

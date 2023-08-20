@@ -55,7 +55,7 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bool allHooked = _userIngredients.All(obj => obj.GetComponent<DropItem>()._lockedGO != null) && gm.CurrentState() == Type.GetType("PlayState") ? _confirm.GetComponent<Button>().interactable = true : _confirm.GetComponent<Button>().interactable = false;
+        _ = GameManager._userIngredients.Count > 0 ? _confirm.GetComponent<Button>().interactable = true : _confirm.GetComponent<Button>().interactable = false;
     }
 
     // OBSERVER
@@ -118,29 +118,25 @@ public class UIManager : MonoBehaviour
     {
         for (int i = 0; i < _bases.transform.childCount - 1; i++)
         {
-            _bases.transform.GetChild(i).GetComponent<DragItem>().enabled = true;
-            _bases.transform.GetChild(i).GetComponent<Image>().color = new Color(1, 1, 1, 1);
+            _bases.transform.GetChild(i).GetComponent<Button>().interactable = true;
         }
 
         for (int i = 0; i < _flavorings.transform.childCount - 1; i++)
         {
-            _flavorings.transform.GetChild(i).GetComponent<DragItem>().enabled = true;
-            _flavorings.transform.GetChild(i).GetComponent<Image>().color = new Color(1, 1, 1, 1);
+            _flavorings.transform.GetChild(i).GetComponent<Button>().interactable = true;
         }
 
         for (int i = 0; i < _decorations.transform.childCount - 1; i++)
         {
-            _decorations.transform.GetChild(i).GetComponent<DragItem>().enabled = true;
-            _decorations.transform.GetChild(i).GetComponent<Image>().color = new Color(1, 1, 1, 1);
+            _decorations.transform.GetChild(i).GetComponent<Button>().interactable = true;
         }
 
         for (int i = 0; i < _dyes.transform.childCount - 1; i++)
         {
-            _dyes.transform.GetChild(i).GetComponent<DragItem>().enabled = true;
-            _dyes.transform.GetChild(i).GetComponent<Image>().color = new Color(1, 1, 1, 1);
+            _dyes.transform.GetChild(i).GetComponent<Button>().interactable = true;
         }
 
-        _confirm.GetComponent<Button>().enabled = true;
+        _confirm.GetComponent<Button>().interactable = true;
 
     }
 
@@ -148,29 +144,25 @@ public class UIManager : MonoBehaviour
     {
         for (int i = 0; i < _bases.transform.childCount - 1; i++)
         {
-            _bases.transform.GetChild(i).GetComponent<DragItem>().enabled = false;
-            _bases.transform.GetChild(i).GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);
+            _bases.transform.GetChild(i).GetComponent<Button>().interactable = false;
         }
 
         for (int i = 0; i < _flavorings.transform.childCount - 1; i++)
         {
-            _flavorings.transform.GetChild(i).GetComponent<DragItem>().enabled = false;
-            _flavorings.transform.GetChild(i).GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);
+            _flavorings.transform.GetChild(i).GetComponent<Button>().interactable = false;
         }
 
         for (int i = 0; i < _decorations.transform.childCount - 1; i++)
         {
-            _decorations.transform.GetChild(i).GetComponent<DragItem>().enabled = false;
-            _decorations.transform.GetChild(i).GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);
+            _decorations.transform.GetChild(i).GetComponent<Button>().interactable = false;
         }
 
         for (int i = 0; i < _dyes.transform.childCount - 1; i++)
         {
-            _dyes.transform.GetChild(i).GetComponent<DragItem>().enabled = false;
-            _dyes.transform.GetChild(i).GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);
+            _dyes.transform.GetChild(i).GetComponent<Button>().interactable = false;
         }
 
-        _confirm.GetComponent<Button>().enabled = false;
+        _confirm.GetComponent<Button>().interactable = false;
 
     }
 

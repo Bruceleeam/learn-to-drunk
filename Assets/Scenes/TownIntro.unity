@@ -354,7 +354,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Message
+  m_Text: Testo
 --- !u!222 &1038926874
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -583,7 +583,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Town
+  m_Text: "Citt\xE0"
 --- !u!222 &1587093442
 CanvasRenderer:
   m_ObjectHideFlags: 0
