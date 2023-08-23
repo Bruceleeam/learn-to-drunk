@@ -19,7 +19,7 @@ public class CheckAnswerState : BaseState
 
     public override void Execute()
     {
-        if (Compare(GameManager._userIngredients, gm._cocktail))
+        if (gm._cocktail.Validate(GameManager._userIngredients))
             gm.ChangeState(new RightAnswerState());
         else
             gm.ChangeState(new WrongAnswerState());
@@ -40,17 +40,4 @@ public class CheckAnswerState : BaseState
     {
         base.InvokeExiting();
     }
-
-    bool Compare(List<GameObject> userIngredients, IProduct p)
-    {
-        List<string> tempIngredients1 = userIngredients.Select(obj => obj.name).ToList();
-        List<string> tempIngredients2 = p.Ingredients.Select(obj => obj.name).ToList();
-
-        if (tempIngredients2.Count == tempIngredients1.Count && tempIngredients2.All(item => tempIngredients1.Contains(item)))
-            return true;
-        else
-            return false;
-        
-    }
-
 }

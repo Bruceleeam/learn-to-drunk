@@ -6,6 +6,8 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using DesignPatterns.Factory;
 using System.Linq;
+using System.Xml.Linq;
+using UnityEditor.Search;
 
 public class UIManager : MonoBehaviour
 {
@@ -20,11 +22,7 @@ public class UIManager : MonoBehaviour
     public GameObject _content;
     public Text _message;
     public List<GameObject> _lifes;
-    public GameObject _bases;
-    public GameObject _flavorings;
-    public GameObject _decorations;
-    public GameObject _dyes;
-    List<GameObject> _ingredients = new List<GameObject>();
+    public List<GameObject> _ingPlaceholders;
     public List<GameObject> _userIngredients;
     public GameObject _confirm;
 
@@ -43,127 +41,59 @@ public class UIManager : MonoBehaviour
         }
 
         RegisterSubjects();
-        UpdateIngredients();
-        UpdateLifes();
+        
     }
 
     // Use this for initialization
     void Start()
     {
+        UpdateIngredients();
+        UpdateLifes();
     }
 
     // Update is called once per frame
     void Update()
     {
-        _ = GameManager._userIngredients.Count > 0 ? _confirm.GetComponent<Button>().interactable = true : _confirm.GetComponent<Button>().interactable = false;
+        _ = GameManager._userIngredients.Count > 0 && gm.CurrentState() == typeof(PlayState)?
+            _confirm.GetComponent<Button>().interactable = true :
+            _confirm.GetComponent<Button>().interactable = false;
     }
 
     // OBSERVER
     public bool RegisterSubjects()
     {
-        gm.InitSVChoices += OnInitSVChoices;
         gm.ActiveDrag += OnActiveDrag;
         gm.DeactiveDrag += OnDeactiveDrag;
         gm.UpdateUI += OnUpdateUI;
         return true;
     }
 
-    public bool UpdateIngredients()
-    {
-        for (int i = 0; i < _bases.transform.childCount; i++)
-        {
-            _ingredients.Add(_bases.transform.GetChild(i).gameObject);
-        }
-
-        for (int i = 0; i < _flavorings.transform.childCount; i++)
-        {
-            _ingredients.Add(_flavorings.transform.GetChild(i).gameObject);
-        }
-
-        for (int i = 0; i < _decorations.transform.childCount; i++)
-        {
-            _ingredients.Add(_decorations.transform.GetChild(i).gameObject);
-        }
-
-        for (int i = 0; i < _dyes.transform.childCount; i++)
-        {
-            _ingredients.Add(_dyes.transform.GetChild(i).gameObject);
-        }
-
-        return true;
-    }
-
     public bool UnregisterSubjects()
     {
-        gm.InitSVChoices -= OnInitSVChoices;
         gm.ActiveDrag -= OnActiveDrag;
         gm.DeactiveDrag -= OnDeactiveDrag;
         gm.UpdateUI -= OnUpdateUI;
         return true;
     }
 
-    private void OnInitSVChoices()
-    {
-        foreach (GameObject ing in gm._cocktail.Ingredients)
-        {
-            GameObject temp = Instantiate(_ingredientUI);
-            temp.tag = ing.tag;
-            temp.transform.GetChild(0).GetComponent<Text>().text = ing.tag;
-            temp.transform.parent = _content.transform;
-            _userIngredients.Add(temp);
-        }
-    }
-
     private void OnActiveDrag()
     {
-        for (int i = 0; i < _bases.transform.childCount - 1; i++)
+        foreach (GameObject ing in GameManager._editorIngredients)
         {
-            _bases.transform.GetChild(i).GetComponent<Button>().interactable = true;
-        }
-
-        for (int i = 0; i < _flavorings.transform.childCount - 1; i++)
-        {
-            _flavorings.transform.GetChild(i).GetComponent<Button>().interactable = true;
-        }
-
-        for (int i = 0; i < _decorations.transform.childCount - 1; i++)
-        {
-            _decorations.transform.GetChild(i).GetComponent<Button>().interactable = true;
-        }
-
-        for (int i = 0; i < _dyes.transform.childCount - 1; i++)
-        {
-            _dyes.transform.GetChild(i).GetComponent<Button>().interactable = true;
+            ing.GetComponent<Button>().interactable = true;
         }
 
         _confirm.GetComponent<Button>().interactable = true;
-
     }
 
     private void OnDeactiveDrag()
     {
-        for (int i = 0; i < _bases.transform.childCount - 1; i++)
+        foreach (GameObject ing in GameManager._editorIngredients)
         {
-            _bases.transform.GetChild(i).GetComponent<Button>().interactable = false;
-        }
-
-        for (int i = 0; i < _flavorings.transform.childCount - 1; i++)
-        {
-            _flavorings.transform.GetChild(i).GetComponent<Button>().interactable = false;
-        }
-
-        for (int i = 0; i < _decorations.transform.childCount - 1; i++)
-        {
-            _decorations.transform.GetChild(i).GetComponent<Button>().interactable = false;
-        }
-
-        for (int i = 0; i < _dyes.transform.childCount - 1; i++)
-        {
-            _dyes.transform.GetChild(i).GetComponent<Button>().interactable = false;
+            ing.GetComponent<Button>().interactable = false;
         }
 
         _confirm.GetComponent<Button>().interactable = false;
-
     }
 
     private void OnUpdateUI(string message)
@@ -177,6 +107,23 @@ public class UIManager : MonoBehaviour
         yield return new WaitForSeconds(3);
         UpdateLifes();
         gm._next = true;
+    }
+
+    public bool UpdateIngredients()
+    {
+        int index = 0;
+
+        foreach (GameObject placeholder in _ingPlaceholders)
+        {
+            GameObject ingredient = GameManager._editorIngredients[index++];
+            ingredient.transform.position = placeholder.transform.position;
+            ingredient.transform.SetParent(placeholder.transform.parent);
+            Destroy(placeholder.gameObject);
+        }
+
+        OnDeactiveDrag();
+
+        return true;
     }
 
     private void UpdateLifes ()

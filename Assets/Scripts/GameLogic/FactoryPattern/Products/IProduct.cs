@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace DesignPatterns.Factory
@@ -13,5 +14,13 @@ namespace DesignPatterns.Factory
 
         // customize this for each concrete product
         public void Initialize();
+
+        public bool Validate(List<GameObject> ingredients)
+        {
+            if (Ingredients.Count == ingredients.Count && Ingredients.All(item => ingredients.Any(otherItem => item.name == otherItem.name)))
+                return true;
+            else
+                return false;
+        }
     }
 }
