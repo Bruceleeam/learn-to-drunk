@@ -88,7 +88,6 @@ public class GameManager : MonoBehaviour
     {
         Lifes = StaticGameData._gameData._lifes;
         FSM.Initialize(this, new IntroState());
-        LoadRandomObjectsFromResources();
     }
 
     // Update is called once per frame

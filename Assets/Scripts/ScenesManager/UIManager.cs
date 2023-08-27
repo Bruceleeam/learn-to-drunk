@@ -128,17 +128,15 @@ public class UIManager : MonoBehaviour
 
     private void UpdateLifes ()
     {
-        if (_lifes.Count > StaticGameData._gameData._lifes)
+
+        for (int i = _lifes.Count(); i > StaticGameData._gameData._lifes; i--)
         {
-            for(int i = _lifes.Count(); i > StaticGameData._gameData._lifes; i--)
+            if (_lifes[i - 1])
             {
-                if (_lifes[i-1])
-                {
-                    GameObject toDestroy = _lifes[i-1];
-                    _lifes.RemoveAt(i-1);
-                    Destroy(toDestroy);
-                }                
-            }            
+                GameObject toDestroy = _lifes[i - 1];
+                _lifes.RemoveAt(i - 1);
+                Destroy(toDestroy);
+            }
         }
 
         return;
