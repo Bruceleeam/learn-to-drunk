@@ -23,7 +23,6 @@ public class UIManager : MonoBehaviour
     public Text _message;
     public List<GameObject> _lifes;
     public List<GameObject> _ingPlaceholders;
-    public List<GameObject> _userIngredients;
     public GameObject _confirm;
 
     // FIELDS
@@ -38,17 +37,13 @@ public class UIManager : MonoBehaviour
         else
         {
             _instance = this;
-        }
-
-        RegisterSubjects();
-        
+        }        
     }
 
     // Use this for initialization
     void Start()
     {
-        UpdateIngredients();
-        UpdateLifes();
+
     }
 
     // Update is called once per frame
@@ -59,77 +54,47 @@ public class UIManager : MonoBehaviour
             _confirm.GetComponent<Button>().interactable = false;
     }
 
-    // OBSERVER
-    public bool RegisterSubjects()
+    public void UpdateInstructionMessage(string message)
     {
-        gm.ActiveDrag += OnActiveDrag;
-        gm.DeactiveDrag += OnDeactiveDrag;
-        gm.UpdateUI += OnUpdateUI;
-        return true;
+        _message.text = message;
     }
 
-    public bool UnregisterSubjects()
-    {
-        gm.ActiveDrag -= OnActiveDrag;
-        gm.DeactiveDrag -= OnDeactiveDrag;
-        gm.UpdateUI -= OnUpdateUI;
-        return true;
-    }
 
-    private void OnActiveDrag()
+    public void ActiveButtons(List<GameObject> ingredients)
     {
-        foreach (GameObject ing in GameManager._editorIngredients)
+        foreach (GameObject ing in ingredients)
         {
             ing.GetComponent<Button>().interactable = true;
         }
-
-        _confirm.GetComponent<Button>().interactable = true;
     }
 
-    private void OnDeactiveDrag()
+    public void DeactiveButtons(List<GameObject> ingredients)
     {
-        foreach (GameObject ing in GameManager._editorIngredients)
+        foreach (GameObject ing in ingredients)
         {
             ing.GetComponent<Button>().interactable = false;
         }
-
-        _confirm.GetComponent<Button>().interactable = false;
     }
 
-    private void OnUpdateUI(string message)
-    {
-        StartCoroutine(Execute(message));
-    }
-
-    IEnumerator Execute(string message)
-    {
-        _message.text = message;
-        yield return new WaitForSeconds(3);
-        UpdateLifes();
-        gm._next = true;
-    }
-
-    public bool UpdateIngredients()
+    public bool InitIngredients(List<GameObject> ingredients)
     {
         int index = 0;
 
         foreach (GameObject placeholder in _ingPlaceholders)
         {
-            GameObject ingredient = GameManager._editorIngredients[index++];
+            GameObject ingredient = ingredients[index++];
             ingredient.transform.position = placeholder.transform.position;
             ingredient.transform.SetParent(placeholder.transform.parent);
             Destroy(placeholder.gameObject);
         }
 
-        OnDeactiveDrag();
-
         return true;
     }
 
-    private void UpdateLifes ()
+    public void UpdateLifes (int lifes)
     {
 
-        for (int i = _lifes.Count(); i > StaticGameData._gameData._lifes; i--)
+        for (int i = _lifes.Count(); i > lifes; i--)
         {
             if (_lifes[i - 1])
             {
@@ -141,10 +106,4 @@ public class UIManager : MonoBehaviour
 
         return;
     }
-
-    private void OnDestroy()
-    {
-        UnregisterSubjects();
-    }
-
 }

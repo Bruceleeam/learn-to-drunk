@@ -28,11 +28,11 @@ public class IntroState : BaseState
 
     public override void InvokeEntering()
     {
-        gm._cocktail = gm._creator.GetComponent<Creator>().GetProduct(StaticGameData._gameData._lastTown);
-        gm.LoadRandomObjectsFromResources();
-        GameManager._userIngredients.Clear();
-        gm.OnUpdateUI("Preparati per il prossimo Cocktail!");
         base.InvokeEntering();
+        gm.SetCocktail();
+        gm.LoadRandomObjectsFromResources();
+        gm.DeactiveIngredients();
+        gm.UpdateInstruction("Preparati per il prossimo Cocktail!");
     }
 
     public override void InvokeExiting()

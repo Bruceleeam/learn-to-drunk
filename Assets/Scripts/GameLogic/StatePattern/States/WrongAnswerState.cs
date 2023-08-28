@@ -32,8 +32,7 @@ public class WrongAnswerState : BaseState
     public override void InvokeEntering()
     {
         gm.OnUpdateUI("Sbagliato!");
-        StaticGameData._gameData._lifes -= 1;
-        gm.GetComponent<StorageData>().SaveDataLocally(StaticGameData._gameData);
+        gm.UpdateLifes(-1);
         base.InvokeEntering();
     }
 

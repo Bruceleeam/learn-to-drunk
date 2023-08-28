@@ -5,12 +5,21 @@ using System;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using DesignPatterns.Factory;
+using UnityEditor.VersionControl;
 
 public class GameManager : MonoBehaviour
 {
     // SINGLETON
     private static GameManager _instance;
     public static GameManager Instance { get { return _instance; } }
+
+    private FiniteStateMachine<GameManager> FSM = new FiniteStateMachine<GameManager>();
+    public UIManager uim;
+
+    public static List<GameObject> _editorIngredients = new List<GameObject>();
+    public static List<GameObject> _userIngredients = new List<GameObject>();
+    public Creator _creator;
+    public IProduct _cocktail;
     public bool _next = false;
 
     // OBSERVER & ACTIONS
@@ -20,51 +29,7 @@ public class GameManager : MonoBehaviour
         UpdateUI?.Invoke(message);
     }
 
-    public event Action DecreaseLife;
-    public void OnDecreaseLife()
-    {
-        DecreaseLife?.Invoke();
-    }
-
-    public event Action CheckLife;
-    public void OnCheckLife()
-    {
-        CheckLife?.Invoke();
-    }
-
-    public event Action ActiveDrag;
-    public void OnActiveDrag()
-    {
-        ActiveDrag?.Invoke();
-    }
-
-    public event Action DeactiveDrag;
-    public void OnDeactiveDrag()
-    {
-        DeactiveDrag?.Invoke();
-    }
-
-    private FiniteStateMachine<GameManager> FSM = new FiniteStateMachine<GameManager>();
-
-    public static List<GameObject> _editorIngredients = new List<GameObject>();
-    public static List<GameObject> _userIngredients = new List<GameObject>();
-    public Creator _creator;
-    public IProduct _cocktail;
-
-    private static int _lifes = 3;
-    public int Lifes
-    {
-        get => _lifes;
-        set => _lifes = value;
-    }
-
-    public static bool _cardUnlocking = false;
-    public GameObject _cardPanel;
-    public Text _cardTitle;
-    public Text _cardDescription;
-    public Text _timer;
-    public float _sec;
-    string boardMessage = "";
+    public int Lifes { get; set; }
 
     private void Awake()
     {
@@ -107,9 +72,59 @@ public class GameManager : MonoBehaviour
         return FSM.CurrentState().GetType();
     }
 
+    public void WaitForNext(int sec = 3)
+    {
+        StartCoroutine(WaitForNextCoroutine(sec));
+    }
+
+    IEnumerator WaitForNextCoroutine(int sec)
+    {
+        yield return new WaitForSeconds(sec);
+        _next = true;
+    }
+
+    public void UpdateInstruction(string message)
+    {
+        uim.UpdateInstructionMessage(message);
+    }
+
     public void Confirm()
     {
         _next = true;
+    }
+
+    public void SetCocktail()
+    {
+        _cocktail = _creator.GetComponent<Creator>().GetProduct(StaticGameData._gameData._lastTown);
+        _userIngredients.Clear();
+    }
+
+    public bool ValidateCocktail()
+    {
+        return _cocktail.Validate(_userIngredients);
+    }
+
+    public bool UpdateLifes(int lifes)
+    {
+        StaticGameData._gameData._lifes += lifes;
+        GetComponent<StorageData>().SaveDataLocally(StaticGameData._gameData);
+        uim.UpdateLifes(StaticGameData._gameData._lifes);
+
+        return true;
+    }
+
+    public bool ActiveIngredients()
+    {
+        uim.ActiveButtons(_editorIngredients);
+
+        return true;
+    }
+
+    public bool DeactiveIngredients()
+    {
+        uim.DeactiveButtons(_editorIngredients);
+
+        return true;
     }
 
     public void LoadRandomObjectsFromResources()
@@ -175,6 +190,9 @@ public class GameManager : MonoBehaviour
         }
 
         Shuffle(_editorIngredients);
+
+        uim.InitIngredients(_editorIngredients);
+
     }
 
     public static void Shuffle<T>(List<T> list)

@@ -33,6 +33,7 @@ public abstract class BaseState : FSMState<GameManager>
     public override void InvokeEntering()
     {
         Debug.Log("Entering " + this.GetType());
+        gm.WaitForNext();
     }
 
     public override void InvokeExiting()

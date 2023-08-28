@@ -19,7 +19,7 @@ public class CheckAnswerState : BaseState
 
     public override void Execute()
     {
-        if (gm._cocktail.Validate(GameManager._userIngredients))
+        if (gm.ValidateCocktail())
             gm.ChangeState(new RightAnswerState());
         else
             gm.ChangeState(new WrongAnswerState());

@@ -1196,13 +1196,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86d22b4f311ce45cab87156901285a38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _next: 0
+  uim: {fileID: 1718229154}
   _creator: {fileID: 1153504906}
-  _cardPanel: {fileID: 0}
-  _cardTitle: {fileID: 0}
-  _cardDescription: {fileID: 0}
-  _timer: {fileID: 0}
-  _sec: 0
+  _next: 0
 --- !u!114 &756588731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2416,7 +2412,6 @@ MonoBehaviour:
   - {fileID: 271078711}
   - {fileID: 1031047797}
   - {fileID: 1255515451}
-  _userIngredients: []
   _confirm: {fileID: 651701671}
 --- !u!4 &1718229155
 Transform:

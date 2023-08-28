@@ -29,7 +29,6 @@ public class CardUnlockingState : BaseState
         base.InvokeEntering();
         if (!PlayerPrefs.HasKey(gm._cocktail.ProductName))
         {
-            GameManager._cardUnlocking = true;
             gm.OnUpdateUI("Complimenti! Hai sbloccato una nuova card");
         }
     }
