@@ -27,8 +27,9 @@ public class RestartState : BaseState
 
     public override void InvokeEntering()
     {
-        gm.OnUpdateUI("Riprova");
         base.InvokeEntering();
+        gm.WaitForNext();
+        gm.UpdateInstruction("Riprova");
     }
 
     public override void InvokeExiting()

@@ -28,13 +28,16 @@ public class PlayState : BaseState
     public override void InvokeEntering()
     {
         base.InvokeEntering();
-        gm.ActiveIngredients();
+        gm.UpdateTitle(gm._cocktail.ProductName);
+        gm.UpdateInstruction("");
+        gm.DeactiveInterceptor();
     }
 
     public override void InvokeExiting()
     {
         base.InvokeExiting();
-        gm.DeactiveIngredients();
+        gm.UpdateTitle("");
+        gm.ActiveInterceptor();
     }
 
 }

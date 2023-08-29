@@ -30,8 +30,9 @@ public class GameOverState : BaseState
 
     public override void InvokeEntering()
     {
-        gm.OnUpdateUI("Game Over");
         base.InvokeEntering();
+        gm.WaitForNext();
+        gm.UpdateInstruction("Game Over");
     }
 
     public override void InvokeExiting()

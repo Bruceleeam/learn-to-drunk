@@ -31,9 +31,10 @@ public class WrongAnswerState : BaseState
 
     public override void InvokeEntering()
     {
-        gm.OnUpdateUI("Sbagliato!");
-        gm.UpdateLifes(-1);
         base.InvokeEntering();
+        gm.WaitForNext();
+        gm.UpdateInstruction("Sbagliato!");
+        gm.UpdateLifes(-1);
     }
 
     public override void InvokeExiting()

@@ -83,6 +83,11 @@ public class GameManager : MonoBehaviour
         _next = true;
     }
 
+    public void UpdateTitle(string message)
+    {
+        uim.UpdateTitleMessage(message);
+    }
+
     public void UpdateInstruction(string message)
     {
         uim.UpdateInstructionMessage(message);
@@ -109,20 +114,6 @@ public class GameManager : MonoBehaviour
         StaticGameData._gameData._lifes += lifes;
         GetComponent<StorageData>().SaveDataLocally(StaticGameData._gameData);
         uim.UpdateLifes(StaticGameData._gameData._lifes);
-
-        return true;
-    }
-
-    public bool ActiveIngredients()
-    {
-        uim.ActiveButtons(_editorIngredients);
-
-        return true;
-    }
-
-    public bool DeactiveIngredients()
-    {
-        uim.DeactiveButtons(_editorIngredients);
 
         return true;
     }
@@ -193,6 +184,16 @@ public class GameManager : MonoBehaviour
 
         uim.InitIngredients(_editorIngredients);
 
+    }
+
+    public void ActiveInterceptor()
+    {
+        uim.ActiveInterceptor();
+    }
+
+    public void DeactiveInterceptor()
+    {
+        uim.DeactiveInterceptor();
     }
 
     public static void Shuffle<T>(List<T> list)

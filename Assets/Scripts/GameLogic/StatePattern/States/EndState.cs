@@ -29,8 +29,9 @@ public class EndState : BaseState
 
     public override void InvokeEntering()
     {
-        gm.OnUpdateUI("Si beve!");
         base.InvokeEntering();
+        gm.WaitForNext();
+        gm.UpdateInstruction("Si beve!");
     }
 
     public override void InvokeExiting()

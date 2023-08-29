@@ -27,8 +27,9 @@ public class StartState : BaseState
 
     public override void InvokeEntering()
     {
-        gm.OnUpdateUI(gm._cocktail.ProductName);
         base.InvokeEntering();
+        gm.WaitForNext();
+        gm.UpdateInstruction(gm._cocktail.ProductName);
     }
 
     public override void InvokeExiting()

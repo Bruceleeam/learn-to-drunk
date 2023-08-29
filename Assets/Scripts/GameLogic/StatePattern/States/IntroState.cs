@@ -29,9 +29,12 @@ public class IntroState : BaseState
     public override void InvokeEntering()
     {
         base.InvokeEntering();
+        gm.ActiveInterceptor();
+        gm.WaitForNext();
         gm.SetCocktail();
         gm.LoadRandomObjectsFromResources();
-        gm.DeactiveIngredients();
+        gm.UpdateLifes(0);
+        gm.UpdateTitle("");
         gm.UpdateInstruction("Preparati per il prossimo Cocktail!");
     }
 

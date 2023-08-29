@@ -27,9 +27,10 @@ public class CardUnlockingState : BaseState
     public override void InvokeEntering()
     {
         base.InvokeEntering();
+        gm.WaitForNext();
         if (!PlayerPrefs.HasKey(gm._cocktail.ProductName))
         {
-            gm.OnUpdateUI("Complimenti! Hai sbloccato una nuova card");
+            gm.UpdateInstruction("Complimenti! Hai sbloccato una nuova card");
         }
     }
 

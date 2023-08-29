@@ -27,8 +27,9 @@ public class RightAnswerState : BaseState
 
     public override void InvokeEntering()
     {
-        gm.OnUpdateUI("Esatto!");
         base.InvokeEntering();
+        gm.WaitForNext();
+        gm.UpdateInstruction("Esatto!");
     }
 
     public override void InvokeExiting()

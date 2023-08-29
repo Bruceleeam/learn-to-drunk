@@ -19,8 +19,9 @@ public class UIManager : MonoBehaviour
     // TO DRAG & DROP BY INSPECTOR
     public GameManager gm;
     public GameObject _ingredientUI;
-    public GameObject _content;
-    public Text _message;
+    public Text _textDialog;
+    public Text _textTitle;
+    public GameObject _panelInterceptor;
     public List<GameObject> _lifes;
     public List<GameObject> _ingPlaceholders;
     public GameObject _confirm;
@@ -54,26 +55,24 @@ public class UIManager : MonoBehaviour
             _confirm.GetComponent<Button>().interactable = false;
     }
 
+    public void UpdateTitleMessage(string message)
+    {
+        _textTitle.text = message;
+    }
+
     public void UpdateInstructionMessage(string message)
     {
-        _message.text = message;
+        _textDialog.text = message;
     }
 
-
-    public void ActiveButtons(List<GameObject> ingredients)
+    public void ActiveInterceptor()
     {
-        foreach (GameObject ing in ingredients)
-        {
-            ing.GetComponent<Button>().interactable = true;
-        }
+        _panelInterceptor.SetActive(true);
     }
 
-    public void DeactiveButtons(List<GameObject> ingredients)
+    public void DeactiveInterceptor()
     {
-        foreach (GameObject ing in ingredients)
-        {
-            ing.GetComponent<Button>().interactable = false;
-        }
+        _panelInterceptor.SetActive(false);
     }
 
     public bool InitIngredients(List<GameObject> ingredients)
@@ -82,6 +81,8 @@ public class UIManager : MonoBehaviour
 
         foreach (GameObject placeholder in _ingPlaceholders)
         {
+            if (index == ingredients.Count) return true;
+
             GameObject ingredient = ingredients[index++];
             ingredient.transform.position = placeholder.transform.position;
             ingredient.transform.SetParent(placeholder.transform.parent);
