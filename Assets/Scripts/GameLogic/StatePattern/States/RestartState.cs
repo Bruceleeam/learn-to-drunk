@@ -17,7 +17,7 @@ public class RestartState : BaseState
 
     public override void Execute()
     {
-        gm.ChangeState(new StartState());
+        gm.ChangeState(new PlayState());
     }
 
     public override void Exit()
