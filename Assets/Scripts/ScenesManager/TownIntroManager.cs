@@ -13,7 +13,7 @@ public class TownIntroManager : MonoBehaviour
     void Start()
     {
         _townLabel.text = StaticGameData._gameData._lastTown;
-        StartCoroutine(PlayGame());
+        _message.text = "Messaggio pre-partita";
     }
 
     // Update is called once per frame
@@ -22,10 +22,8 @@ public class TownIntroManager : MonoBehaviour
         
     }
 
-    IEnumerator PlayGame()
+    public void Play()
     {
-        _message.text = "Messaggio pre-partita";
-        yield return new WaitForSeconds(3);
         SceneManager.LoadScene("Game");
     }
 }
