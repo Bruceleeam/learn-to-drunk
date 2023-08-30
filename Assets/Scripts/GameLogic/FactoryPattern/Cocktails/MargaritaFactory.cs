@@ -7,18 +7,18 @@ namespace DesignPatterns.Factory
     public class MargaritaFactory : Factory
     {
         // used to create a Prefab
-        [SerializeField] private Margarita margaritaPrefab;
+        [SerializeField] private Margarita productPrefab;
 
         public override IProduct GetBase(Vector3 position)
         {
             // create a Prefab instance and get the product component
-            GameObject instanceBase = Instantiate(margaritaPrefab.gameObject, position, Quaternion.identity);
-            Margarita margarita = instanceBase.GetComponent<Margarita>();
+            GameObject instanceBase = Instantiate(productPrefab.gameObject, position, Quaternion.identity);
+            Margarita product = instanceBase.GetComponent<Margarita>();
 
             // each product contains its own logic
-            margarita.Initialize();
+            product.Initialize();
 
-            return margarita;
+            return product;
         }
     }
 }

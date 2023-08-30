@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8759919292563159384
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2204569778530657237}
+  - component: {fileID: -5536469701399022217}
+  m_Layer: 0
+  m_Name: GinAndTonic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2204569778530657237
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8759919292563159384}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-5536469701399022217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8759919292563159384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad687d32af7734134b49d23d168fded5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  productName: Gin & Tonic
+  ingredients:
+  - {fileID: 3654489661347538262, guid: 28a879e91cde545088647dd142c2167d, type: 3}
+  - {fileID: 3654489661347538262, guid: 9adbca279f4074494bd79f8e8012a671, type: 3}
+  - {fileID: 3654489661347538262, guid: 42cbd1fd78640498ea7dc764a9c364fb, type: 3}
+  - {fileID: 3654489661347538262, guid: 519f898f1704e46c1804891feb0d9a88, type: 3}
