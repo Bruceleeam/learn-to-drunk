@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2204569778530657237}
-  - component: {fileID: 591640087768807427}
+  - component: {fileID: -5536469701399022217}
   m_Layer: 0
-  m_Name: Moscow Mule
+  m_Name: MoscowMule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &591640087768807427
+--- !u!114 &-5536469701399022217
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,11 +41,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8759919292563159384}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 267476b9750a145cca0b0c3eec68bb7c, type: 3}
+  m_Script: {fileID: 11500000, guid: 32cb1988065924d11a60f7d9b45c7b8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  productName: Moscow Mule
-  ingredients:
+  _name: Moscow Mule
+  _ingredients:
   - {fileID: 3654489661347538262, guid: 8fa205d499e98425a97e486e5655a438, type: 3}
   - {fileID: 3654489661347538262, guid: 87343322ede124d71adabac62bdd80f3, type: 3}
   - {fileID: 3654489661347538262, guid: 18a62dab7834147d2abc0582a8766ad3, type: 3}

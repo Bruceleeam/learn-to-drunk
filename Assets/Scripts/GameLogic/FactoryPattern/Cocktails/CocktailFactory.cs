@@ -5,16 +5,16 @@ using UnityEngine;
 
 namespace DesignPatterns.Factory
 {
-    public class NegroniFactory : Factory
+    public class CocktailFactory : Factory
     {
         // used to create a Prefab
-        [SerializeField] private Negroni productPrefab;
+        [SerializeField] private Cocktail cocktailPrefab;
 
-        public override IProduct GetBase(Vector3 position)
+        public override IProduct GetProduct(Vector3 position)
         {
             // create a Prefab instance and get the product component
-            GameObject instanceBase = Instantiate(productPrefab.gameObject, position, Quaternion.identity);
-            Negroni product = instanceBase.GetComponent<Negroni>();
+            GameObject instanceBase = Instantiate(cocktailPrefab.gameObject, position, Quaternion.identity);
+            Cocktail product = instanceBase.GetComponent<Cocktail>();
 
             // each product contains its own logic
             product.Initialize();

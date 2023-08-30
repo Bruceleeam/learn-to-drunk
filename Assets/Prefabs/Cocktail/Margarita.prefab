@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2204569778530657237}
-  - component: {fileID: 317432199792090581}
+  - component: {fileID: -5536469701399022217}
   m_Layer: 0
   m_Name: Margarita
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &317432199792090581
+--- !u!114 &-5536469701399022217
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,12 +41,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8759919292563159384}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ad2b26b9dc4c4a88a9bf7f9729d0e08, type: 3}
+  m_Script: {fileID: 11500000, guid: 32cb1988065924d11a60f7d9b45c7b8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  productName: Margarita
-  ingredients:
+  _name: Margarita
+  _ingredients:
   - {fileID: 3654489661347538262, guid: 892424ec93ef8415bbe521e27a2f6bd4, type: 3}
   - {fileID: 3654489661347538262, guid: be81e55be20ee49a089bc309585e3f45, type: 3}
   - {fileID: 3654489661347538262, guid: 18a62dab7834147d2abc0582a8766ad3, type: 3}
   - {fileID: 3654489661347538262, guid: 8531571c48af744cca14c135d246832a, type: 3}
+  - {fileID: 3654489661347538262, guid: 28a879e91cde545088647dd142c2167d, type: 3}

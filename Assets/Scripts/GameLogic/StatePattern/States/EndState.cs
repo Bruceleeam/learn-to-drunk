@@ -31,7 +31,7 @@ public class EndState : BaseState
     {
         base.InvokeEntering();
         gm.WaitForNext();
-        gm.UpdateInstruction("Now you know what you're drinking if you select a " + gm._cocktail.ProductName + ". \n Let's head to the next country to learn a new cocktail! \n LET'S GO!!!");
+        gm.UpdateInstruction("Now you know what you're drinking if you select a " + gm._cocktail.Name + ". \n Let's head to the next country to learn a new cocktail! \n LET'S GO!!!");
     }
 
     public override void InvokeExiting()

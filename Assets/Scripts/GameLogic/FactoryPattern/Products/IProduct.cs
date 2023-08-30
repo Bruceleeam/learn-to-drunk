@@ -9,18 +9,12 @@ namespace DesignPatterns.Factory
     public interface IProduct
     {
         // add common properties and methods here
-        public string ProductName { get; set; }
+        public string Name { get; set; }
         public List<GameObject> Ingredients { get; }
 
         // customize this for each concrete product
         public void Initialize();
 
-        public bool Validate(List<GameObject> ingredients)
-        {
-            if (Ingredients.Count == ingredients.Count && Ingredients.All(item => ingredients.Any(otherItem => item.name == otherItem.name)))
-                return true;
-            else
-                return false;
-        }
+        public bool Validate(List<GameObject> ingredients);
     }
 }

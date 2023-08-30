@@ -28,7 +28,7 @@ public class PlayState : BaseState
     public override void InvokeEntering()
     {
         base.InvokeEntering();
-        gm.UpdateTitle(gm._cocktail.ProductName);
+        gm.UpdateTitle(gm._cocktail.Name);
         gm.UpdateInstruction("");
         gm.DeactiveInterceptor();
     }

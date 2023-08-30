@@ -7,12 +7,12 @@ namespace DesignPatterns.Factory
     // base class for factories
     public abstract class Factory : MonoBehaviour
     {
-        public abstract IProduct GetBase(Vector3 position);
+        public abstract IProduct GetProduct(Vector3 position);
 
         // shared method with all factories
         public string GetLog(IProduct product)
         {
-            string logMessage = "Factory: created product " + product.ProductName;
+            string logMessage = "Factory: created product " + product.Name;
             return logMessage;
         }
     }
