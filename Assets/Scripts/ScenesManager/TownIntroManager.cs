@@ -13,7 +13,7 @@ public class TownIntroManager : MonoBehaviour
     void Start()
     {
         _townLabel.text = StaticGameData._gameData._lastTown;
-        _message.text = "Messaggio pre-partita";
+        _message.text = "Town description";
     }
 
     // Update is called once per frame

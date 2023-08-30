@@ -30,7 +30,7 @@ public class CardUnlockingState : BaseState
         gm.WaitForNext();
         if (!PlayerPrefs.HasKey(gm._cocktail.ProductName))
         {
-            gm.UpdateInstruction("Complimenti! Hai sbloccato una nuova card");
+            gm.UpdateInstruction("Congratulations! You've just unlocked a new card.");
         }
     }
 

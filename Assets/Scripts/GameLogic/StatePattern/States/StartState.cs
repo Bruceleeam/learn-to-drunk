@@ -29,7 +29,7 @@ public class StartState : BaseState
     {
         base.InvokeEntering();
         gm.WaitForNext();
-        gm.UpdateInstruction(gm._cocktail.ProductName);
+        gm.UpdateInstruction("Let's prepare the " + gm._cocktail.ProductName);
     }
 
     public override void InvokeExiting()

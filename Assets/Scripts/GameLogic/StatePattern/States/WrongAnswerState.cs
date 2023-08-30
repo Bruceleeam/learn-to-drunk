@@ -21,7 +21,7 @@ public class WrongAnswerState : BaseState
         if (StaticGameData._gameData._lifes == 0)
             gm.ChangeState(new GameOverState());
         else
-            gm.ChangeState(new StartState());
+            gm.ChangeState(new RestartState());
     }
 
     public override void Exit()
@@ -33,7 +33,7 @@ public class WrongAnswerState : BaseState
     {
         base.InvokeEntering();
         gm.WaitForNext();
-        gm.UpdateInstruction("Sbagliato!");
+        gm.UpdateInstruction("Oops, that's not it");
         gm.UpdateLifes(-1);
     }
 

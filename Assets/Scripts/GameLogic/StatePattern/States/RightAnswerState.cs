@@ -29,7 +29,7 @@ public class RightAnswerState : BaseState
     {
         base.InvokeEntering();
         gm.WaitForNext();
-        gm.UpdateInstruction("Esatto!");
+        gm.UpdateInstruction("You got it!");
     }
 
     public override void InvokeExiting()

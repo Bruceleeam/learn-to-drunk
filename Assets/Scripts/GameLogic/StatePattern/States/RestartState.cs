@@ -29,7 +29,7 @@ public class RestartState : BaseState
     {
         base.InvokeEntering();
         gm.WaitForNext();
-        gm.UpdateInstruction("Riprova");
+        gm.UpdateInstruction("Try again!");
     }
 
     public override void InvokeExiting()
