@@ -28,7 +28,7 @@ public class RightAnswerState : BaseState
     public override void InvokeEntering()
     {
         base.InvokeEntering();
-        gm.WaitForNext();
+        gm.Next();
         gm.UpdateInstruction("You got it!");
     }
 

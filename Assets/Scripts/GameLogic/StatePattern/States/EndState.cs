@@ -18,7 +18,7 @@ public class EndState : BaseState
 
     public override void Execute()
 	{
-        gm.GetComponent<StorageData>().SaveDataLocally(StaticGameData._gameData);
+        gm.UpdateGameData();
         SceneManager.LoadScene("Map");
     }
 
@@ -30,13 +30,14 @@ public class EndState : BaseState
     public override void InvokeEntering()
     {
         base.InvokeEntering();
-        gm.WaitForNext();
+        gm.Next();
         gm.UpdateInstruction("Now you know what you're drinking if you select a " + gm._cocktail.Name + ". \n Let's head to the next country to learn a new cocktail! \n LET'S GO!!!");
     }
 
     public override void InvokeExiting()
     {
         base.InvokeExiting();
+        gm.UpdateGameData();
     }
 
 }

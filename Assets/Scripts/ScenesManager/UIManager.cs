@@ -21,6 +21,9 @@ public class UIManager : MonoBehaviour
     public GameObject _ingredientUI;
     public Text _textDialog;
     public Text _textTitle;
+    public GameObject _panelCard;
+    public Text _textCardTitle;
+    public Text _textCardDescription;
     public GameObject _panelInterceptor;
     public List<GameObject> _lifes;
     public List<GameObject> _ingPlaceholders;
@@ -73,6 +76,13 @@ public class UIManager : MonoBehaviour
     public void DeactiveInterceptor()
     {
         _panelInterceptor.SetActive(false);
+    }
+
+    public void ShowCard(string title, string description)
+    {
+        _panelCard.SetActive(true);
+        _textCardTitle.text = title;
+        _textCardDescription.text = description;
     }
 
     public bool InitIngredients(List<GameObject> ingredients)

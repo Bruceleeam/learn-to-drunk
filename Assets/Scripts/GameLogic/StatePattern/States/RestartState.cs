@@ -28,7 +28,7 @@ public class RestartState : BaseState
     public override void InvokeEntering()
     {
         base.InvokeEntering();
-        gm.WaitForNext();
+        gm.Next();
         gm.UpdateInstruction("Try again!");
     }
 

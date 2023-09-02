@@ -18,8 +18,7 @@ public class GameOverState : BaseState
 
     public override void Execute()
     {
-        gm.GetComponent<StorageData>().SaveDataLocally(new GameData());
-        StaticGameData._gameData = gm.GetComponent<StorageData>().LoadData();
+        gm.UpdateGameData();
         SceneManager.LoadScene("Menu");
     }
 
@@ -31,7 +30,7 @@ public class GameOverState : BaseState
     public override void InvokeEntering()
     {
         base.InvokeEntering();
-        gm.WaitForNext();
+        gm.Next();
         gm.UpdateInstruction("Game Over");
     }
 

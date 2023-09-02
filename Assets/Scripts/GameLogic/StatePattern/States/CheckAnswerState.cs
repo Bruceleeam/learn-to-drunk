@@ -33,7 +33,7 @@ public class CheckAnswerState : BaseState
     public override void InvokeEntering()
     {
         base.InvokeEntering();
-        gm.WaitForNext();
+        gm.Next();
         gm.UpdateInstruction("Let me see ...");
     }
 

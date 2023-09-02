@@ -8,9 +8,11 @@ namespace DesignPatterns.Factory
     public class Cocktail : MonoBehaviour, IProduct
     {
         [SerializeField] public string _name;
+        [SerializeField] public string _description;
         [SerializeField] public List<GameObject> _ingredients;
 
         public string Name { get => _name; set => _name = value; }
+        public string Description { get => _description; set => _name = value; }
         public List<GameObject> Ingredients { get => _ingredients; }
 
         public void Initialize()

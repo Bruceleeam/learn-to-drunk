@@ -12,7 +12,7 @@ public class TownIntroManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _townLabel.text = StaticGameData._gameData._lastTown;
+        _townLabel.text = StaticGameData._gameData.Town;
         _message.text = "Town description";
     }
 

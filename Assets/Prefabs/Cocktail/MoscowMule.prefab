@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: Moscow Mule
+  _description: Description Moscow Mule
   _ingredients:
   - {fileID: 3654489661347538262, guid: 8fa205d499e98425a97e486e5655a438, type: 3}
   - {fileID: 3654489661347538262, guid: 87343322ede124d71adabac62bdd80f3, type: 3}

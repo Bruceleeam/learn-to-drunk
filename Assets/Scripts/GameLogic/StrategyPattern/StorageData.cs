@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class StorageData : MonoBehaviour
@@ -26,13 +27,14 @@ public class StorageData : MonoBehaviour
         GameData loadedData = dataManager.LoadData();
         if (loadedData != null)
         {
-            Debug.Log("Valore caricato last town: " + loadedData._lastTown);
-            Debug.Log("Valore caricato lifes: " + loadedData._lifes);
+            Debug.Log("Valore caricato last town: " + loadedData.Town);
+            Debug.Log("Valore caricato lifes: " + loadedData.Lifes);
+            Debug.Log("Valore caricato lifes: " + loadedData.Unlocked.ToString());
         }
         else
         {
             Debug.Log("Impossibile caricare i dati.");
-            loadedData = new GameData();
+            loadedData = new GameData(3, null, new List<string>());
         }
 
         return loadedData;

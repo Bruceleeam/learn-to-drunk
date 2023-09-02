@@ -17,7 +17,7 @@ public class MenuManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (StaticGameData._gameData._lastTown != null && StaticGameData._gameData._lifes > 0)
+        if (StaticGameData._gameData.Town != null && StaticGameData._gameData.Lifes > 0)
             _continue.SetActive(true);
     }
 
@@ -29,7 +29,7 @@ public class MenuManager : MonoBehaviour
 
     public void NewGame()
     {
-        StaticGameData._gameData = new GameData();
+        StaticGameData._gameData = new GameData(3, null, StaticGameData._gameData.Unlocked);
         SceneManager.LoadScene("Map");
     }
 

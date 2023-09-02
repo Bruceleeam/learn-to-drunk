@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: Negroni
+  _description: Description Negroni
   _ingredients:
   - {fileID: 3654489661347538262, guid: 9adbca279f4074494bd79f8e8012a671, type: 3}
   - {fileID: 3654489661347538262, guid: 3283498f9b5034993bb8ce99b8f5667a, type: 3}

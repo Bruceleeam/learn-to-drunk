@@ -10,6 +10,7 @@ namespace DesignPatterns.Factory
     {
         // add common properties and methods here
         public string Name { get; set; }
+        public string Description { get; set; }
         public List<GameObject> Ingredients { get; }
 
         // customize this for each concrete product

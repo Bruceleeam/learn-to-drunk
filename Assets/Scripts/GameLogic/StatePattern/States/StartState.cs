@@ -28,7 +28,7 @@ public class StartState : BaseState
     public override void InvokeEntering()
     {
         base.InvokeEntering();
-        gm.WaitForNext();
+        gm.Next();
         gm.UpdateInstruction("Let's prepare the " + gm._cocktail.Name);
     }
 

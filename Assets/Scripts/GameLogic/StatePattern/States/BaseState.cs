@@ -6,7 +6,6 @@ using DesignPatterns.Factory;
 public abstract class BaseState : FSMState<GameManager>
 {
     protected GameManager gm;
-    protected GameData _gameData = new GameData();
 
     public BaseState(){
     }

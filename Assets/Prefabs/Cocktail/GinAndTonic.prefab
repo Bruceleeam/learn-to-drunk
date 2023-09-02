@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: Gin and Tonic
+  _description: Description Gin And Tonic
   _ingredients:
   - {fileID: 3654489661347538262, guid: 9adbca279f4074494bd79f8e8012a671, type: 3}
   - {fileID: 3654489661347538262, guid: 42cbd1fd78640498ea7dc764a9c364fb, type: 3}

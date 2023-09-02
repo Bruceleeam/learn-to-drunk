@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System;
 using DesignPatterns.Factory;
 
-public class CardUnlockingState : BaseState
+public class ShowCardState : BaseState
 {
 
-    public CardUnlockingState(){
+    public ShowCardState(){
 	}
 
 	public override void Enter(GameManager owner)
@@ -16,7 +16,7 @@ public class CardUnlockingState : BaseState
 
     public override void Execute()
 	{
-        gm.ChangeState(new ShowCardState());
+        gm.ChangeState(new EndState());
     }
 
     public override void Exit()
@@ -27,16 +27,7 @@ public class CardUnlockingState : BaseState
     public override void InvokeEntering()
     {
         base.InvokeEntering();
-        if (!gm.CheckCard())
-        {
-            gm.UnlockCard();
-            gm.Next();
-            gm.UpdateInstruction("Congratulations! You've just unlocked a new card.");
-        }
-        else
-        {
-            gm.Next(0);
-        }
+        gm.ShowCard();
     }
 
     public override void InvokeExiting()

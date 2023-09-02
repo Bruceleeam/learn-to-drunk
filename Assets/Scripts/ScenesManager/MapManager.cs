@@ -28,11 +28,9 @@ public class MapManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-        //PlayerPrefs.DeleteAll();
-        if (StaticGameData._gameData._lastTown != null)
+        if (StaticGameData.CheckTown())
         {
-            index = _placeholders.FindIndex(a => a.name.Equals(StaticGameData._gameData._lastTown));
+            index = _placeholders.FindIndex(a => a.name.Equals(StaticGameData._gameData.Town));
             player.transform.position = _placeholders[index].gameObject.transform.position;
         }
 
@@ -48,7 +46,7 @@ public class MapManager : MonoBehaviour
 
             // Calculate the journey length.
             journeyLength = Vector3.Distance(startMarker.position, endMarker.position);
-            StaticGameData._gameData._lastTown = _placeholders[index].name;
+            StaticGameData._gameData.Town = _placeholders[index].name;
         }
         else
         {

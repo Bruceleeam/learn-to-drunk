@@ -30,7 +30,7 @@ public class IntroState : BaseState
     {
         base.InvokeEntering();
         gm.ActiveInterceptor();
-        gm.WaitForNext();
+        gm.Next();
         gm.SetCocktail();
         gm.LoadRandomObjectsFromResources();
         gm.UpdateLifes(0);

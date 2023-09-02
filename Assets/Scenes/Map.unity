@@ -1579,7 +1579,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Cocktail Select
+  m_Text: Cocktails Map
 --- !u!222 &2030435660
 CanvasRenderer:
   m_ObjectHideFlags: 0

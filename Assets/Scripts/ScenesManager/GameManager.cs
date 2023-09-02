@@ -29,8 +29,6 @@ public class GameManager : MonoBehaviour
         UpdateUI?.Invoke(message);
     }
 
-    public int Lifes { get; set; }
-
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -51,7 +49,6 @@ public class GameManager : MonoBehaviour
 
     public void Init()
     {
-        Lifes = StaticGameData._gameData._lifes;
         FSM.Initialize(this, new IntroState());
     }
 
@@ -72,12 +69,12 @@ public class GameManager : MonoBehaviour
         return FSM.CurrentState().GetType();
     }
 
-    public void WaitForNext(int sec = 3)
+    public void Next(int sec = 3)
     {
-        StartCoroutine(WaitForNextCoroutine(sec));
+        StartCoroutine(NextCoroutine(sec));
     }
 
-    IEnumerator WaitForNextCoroutine(int sec)
+    IEnumerator NextCoroutine(int sec)
     {
         yield return new WaitForSeconds(sec);
         _next = true;
@@ -93,14 +90,29 @@ public class GameManager : MonoBehaviour
         uim.UpdateInstructionMessage(message);
     }
 
-    public void Confirm()
+    public bool CheckLifes()
     {
-        _next = true;
+        return StaticGameData.CheckLifes();
+    }
+
+    public bool CheckCard()
+    {
+        return StaticGameData.CheckCard(_cocktail.Name);
+    }
+
+    public void UnlockCard()
+    {
+        StaticGameData.UnlockCard(_cocktail.Name);
+    }   
+
+    public void ShowCard()
+    {
+        uim.ShowCard(_cocktail.Name, _cocktail.Description);
     }
 
     public void SetCocktail()
     {
-        _cocktail = _creator.GetComponent<Creator>().GetProduct(StaticGameData._gameData._lastTown);
+        _cocktail = _creator.GetComponent<Creator>().GetProduct(StaticGameData._gameData.Town);
         _userIngredients.Clear();
     }
 
@@ -111,9 +123,8 @@ public class GameManager : MonoBehaviour
 
     public bool UpdateLifes(int lifes)
     {
-        StaticGameData._gameData._lifes += lifes;
-        GetComponent<StorageData>().SaveDataLocally(StaticGameData._gameData);
-        uim.UpdateLifes(StaticGameData._gameData._lifes);
+        StaticGameData._gameData.Lifes += lifes;
+        uim.UpdateLifes(StaticGameData._gameData.Lifes);
 
         return true;
     }
@@ -211,5 +222,15 @@ public class GameManager : MonoBehaviour
             list[k] = list[n];
             list[n] = value;
         }
+    }
+
+    public void LoadGameData()
+    {
+        StaticGameData._gameData = GetComponent<StorageData>().LoadData();
+    }
+
+    public void UpdateGameData()
+    {
+        GetComponent<StorageData>().SaveDataLocally(StaticGameData._gameData);
     }
 }

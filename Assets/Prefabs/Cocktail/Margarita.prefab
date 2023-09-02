@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: Margarita
+  _description: Description Margarita
   _ingredients:
   - {fileID: 3654489661347538262, guid: 892424ec93ef8415bbe521e27a2f6bd4, type: 3}
   - {fileID: 3654489661347538262, guid: be81e55be20ee49a089bc309585e3f45, type: 3}
