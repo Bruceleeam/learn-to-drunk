@@ -97,12 +97,14 @@ public class GameManager : MonoBehaviour
 
     public bool CheckCard()
     {
-        return StaticGameData.CheckCard(_cocktail.Name);
+        Card card = new Card(_cocktail.Name, _cocktail.Description);
+        return StaticGameData.CheckCard(card);
     }
 
     public void UnlockCard()
     {
-        StaticGameData.UnlockCard(_cocktail.Name);
+        Card card = new Card(_cocktail.Name, _cocktail.Description);
+        StaticGameData.UnlockCard(card);
     }   
 
     public void ShowCard()

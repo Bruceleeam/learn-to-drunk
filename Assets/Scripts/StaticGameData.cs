@@ -21,14 +21,14 @@ public class StaticGameData
         return false;
     }
 
-    public static bool CheckCard(string cocktailName)
+    public static bool CheckCard(Card cocktailName)
     {
         if (StaticGameData._gameData.Unlocked.Contains(cocktailName))
             return true;
         return false;
     }
 
-    public static void UnlockCard(string cardName)
+    public static void UnlockCard(Card cardName)
     {
         _gameData.Unlocked.Add(cardName);
     }

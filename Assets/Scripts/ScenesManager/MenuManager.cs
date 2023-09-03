@@ -6,11 +6,12 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
+    public GameObject _buttonCocktailCards;
     public GameObject _cardButtonsContent;
     public GameObject _cocktailCardBtn;
-    public GameObject _cocktailCard;
-    public Text _cocktailCardTitle;
-    public Text _cocktailCardDesc;
+    public GameObject _panelCard;
+    public Text _textCardTitle;
+    public Text _textCardDescription;
     public GameObject _continue;
     //public List<Cocktail> _cocktails = new List<Cocktail>();
 
@@ -19,6 +20,18 @@ public class MenuManager : MonoBehaviour
     {
         if (StaticGameData._gameData.Town != null && StaticGameData._gameData.Lifes > 0)
             _continue.SetActive(true);
+
+        if (StaticGameData._gameData.Unlocked.Count > 0)
+        {
+            _buttonCocktailCards.SetActive(true);
+
+            foreach (Card unlocked in StaticGameData._gameData.Unlocked)
+            {
+                GameObject tempCard = Instantiate(_cocktailCardBtn, new Vector3(0, 0, 0), Quaternion.identity);
+                tempCard.transform.SetParent(_cardButtonsContent.transform);
+                tempCard.name = unlocked.Name;
+            }
+        }            
     }
 
     // Update is called once per frame
@@ -40,7 +53,7 @@ public class MenuManager : MonoBehaviour
 
     public void ClearCard()
     {
-        _cocktailCardTitle.text = "";
-        _cocktailCardDesc.text = "";
+        _textCardTitle.text = "";
+        _textCardDescription.text = "";
     }
 }

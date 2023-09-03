@@ -9,7 +9,7 @@ public class GameData
 
     }
 
-    public GameData(int lifes, string town, List<string> unlocked)
+    public GameData(int lifes, string town, List<Card> unlocked)
     {
         Lifes = lifes;
         Town = town;
@@ -28,9 +28,27 @@ public class GameData
         set;
     }
 
-    public List<string> Unlocked
+    public List<Card> Unlocked
     {
         get;
         set;
+    }
+}
+
+[Serializable]
+public class Card
+{
+    public string Name { get; set; }
+    public string Description { get; set; }
+
+    public Card()
+    {
+
+    }
+
+    public Card(string name, string description)
+    {
+        Name = name;
+        Description = description;
     }
 }

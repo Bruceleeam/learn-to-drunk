@@ -34,7 +34,7 @@ public class StorageData : MonoBehaviour
         else
         {
             Debug.Log("Impossibile caricare i dati.");
-            loadedData = new GameData(3, null, new List<string>());
+            loadedData = new GameData(3, null, new List<Card>());
         }
 
         return loadedData;
