@@ -29,7 +29,9 @@ public class MenuManager : MonoBehaviour
             {
                 GameObject tempCard = Instantiate(_cocktailCardBtn, new Vector3(0, 0, 0), Quaternion.identity);
                 tempCard.transform.SetParent(_cardButtonsContent.transform);
+                tempCard.transform.localScale = new Vector3(1, 1, 1);
                 tempCard.name = unlocked.Name;
+                tempCard.transform.GetChild(0).GetComponent<Text>().text = unlocked.Name;
             }
         }            
     }

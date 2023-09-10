@@ -235,4 +235,9 @@ public class GameManager : MonoBehaviour
     {
         GetComponent<StorageData>().SaveDataLocally(StaticGameData._gameData);
     }
+
+    public void ToMenu()
+    {
+        SceneManager.LoadScene("Menu");
+    }
 }

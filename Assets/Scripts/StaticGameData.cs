@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using DesignPatterns.Factory;
 using UnityEngine;
 
@@ -21,9 +22,9 @@ public class StaticGameData
         return false;
     }
 
-    public static bool CheckCard(Card cocktailName)
+    public static bool CheckCard(Card card)
     {
-        if (StaticGameData._gameData.Unlocked.Contains(cocktailName))
+        if (StaticGameData._gameData.Unlocked.Any( o => o.Name.Equals(card.Name)))
             return true;
         return false;
     }
