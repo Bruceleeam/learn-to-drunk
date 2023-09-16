@@ -76,6 +76,7 @@ public class MapManager : MonoBehaviour
         else
         {
             if(!_demoOver) StartCoroutine(Next());
+            else StartCoroutine(ToMenu());
         }
     }
 
@@ -84,5 +85,12 @@ public class MapManager : MonoBehaviour
         yield return new WaitForSeconds(2);
         // Passa alla scena di play
         SceneManager.LoadScene("TownIntro");
+    }
+
+    IEnumerator ToMenu()
+    {
+        yield return new WaitForSeconds(2);
+        // Passa alla scena di play
+        SceneManager.LoadScene("Menu");
     }
 }
