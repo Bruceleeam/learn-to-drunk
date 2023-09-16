@@ -2868,8 +2868,8 @@ MonoBehaviour:
   _textDialog: {fileID: 264559667}
   _textTitle: {fileID: 590615608}
   _panelCard: {fileID: 2044081263}
-  _textCardTitle: {fileID: 0}
-  _textCardDescription: {fileID: 0}
+  _textCardTitle: {fileID: 590615608}
+  _textCardDescription: {fileID: 264559667}
   _panelInterceptor: {fileID: 848480097}
   _lifes:
   - {fileID: 904726041}
