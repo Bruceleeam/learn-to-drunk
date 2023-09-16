@@ -9,6 +9,7 @@ TagManager:
   - Dye
   - Decoration
   - Ingredient
+  - CardButton
   layers:
   - Default
   - TransparentFX

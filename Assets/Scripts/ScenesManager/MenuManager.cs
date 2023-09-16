@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class MenuManager : MonoBehaviour
 {
@@ -39,6 +40,10 @@ public class MenuManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        var lastClick = EventSystem.current.currentSelectedGameObject ?? null;
+
+        if (lastClick && lastClick.tag.Equals("CardButton"))
+            ActivePanelCard(lastClick);
 
     }
 
@@ -57,5 +62,13 @@ public class MenuManager : MonoBehaviour
     {
         _textCardTitle.text = "";
         _textCardDescription.text = "";
+    }
+
+    public void ActivePanelCard(GameObject card)
+    {
+        _panelCard.SetActive(true);
+        Card temp = StaticGameData._gameData.Unlocked.Find(x => x.Name == card.name);
+        _textCardTitle.text = temp.Name;
+        _textCardDescription.text = temp.Description;
     }
 }
