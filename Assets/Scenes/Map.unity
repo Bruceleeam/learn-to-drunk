@@ -1043,6 +1043,7 @@ MonoBehaviour:
   - {fileID: 565932878}
   - {fileID: 616321457}
   - {fileID: 2132853381}
+  - {fileID: 0}
   player: {fileID: 1979917793}
   _demoMessage: {fileID: 203307680}
 --- !u!4 &884315663
@@ -1579,7 +1580,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Cocktails Map
+  m_Text: Tour Map
 --- !u!222 &2030435660
 CanvasRenderer:
   m_ObjectHideFlags: 0

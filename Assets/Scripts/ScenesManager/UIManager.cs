@@ -53,7 +53,7 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _ = GameManager._userIngredients.Count > 0 && gm.CurrentState() == typeof(PlayState)?
+        _ = GameManager._userIngredients.Count == gm._cocktail.Ingredients.Count && gm.CurrentState() == typeof(PlayState)?
             _confirm.GetComponent<Button>().interactable = true :
             _confirm.GetComponent<Button>().interactable = false;
     }

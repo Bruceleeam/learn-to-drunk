@@ -13,6 +13,7 @@ public class MapManager : MonoBehaviour
     Transform startMarker;
     Transform endMarker;
     public GameObject _demoMessage;
+    private bool _demoOver;
 
     // Movement speed in units per second.
     float speed = 50f;
@@ -28,6 +29,9 @@ public class MapManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        _demoOver = false;
+
         if (StaticGameData.CheckTown())
         {
             index = _placeholders.FindIndex(a => a.name.Equals(StaticGameData._gameData.Town));
@@ -51,6 +55,7 @@ public class MapManager : MonoBehaviour
         else
         {
             _demoMessage.SetActive(true);
+            _demoOver = true;
         }
        
     }
@@ -70,7 +75,7 @@ public class MapManager : MonoBehaviour
         }
         else
         {
-            StartCoroutine(Next());
+            if(!_demoOver) StartCoroutine(Next());
         }
     }
 
