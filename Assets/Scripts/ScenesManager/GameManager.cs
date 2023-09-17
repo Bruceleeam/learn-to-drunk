@@ -114,7 +114,7 @@ public class GameManager : MonoBehaviour
 
     public void SetCocktail()
     {
-        _cocktail = _creator.GetComponent<Creator>().GetProduct(StaticGameData._gameData.Town);
+        _cocktail = _creator.GetComponent<Creator>().GetProduct(StaticGameData._gameData.NextTown);
         _userIngredients.Clear();
     }
 
@@ -233,11 +233,12 @@ public class GameManager : MonoBehaviour
 
     public void UpdateGameData()
     {
+        StaticGameData._gameData.Town = StaticGameData._gameData.NextTown;
         GetComponent<StorageData>().SaveDataLocally(StaticGameData._gameData);
     }
 
     public void ToMenu()
     {
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("Synchronization");
     }
 }

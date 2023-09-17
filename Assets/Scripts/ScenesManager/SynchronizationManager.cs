@@ -13,7 +13,7 @@ public class SynchronizationManager : MonoBehaviour
     {
         //CheckNetworking
         // OFFLINE MODE -> add check networking api
-        if (StaticSettings.FORCE_OFFLINE_MODE)
+        if (StaticSettings.OFFLINE_MODE)
         {
             StaticGameData._gameData = _storageData.GetComponent<StorageData>().LoadData();
             SceneManager.LoadScene("Menu");

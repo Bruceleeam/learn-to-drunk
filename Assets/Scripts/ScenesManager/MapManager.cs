@@ -50,7 +50,7 @@ public class MapManager : MonoBehaviour
 
             // Calculate the journey length.
             journeyLength = Vector3.Distance(startMarker.position, endMarker.position);
-            StaticGameData._gameData.Town = _placeholders[index].name;
+            StaticGameData._gameData.NextTown = _placeholders[index].name;
         }
         else
         {

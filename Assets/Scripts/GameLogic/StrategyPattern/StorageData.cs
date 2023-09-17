@@ -28,13 +28,14 @@ public class StorageData : MonoBehaviour
         if (loadedData != null)
         {
             Debug.Log("Valore caricato last town: " + loadedData.Town);
+            Debug.Log("Valore caricato next town: " + loadedData.NextTown);
             Debug.Log("Valore caricato lifes: " + loadedData.Lifes);
-            Debug.Log("Valore caricato lifes: " + loadedData.Unlocked.ToString());
+            Debug.Log("Valore caricato unlocked: " + loadedData.Unlocked.ToString());
         }
         else
         {
             Debug.Log("Impossibile caricare i dati.");
-            loadedData = new GameData(3, null, new List<Card>());
+            loadedData = new GameData(3, null, null, new List<Card>());
         }
 
         return loadedData;

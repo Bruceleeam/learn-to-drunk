@@ -9,10 +9,11 @@ public class GameData
 
     }
 
-    public GameData(int lifes, string town, List<Card> unlocked)
+    public GameData(int lifes, string town, string nextTown, List<Card> unlocked)
     {
         Lifes = lifes;
         Town = town;
+        NextTown = nextTown;
         Unlocked = unlocked;
     }
 
@@ -23,6 +24,12 @@ public class GameData
     }
 
     public string Town
+    {
+        get;
+        set;
+    }
+
+    public string NextTown
     {
         get;
         set;

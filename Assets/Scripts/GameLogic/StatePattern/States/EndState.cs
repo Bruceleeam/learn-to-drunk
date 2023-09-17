@@ -37,7 +37,6 @@ public class EndState : BaseState
     public override void InvokeExiting()
     {
         base.InvokeExiting();
-        gm.UpdateGameData();
     }
 
 }

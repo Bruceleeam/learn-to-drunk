@@ -49,7 +49,7 @@ public class MenuManager : MonoBehaviour
 
     public void NewGame()
     {
-        StaticGameData._gameData = new GameData(3, null, StaticGameData._gameData.Unlocked);
+        StaticGameData._gameData = new GameData(3, null, null, StaticGameData._gameData.Unlocked);
         SceneManager.LoadScene("Map");
     }
 
@@ -69,6 +69,6 @@ public class MenuManager : MonoBehaviour
         _panelCard.SetActive(true);
         Card temp = StaticGameData._gameData.Unlocked.Find(x => x.Name == card.name);
         _textCardTitle.text = temp.Name;
-        _textCardDescription.text = temp.Description;
+        _textCardDescription.text    = temp.Description;
     }
 }
