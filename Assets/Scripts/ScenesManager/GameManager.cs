@@ -85,9 +85,9 @@ public class GameManager : MonoBehaviour
         uim.UpdateTitleMessage(message);
     }
 
-    public void UpdateInstruction(string message)
+    public void UpdateDialog(string message)
     {
-        uim.UpdateInstructionMessage(message);
+        uim.UpdateDialog(message);
     }
 
     public bool CheckLifes()

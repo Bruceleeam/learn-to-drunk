@@ -31,7 +31,7 @@ public class GameOverState : BaseState
     {
         base.InvokeEntering();
         gm.Next();
-        gm.UpdateInstruction("Game Over");
+        gm.UpdateDialog("Game Over");
     }
 
     public override void InvokeExiting()

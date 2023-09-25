@@ -31,7 +31,7 @@ public class CardUnlockingState : BaseState
         {
             gm.UnlockCard();
             gm.Next();
-            gm.UpdateInstruction("Congratulations! You've just unlocked a new card.");
+            gm.UpdateDialog("Congratulations! You've just unlocked a new card.");
         }
         else
         {

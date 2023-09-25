@@ -29,7 +29,7 @@ public class PlayState : BaseState
     {
         base.InvokeEntering();
         gm.UpdateTitle(gm._cocktail.Name);
-        gm.UpdateInstruction("");
+        gm.UpdateDialog("");
         gm.DeactiveInterceptor();
     }
 

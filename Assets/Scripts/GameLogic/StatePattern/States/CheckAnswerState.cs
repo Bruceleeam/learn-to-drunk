@@ -34,7 +34,7 @@ public class CheckAnswerState : BaseState
     {
         base.InvokeEntering();
         gm.Next();
-        gm.UpdateInstruction("Let me see ...");
+        gm.UpdateDialog("Let me see ...");
     }
 
     public override void InvokeExiting()

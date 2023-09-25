@@ -33,7 +33,7 @@ public class WrongAnswerState : BaseState
     {
         base.InvokeEntering();
         gm.Next();
-        gm.UpdateInstruction("Oops, that's not it");
+        gm.UpdateDialog("Oops, that's not it");
         gm.UpdateLifes(-1);
     }
 

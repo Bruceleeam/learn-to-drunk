@@ -35,7 +35,7 @@ public class IntroState : BaseState
         gm.LoadRandomObjectsFromResources();
         gm.UpdateLifes(0);
         gm.UpdateTitle("");
-        gm.UpdateInstruction("Get ready for the next cocktail challenge");
+        gm.UpdateDialog("Get ready for the next cocktail challenge");
     }
 
     public override void InvokeExiting()

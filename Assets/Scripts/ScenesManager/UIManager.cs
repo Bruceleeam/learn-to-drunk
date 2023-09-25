@@ -8,6 +8,7 @@ using DesignPatterns.Factory;
 using System.Linq;
 using System.Xml.Linq;
 using UnityEditor.Search;
+using UnityEditor.VersionControl;
 
 public class UIManager : MonoBehaviour
 {
@@ -50,6 +51,24 @@ public class UIManager : MonoBehaviour
 
     }
 
+    private UIEditor _editor;
+    private ICommand _printCommand;
+
+    public UIManager(UIEditor editor)
+    {
+        _editor = editor;
+    }
+
+    public void PerformPrint()
+    {
+        _printCommand.Exec();
+    }    
+
+    public void UndoCut()
+    {
+        _printCommand.Undo();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -60,22 +79,26 @@ public class UIManager : MonoBehaviour
 
     public void UpdateTitleMessage(string message)
     {
-        _textTitle.text = message;
+        PrintCommand printCommand = new PrintCommand(new UIEditor(_textTitle), message);
+        printCommand.Exec();
     }
 
-    public void UpdateInstructionMessage(string message)
+    public void UpdateDialog(string message)
     {
-        _textDialog.text = message;
+        PrintCommand printCommand = new PrintCommand(new UIEditor(_textDialog), message);
+        StartCoroutine(printCommand.AsyncExec());
     }
 
     public void ActiveInterceptor()
     {
-        _panelInterceptor.SetActive(true);
+        ActiveCommand activeCommand = new ActiveCommand(new UIEditor(_panelInterceptor));
+        activeCommand.Exec();
     }
 
     public void DeactiveInterceptor()
     {
-        _panelInterceptor.SetActive(false);
+        DeactiveCommand deactiveCommand = new DeactiveCommand(new UIEditor(_panelInterceptor));
+        deactiveCommand.Exec();
     }
 
     public void ShowCard(string title, string description)
