@@ -5,7 +5,6 @@ using System;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using DesignPatterns.Factory;
-using UnityEditor.VersionControl;
 
 public class GameManager : MonoBehaviour
 {

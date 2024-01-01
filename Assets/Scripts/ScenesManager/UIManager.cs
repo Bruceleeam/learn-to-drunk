@@ -7,8 +7,6 @@ using UnityEngine.SceneManagement;
 using DesignPatterns.Factory;
 using System.Linq;
 using System.Xml.Linq;
-using UnityEditor.Search;
-using UnityEditor.VersionControl;
 
 public class UIManager : MonoBehaviour
 {
@@ -66,7 +64,7 @@ public class UIManager : MonoBehaviour
 
     public void UndoCut()
     {
-        _printCommand.Undo();
+        
     }
 
     // Update is called once per frame

@@ -21,9 +21,4 @@ public class DeactiveCommand : ICommand
         _uiEditor.Deactive();
     }
 
-    public void Undo()
-    {
-        throw new System.NotImplementedException();
-    }
-
 }

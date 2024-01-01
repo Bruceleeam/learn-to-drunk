@@ -21,9 +21,4 @@ public class ActiveCommand : ICommand
         _uiEditor.Active();
     }
 
-    public void Undo()
-    {
-        throw new System.NotImplementedException();
-    }
-
 }
